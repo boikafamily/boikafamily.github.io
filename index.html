@@ -621,7 +621,7 @@
         <section class="rules">
             <h2><i class="fas fa-info-circle"></i> Как пользоваться списком:</h2>
             <ol>
-                <li>Нажмите "Посмотреть ссылку", чтобы открыть страницу с подарком на Wildberries.</li>
+                <li>Нажмите "Посмотреть", чтобы открыть страницу с подарком на Wildberries.</li>
                 <li>Если хотите забронировать подарок, нажмите "Забронировать".</li>
                 <li>После бронирования появится окно подтверждения. После подтверждения подарок будет зачеркнут.</li>
                 <li>Если вы передумали, вы можете отменить бронирование с помощью кнопки "Отменить бронь".</li>
@@ -690,7 +690,7 @@
             if (gift.status === 'free') {
                 return `
                     <button class="btn btn-preview" onclick="window.open('${gift.link}', '_blank')">
-                        <i class="fas fa-external-link-alt"></i> Посмотреть ссылку
+                        <i class="fas fa-external-link-alt"></i> Посмотреть
                     </button>
                     <button class="btn btn-reserve" onclick="reserveGift(${gift.id})">
                         <i class="fas fa-gift"></i> Забронировать
@@ -698,7 +698,7 @@
             } else if (gift.status === 'reserved') {
                 return `
                     <button class="btn btn-preview" onclick="window.open('${gift.link}', '_blank')">
-                        <i class="fas fa-external-link-alt"></i> Посмотреть ссылку
+                        <i class="fas fa-external-link-alt"></i> Посмотреть
                     </button>
                     <div class="confirm-panel" id="confirm-${gift.id}" style="display:none;">
                         <div class="confirm-text">Подтвердить бронирование?</div>
@@ -712,7 +712,7 @@
             } else {
                 return `
                     <button class="btn btn-preview" onclick="window.open('${gift.link}', '_blank')">
-                        <i class="fas fa-external-link-alt"></i> Посмотреть ссылку
+                        <i class="fas fa-external-link-alt"></i> Посмотреть
                     </button>
                     <button class="btn btn-unbook" onclick="openUnbookModal(${gift.id})">
                         <i class="fas fa-undo"></i> Отменить бронь

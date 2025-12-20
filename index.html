@@ -10,198 +10,260 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* Основной шрифт — крупный, чёткий, без Comic Sans */
             font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
         body {
-            background-color: #fff9fb; /* Нежно-розовый фон */
-            color: #4a3a3a; /* Тёмно-серый текст — легко читается */
-            line-height: 1.6;
-            padding: 16px;
+            background: linear-gradient(135deg, #fff5f9 0%, #f8f4ff 100%);
+            color: #5a4a5a;
+            line-height: 1.65;
+            padding: 18px;
             min-height: 100vh;
             max-width: 1000px;
             margin: 0 auto;
+            position: relative;
+            background-image: 
+                radial-gradient(circle, #ffb6c1 1px, transparent 1px),
+                radial-gradient(circle, #e0bbff 1px, transparent 1px);
+            background-size: 40px 40px, 50px 50px;
+            background-position: 0 0, 25px 25px;
+        }
+
+        .deco-heart, .deco-star, .deco-bow {
+            position: absolute;
+            font-size: 1.8rem;
+            opacity: 0.06;
+            z-index: 0;
+            pointer-events: none;
         }
 
         .container {
-            background-color: white;
-            border-radius: 20px;
-            padding: 28px;
+            background-color: rgba(255, 255, 255, 0.92);
+            border-radius: 24px;
+            padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-            border: 1px solid #ffe0e9;
+            box-shadow: 0 8px 25px rgba(255, 150, 200, 0.15);
+            border: 1px solid rgba(255, 182, 193, 0.3);
+            backdrop-filter: blur(6px);
+            position: relative;
+            z-index: 1;
         }
 
-        /* === Заголовки === */
         h1 {
-            font-size: 2.4rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            color: #e91e63;
-            margin-bottom: 16px;
+            background: linear-gradient(90deg, #ff69b4, #ff9eb5, #d48cff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
             text-align: center;
+            position: relative;
+            padding-bottom: 14px;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff9eb5, #ffb6c1);
+            border-radius: 2px;
         }
 
         h2 {
-            font-size: 1.6rem;
+            font-size: 1.65rem;
             font-weight: 600;
             color: #d81b60;
-            margin: 28px 0 18px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #ffe0e9;
+            margin: 28px 0 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px dashed #ffb6c1;
         }
 
-        /* === Текст === */
         p, .intro-text, .rules-text {
-            font-size: 1.2rem;
-            margin-bottom: 16px;
+            font-size: 1.25rem;
+            margin-bottom: 18px;
             line-height: 1.7;
         }
 
         .intro-text {
-            background-color: #fff5f8;
-            padding: 20px;
-            border-radius: 16px;
-            border-left: 5px solid #f48fb1;
-            margin: 20px 0;
+            background: linear-gradient(145deg, #fff8fb, #f9f2ff);
+            padding: 22px;
+            border-radius: 18px;
+            border-left: 6px solid #ffb6c1;
+            margin: 22px 0;
+            box-shadow: 0 4px 12px rgba(255, 182, 193, 0.1);
         }
 
         .rules ol {
-            font-size: 1.15rem;
-            padding-left: 24px;
-            margin: 16px 0;
+            font-size: 1.18rem;
+            padding-left: 26px;
+            margin: 18px 0;
         }
 
         .rules li {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            position: relative;
         }
 
-        /* === Фото === */
+        .rules li::before {
+            content: "🎀";
+            position: absolute;
+            left: -26px;
+            top: 0;
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
         .photo-frame {
             width: 220px;
             height: 280px;
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
-            margin: 0 auto 24px;
-            box-shadow: 0 6px 16px rgba(233, 30, 99, 0.15);
-            border: 4px solid white;
+            margin: 0 auto 26px;
+            box-shadow: 
+                0 8px 20px rgba(233, 30, 99, 0.2),
+                inset 0 0 0 4px white,
+                inset 0 0 0 8px #ffb6c1;
+            position: relative;
+            background: #fff9fb;
         }
 
         .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-frame img:hover {
+            transform: scale(1.02);
         }
 
         .photo-placeholder {
             display: none;
             width: 100%;
             height: 100%;
-            background-color: #fff0f5;
+            background-color: #fff0f8;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 5rem;
-            color: #e91e63;
+            color: #ff69b4;
         }
 
-        /* === Подарки === */
         .gift-card {
-            background-color: #ffffff;
-            border: 2px solid #ffe0e9;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(145deg, #ffffff, #fff9fb);
+            border: 2px solid #ffe0eb;
+            border-radius: 20px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 14px rgba(255, 150, 200, 0.12);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .gift-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(255, 150, 200, 0.2);
         }
 
         .gift-card h3 {
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             font-weight: 600;
-            color: #e91e63;
-            margin-bottom: 8px;
+            color: #d81b60;
+            margin-bottom: 10px;
         }
 
         .gift-card .comment {
-            font-size: 1.1rem;
-            color: #d81b60;
+            font-size: 1.15rem;
+            color: #ff69b4;
             font-style: italic;
-            margin: 6px 0 12px;
+            margin: 8px 0 14px;
         }
 
         .gift-card .category {
             display: inline-block;
-            background-color: #fce4ec;
-            color: #ad1457;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.95rem;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            color: #880e4f;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 6px rgba(248, 187, 208, 0.4);
         }
 
         .gift-card .status {
             display: inline-block;
-            padding: 6px 16px;
-            border-radius: 20px;
+            padding: 8px 20px;
+            border-radius: 30px;
             font-weight: 600;
-            font-size: 1rem;
-            margin: 10px 0;
+            font-size: 1.05rem;
+            margin: 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
         }
 
         .status-free {
-            background-color: #e8f5e9;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
             color: #2e7d32;
-            border: 1px solid #c8e6c9;
+            border: 1px solid #a5d6a7;
         }
 
         .status-booked {
-            background-color: #f8bbd0;
+            background: linear-gradient(135deg, #f8bbd0, #f48fb1);
             color: #880e4f;
             border: 1px solid #f48fb1;
             text-decoration: line-through;
         }
 
         .btn {
-            padding: 12px 20px;
-            font-size: 1.05rem;
+            padding: 13px 22px;
+            font-size: 1.1rem;
             font-weight: 600;
             border: none;
-            border-radius: 12px;
+            border-radius: 50px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            margin: 6px 6px 6px 0;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+            gap: 10px;
+            margin: 8px 8px 8px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: all 0.25s ease;
         }
 
         .btn-preview {
-            background-color: #e3f2fd;
-            color: #1565c0;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #0d47a1;
         }
 
         .btn-reserve {
-            background-color: #f8bbd0;
-            color: #880e4f;
+            background: linear-gradient(135deg, #f8bbd0, #f48fb1);
+            color: white;
         }
 
         .btn-unbook {
-            background-color: #ffecb3;
+            background: linear-gradient(135deg, #ffecb3, #ffd54f);
             color: #e65100;
         }
 
         .btn-confirm {
-            background-color: #c8e6c9;
-            color: #1b5e20;
+            background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+            color: white;
         }
 
         .btn-cancel {
-            background-color: #eeeeee;
+            background: linear-gradient(135deg, #eeeeee, #e0e0e0);
             color: #616161;
         }
 
-        /* === Модальные окна === */
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+        }
+
         .modal-overlay {
             display: none;
             position: fixed;
@@ -209,75 +271,80 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.65);
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(3px);
         }
 
         .modal {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
+            background: linear-gradient(145deg, #ffffff, #fff5f9);
+            border-radius: 24px;
+            padding: 32px;
             width: 90%;
-            max-width: 500px;
+            max-width: 520px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 40px rgba(233, 30, 99, 0.3);
+            border: 2px solid #ffb6c1;
         }
 
         .modal h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: #d81b60;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
+            background: linear-gradient(90deg, #ff69b4, #d48cff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .modal p {
-            font-size: 1.25rem;
-            margin-bottom: 25px;
-            line-height: 1.6;
+            font-size: 1.28rem;
+            margin-bottom: 26px;
+            line-height: 1.65;
+            color: #5a4a5a;
         }
 
         .modal-buttons {
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
-        /* === Уведомления === */
         #custom-notification {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 14px 24px;
-            border-radius: 14px;
-            font-size: 1.1rem;
+            top: 22px;
+            right: 22px;
+            padding: 16px 26px;
+            border-radius: 20px;
+            font-size: 1.15rem;
             font-weight: 600;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             z-index: 1001;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             transform: translateX(150%);
             transition: transform 0.4s ease;
+            border: 2px solid rgba(255, 182, 193, 0.5);
         }
 
-        /* === Footer === */
         footer {
             text-align: center;
-            padding-top: 20px;
-            font-size: 1.2rem;
+            padding-top: 24px;
+            font-size: 1.25rem;
             color: #d81b60;
-            margin-top: 10px;
-            border-top: 2px solid #ffe0e9;
+            margin-top: 12px;
+            border-top: 2px dashed #ffb6c1;
         }
 
-        /* === Адаптивность === */
         @media (min-width: 768px) {
             .header-content {
                 display: flex;
                 align-items: flex-start;
-                gap: 30px;
+                gap: 36px;
             }
 
             .photo-frame {
@@ -293,27 +360,35 @@
 
         @media (max-width: 767px) {
             h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.45rem;
+                font-size: 2.1rem;
             }
 
             .btn {
                 width: 100%;
                 justify-content: center;
-                margin: 6px 0;
+                margin: 8px 0;
             }
 
             .modal-buttons .btn {
                 width: 48%;
+                font-size: 1.05rem;
+            }
+
+            .deco-heart, .deco-star, .deco-bow {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Модальное окно: подтверждение бронирования -->
+    <!-- Декор -->
+    <div class="deco-heart" style="top: 5%; left: 5%;">💖</div>
+    <div class="deco-bow" style="top: 10%; right: 8%;">🎀</div>
+    <div class="deco-star" style="bottom: 12%; left: 10%;">✨</div>
+    <div class="deco-heart" style="bottom: 18%; right: 6%;">💕</div>
+    <div class="deco-bow" style="top: 20%; left: 15%;">🎀</div>
+
+    <!-- Модальные окна -->
     <div class="modal-overlay" id="confirm-reserve-modal">
         <div class="modal">
             <h3>Подтвердить бронирование?</h3>
@@ -325,7 +400,6 @@
         </div>
     </div>
 
-    <!-- Модальное окно: отмена брони -->
     <div class="modal-overlay" id="unbook-modal">
         <div class="modal">
             <h3>Отменить бронирование?</h3>
@@ -348,7 +422,7 @@
             <div class="text-content">
                 <h1>Вишлист Насти на 8-летие</h1>
                 <div class="intro-text">
-                    Привет! Это я - Настя, и я очень рада, что ты придёшь ко мне на день рождения!<br>
+                    Привет! Это я - Настя! Я очень рада, что ты придёшь ко мне на день рождения!<br>
                     Мне исполняется уже 8 лет, и здорово, что мы отметим этот праздник вместе.
                 </div>
                 <div class="intro-text">
@@ -375,7 +449,7 @@
         </section>
 
         <footer>
-            Спасибо, что делаете мой день рождения особенным! <i class="fas fa-heart" style="color: #d81b60;"></i>
+            Спасибо, что делаете мой день рождения особенным! <i class="fas fa-heart" style="color: #ff69b4;"></i>
         </footer>
     </div>
 
@@ -397,8 +471,6 @@
         let giftToReserve = null;
         let giftToUnbook = null;
         const giftsContainer = document.getElementById('gifts-container');
-
-        // Модальные окна
         const confirmReserveModal = document.getElementById('confirm-reserve-modal');
         const cancelReserveBtn = document.getElementById('cancel-reserve');
         const confirmReserveBtn = document.getElementById('confirm-reserve');
@@ -424,7 +496,7 @@
             if (gift.status === 'free') {
                 return `
                     <button class="btn btn-preview" onclick="window.open('${gift.link}', '_blank')">
-                        <i class="fas fa-external-link-alt"></i> Посмотреть на WB
+                        <i class="fas fa-external-link-alt"></i> Посмотреть
                     </button>
                     <button class="btn btn-reserve" onclick="openReserveModal(${gift.id})">
                         <i class="fas fa-gift"></i> Забронировать
@@ -432,7 +504,7 @@
             } else {
                 return `
                     <button class="btn btn-preview" onclick="window.open('${gift.link}', '_blank')">
-                        <i class="fas fa-external-link-alt"></i> Посмотреть на WB
+                        <i class="fas fa-external-link-alt"></i> Посмотреть
                     </button>
                     <button class="btn btn-unbook" onclick="openUnbookModal(${gift.id})">
                         <i class="fas fa-undo"></i> Отменить бронь
@@ -517,8 +589,9 @@
                 notif.id = 'custom-notification';
                 document.body.appendChild(notif);
             }
-            notif.textContent = message;
-            notif.style.background = type === 'success' ? '#c8e6c9' : '#fff3e0';
+            notif.style.background = type === 'success' 
+                ? 'linear-gradient(135deg, #c8e6c9, #a5d6a7)' 
+                : 'linear-gradient(135deg, #fff3e0, #ffe0b2)';
             notif.style.color = type === 'success' ? '#1b5e20' : '#e65100';
             notif.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i> ${message}`;
             notif.style.transform = 'translateX(0)';
@@ -547,14 +620,12 @@
             }
         }
 
-        // === Инициализация ===
         document.addEventListener('DOMContentLoaded', () => {
             loadFromLocalStorage();
             renderGifts();
             nastyaPhoto.onerror = showPlaceholder;
         });
 
-        // Закрытие модалок по клику снаружи
         window.addEventListener('click', (e) => {
             if (e.target === confirmReserveModal) {
                 confirmReserveModal.style.display = 'none';

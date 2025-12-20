@@ -10,467 +10,531 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif; /* Чётче, чем Comic Sans */
         }
-
+        
         body {
-            background: linear-gradient(135deg, #fff5f9 0%, #f8f4ff 100%);
-            color: #5a4a5a;
-            line-height: 1.65;
-            padding: 18px;
+            background: linear-gradient(135deg, #ffe6f0 0%, #fff0f9 100%);
+            color: #333333; /* Улучшенная читаемость */
+            line-height: 1.6;
+            padding: 12px;
             min-height: 100vh;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             position: relative;
-            background-image: 
-                radial-gradient(circle, #ffb6c1 1px, transparent 1px),
-                radial-gradient(circle, #e0bbff 1px, transparent 1px);
-            background-size: 40px 40px, 50px 50px;
-            background-position: 0 0, 25px 25px;
         }
-
-        .deco-heart, .deco-star, .deco-bow {
-            position: absolute;
-            font-size: 1.8rem;
-            opacity: 0.06;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .container {
-            background-color: rgba(255, 255, 255, 0.92);
-            border-radius: 24px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 25px rgba(255, 150, 200, 0.15);
-            border: 1px solid rgba(255, 182, 193, 0.3);
-            backdrop-filter: blur(6px);
-            position: relative;
-            z-index: 1;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #ff69b4, #ff9eb5, #d48cff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 20px;
-            text-align: center;
-            position: relative;
-            padding-bottom: 14px;
-        }
-
-        h1::after {
+        
+        body::before {
             content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #ff9eb5, #ffb6c1);
-            border-radius: 2px;
-        }
-
-        h2 {
-            font-size: 1.65rem;
-            font-weight: 600;
-            color: #d81b60;
-            margin: 28px 0 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px dashed #ffb6c1;
-        }
-
-        p, .intro-text, .rules-text {
-            font-size: 1.25rem;
-            margin-bottom: 18px;
-            line-height: 1.7;
-        }
-
-        .intro-text {
-            background: linear-gradient(145deg, #fff8fb, #f9f2ff);
-            padding: 22px;
-            border-radius: 18px;
-            border-left: 6px solid #ffb6c1;
-            margin: 22px 0;
-            box-shadow: 0 4px 12px rgba(255, 182, 193, 0.1);
-        }
-
-        .rules ol {
-            font-size: 1.18rem;
-            padding-left: 26px;
-            margin: 18px 0;
-        }
-
-        .rules li {
-            margin-bottom: 14px;
-            position: relative;
-        }
-
-        .rules li::before {
-            content: "🎀";
-            position: absolute;
-            left: -26px;
+            position: fixed;
             top: 0;
-            font-size: 1rem;
-            opacity: 0.7;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            opacity: 0.03;
+            z-index: -1;
         }
-
-        .photo-frame {
-            width: 220px;
-            height: 280px;
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.1);
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .photo-frame {
+            width: 180px;
+            height: 240px;
+            border-radius: 15px;
             overflow: hidden;
-            margin: 0 auto 26px;
             box-shadow: 
                 0 8px 20px rgba(233, 30, 99, 0.2),
-                inset 0 0 0 4px white,
-                inset 0 0 0 8px #ffb6c1;
+                inset 0 0 0 3px white,
+                inset 0 0 0 7px #ffb6c1;
+            flex-shrink: 0;
+            background-color: #fff9fb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            background: #fff9fb;
         }
-
+        
         .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
-
+        
         .photo-frame img:hover {
             transform: scale(1.02);
         }
-
+        
         .photo-placeholder {
+            font-size: 3rem;
+            color: #e91e63;
             display: none;
+            z-index: 2;
+        }
+        
+        .header-text {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        h1 {
+            color: #e91e63; /* Насыщенный, но не кричащий */
+            margin-bottom: 12px;
+            font-size: 2.2rem;
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
             width: 100%;
-            height: 100%;
-            background-color: #fff0f8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: #ff69b4;
+            height: 4px;
+            background: linear-gradient(90deg, #e91e63, #ffb6c1);
+            border-radius: 5px;
         }
-
-        .gift-card {
-            background: linear-gradient(145deg, #ffffff, #fff9fb);
-            border: 2px solid #ffe0eb;
-            border-radius: 20px;
-            padding: 22px;
-            margin-bottom: 22px;
-            box-shadow: 0 4px 14px rgba(255, 150, 200, 0.12);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .gift-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 18px rgba(255, 150, 200, 0.2);
-        }
-
-        .gift-card h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
+        
+        h2 {
             color: #d81b60;
+            margin: 20px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dotted #ffcce0;
+            font-size: 1.5rem;
+        }
+        
+        .intro-text {
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            color: #444;
+            line-height: 1.7;
+            background-color: rgba(255, 240, 245, 0.5);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #ffb6c1;
+        }
+        
+        .rules {
+            background: linear-gradient(145deg, #fff5f9, #ffeef6);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 6px solid #ff99cc;
+            box-shadow: 5px 5px 15px rgba(233, 30, 99, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rules ol {
+            margin-left: 24px;
+            margin-top: 12px;
+            color: #444;
+            font-size: 1rem;
+        }
+        
+        .rules li {
+            margin-bottom: 12px;
+        }
+        
+        /* Таблица */
+        .gifts-table-wrapper {
+            margin-top: 20px;
+        }
+        
+        .gifts-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            box-shadow: 0 6px 16px rgba(233, 30, 99, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: white;
+            border: 1px solid #ffe6ee;
+        }
+        
+        .gifts-table th {
+            background: #f8bbd0;
+            color: #880e4f;
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .gifts-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f5f5f5;
+            vertical-align: middle;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        
+        .gifts-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Забронировано в таблице */
+        .gifts-table tr.booked-row {
+            opacity: 0.75;
+            color: #777 !important;
+        }
+        
+        .gifts-table tr.booked-row strong {
+            text-decoration: line-through;
+            color: #777 !important;
+        }
+        
+        .gifts-table tr.booked-row .btn {
+            background: #f0f0f0 !important;
+            color: #777 !important;
+            border: 1px solid #ddd !important;
+            box-shadow: none !important;
+        }
+        
+        .gifts-table tr.booked-row .btn-unbook {
+            background: linear-gradient(135deg, #ffecb3, #ffd54f) !important;
+            color: #e65100 !important;
+            border: none !important;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15) !important;
+        }
+        
+        /* Мобильные карточки */
+        .gifts-cards {
+            display: none;
+            margin-top: 20px;
+            gap: 16px;
+            flex-direction: column;
+        }
+        
+        .gift-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 5px 12px rgba(233, 30, 99, 0.1);
+            border: 1px solid #ffe6ee;
+        }
+        
+        /* Забронировано в карточках */
+        .gift-card.booked {
+            opacity: 0.75;
+            color: #777;
+        }
+        
+        .gift-card.booked h3 {
+            text-decoration: line-through;
+            color: #777 !important;
+        }
+        
+        .gift-card.booked .btn {
+            background: #f0f0f0 !important;
+            color: #777 !important;
+            border: 1px solid #ddd !important;
+            box-shadow: none !important;
+        }
+        
+        .gift-card.booked .btn-unbook {
+            background: linear-gradient(135deg, #ffecb3, #ffd54f) !important;
+            color: #e65100 !important;
+            border: none !important;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15) !important;
+        }
+        
+        .gift-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #d81b60;
+        }
+        
+        .gift-card .comment {
+            font-size: 0.9rem;
+            color: #e91e63;
+            font-style: italic;
             margin-bottom: 10px;
         }
-
-        .gift-card .comment {
-            font-size: 1.15rem;
-            color: #ff69b4;
-            font-style: italic;
-            margin: 8px 0 14px;
-        }
-
+        
         .gift-card .category {
             display: inline-block;
-            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            padding: 4px 10px;
+            background: #fce4ec;
             color: #880e4f;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 6px rgba(248, 187, 208, 0.4);
+            margin-bottom: 12px;
         }
-
+        
         .gift-card .status {
             display: inline-block;
-            padding: 8px 20px;
-            border-radius: 30px;
+            padding: 5px 12px;
+            border-radius: 15px;
             font-weight: 600;
-            font-size: 1.05rem;
-            margin: 12px 0;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
         }
-
-        .status-free {
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-            color: #2e7d32;
-            border: 1px solid #a5d6a7;
+        
+        .status-free { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .status-booked { background: #f8bbd0; color: #880e4f; border: 1px solid #f48fb1; }
+        
+        .gift-card .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
         }
-
-        .status-booked {
-            background: linear-gradient(135deg, #f8bbd0, #f48fb1);
-            color: #880e4f;
-            border: 1px solid #f48fb1;
-            text-decoration: line-through;
-        }
-
+        
         .btn {
-            padding: 13px 22px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            padding: 8px 12px;
             border: none;
-            border-radius: 50px;
+            border-radius: 10px;
             cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin: 8px 8px 8px 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            transition: all 0.25s ease;
+            justify-content: center;
+            gap: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-
-        .btn-preview {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            color: #0d47a1;
-        }
-
-        .btn-reserve {
-            background: linear-gradient(135deg, #f8bbd0, #f48fb1);
-            color: white;
-        }
-
-        .btn-unbook {
-            background: linear-gradient(135deg, #ffecb3, #ffd54f);
-            color: #e65100;
-        }
-
-        .btn-confirm {
-            background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
-            color: white;
-        }
-
-        .btn-cancel {
-            background: linear-gradient(135deg, #eeeeee, #e0e0e0);
-            color: #616161;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-        }
-
+        
+        .btn-preview { background: #e3f2fd; color: #0d47a1; }
+        .btn-reserve { background: #f8bbd0; color: white; }
+        .btn-unbook { background: #ffecb3; color: #e65100; }
+        .btn-confirm { background: #c8e6c9; color: white; }
+        .btn-cancel { background: #eeeeee; color: #616161; }
+        
+        /* Модальные окна */
         .modal-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            right: 0;
+            bottom: 0;
             background-color: rgba(0, 0, 0, 0.65);
             z-index: 1000;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(3px);
         }
-
+        
         .modal {
-            background: linear-gradient(145deg, #ffffff, #fff5f9);
-            border-radius: 24px;
-            padding: 32px;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
             width: 90%;
-            max-width: 520px;
-            text-align: center;
-            box-shadow: 0 12px 40px rgba(233, 30, 99, 0.3);
+            max-width: 480px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             border: 2px solid #ffb6c1;
+            text-align: center;
         }
-
+        
         .modal h3 {
-            font-size: 1.6rem;
             color: #d81b60;
-            margin-bottom: 22px;
-            background: linear-gradient(90deg, #ff69b4, #d48cff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
         }
-
+        
         .modal p {
-            font-size: 1.28rem;
-            margin-bottom: 26px;
-            line-height: 1.65;
-            color: #5a4a5a;
+            margin-bottom: 25px;
+            color: #444;
+            font-size: 1.05rem;
+            line-height: 1.6;
         }
-
+        
         .modal-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 15px;
         }
-
-        #custom-notification {
-            position: fixed;
-            top: 22px;
-            right: 22px;
-            padding: 16px 26px;
-            border-radius: 20px;
-            font-size: 1.15rem;
-            font-weight: 600;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transform: translateX(150%);
-            transition: transform 0.4s ease;
-            border: 2px solid rgba(255, 182, 193, 0.5);
-        }
-
+        
         footer {
             text-align: center;
-            padding-top: 24px;
-            font-size: 1.25rem;
+            margin-top: 30px;
+            padding-top: 15px;
             color: #d81b60;
-            margin-top: 12px;
-            border-top: 2px dashed #ffb6c1;
+            font-size: 0.95rem;
+            border-top: 2px dashed #ffccd5;
         }
-
-        @media (min-width: 768px) {
+        
+        .birthday-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(233, 30, 99, 0.15);
+            z-index: -1;
+        }
+        
+        .icon-1 { top: 5%; left: 5%; }
+        .icon-2 { top: 10%; right: 10%; }
+        .icon-3 { bottom: 15%; left: 8%; }
+        .icon-4 { bottom: 20%; right: 5%; }
+        
+        #custom-notification {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            padding: 10px 18px;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            z-index: 10000;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: translateX(150%);
+            transition: transform 0.5s ease;
+            max-width: 320px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        
+        @media (max-width: 900px) {
             .header-content {
-                display: flex;
-                align-items: flex-start;
-                gap: 36px;
+                justify-content: center;
+                text-align: center;
             }
-
-            .photo-frame {
-                margin: 0;
-                width: 240px;
-                height: 300px;
-            }
-
-            .text-content {
-                flex: 1;
+            .header-text h1::after {
+                left: 50%; transform: translateX(-50%); width: 80%;
             }
         }
-
-        @media (max-width: 767px) {
-            h1 {
-                font-size: 2.1rem;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-                margin: 8px 0;
-            }
-
-            .modal-buttons .btn {
-                width: 48%;
-                font-size: 1.05rem;
-            }
-
-            .deco-heart, .deco-star, .deco-bow {
-                display: none;
-            }
+        
+        @media (max-width: 768px) {
+            .gifts-table-wrapper { display: none; }
+            .gifts-cards { display: flex; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .photo-frame { width: 150px; height: 200px; }
+            .btn { padding: 7px 10px; font-size: 0.85rem; }
+            .birthday-icon { display: none; }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-frame { width: 130px; height: 170px; border-radius: 12px; }
+            .header-content { flex-direction: column; text-align: center; gap: 15px; }
+            h1 { font-size: 1.8rem; }
+            .intro-text { font-size: 0.95rem; }
+            .btn { padding: 6px 9px; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
     <!-- Декор -->
-    <div class="deco-heart" style="top: 5%; left: 5%;">💖</div>
-    <div class="deco-bow" style="top: 10%; right: 8%;">🎀</div>
-    <div class="deco-star" style="bottom: 12%; left: 10%;">✨</div>
-    <div class="deco-heart" style="bottom: 18%; right: 6%;">💕</div>
-    <div class="deco-bow" style="top: 20%; left: 15%;">🎀</div>
-
-    <!-- Модальные окна -->
+    <div class="birthday-icon icon-1">🎀</div>
+    <div class="birthday-icon icon-2">🎈</div>
+    <div class="birthday-icon icon-3">🎁</div>
+    <div class="birthday-icon icon-4">🦄</div>
+    
+    <!-- Модальное окно: подтверждение бронирования -->
     <div class="modal-overlay" id="confirm-reserve-modal">
         <div class="modal">
             <h3>Подтвердить бронирование?</h3>
-            <p id="confirm-reserve-text">Вы точно хотите забронировать этот подарок?</p>
+            <p id="confirm-reserve-text">Вы действительно хотите забронировать этот подарок?</p>
             <div class="modal-buttons">
                 <button class="btn btn-cancel" id="cancel-reserve">Отменить</button>
-                <button class="btn btn-confirm" id="confirm-reserve">Забронировать</button>
+                <button class="btn btn-confirm" id="confirm-reserve">Да, забронировать</button>
             </div>
         </div>
     </div>
-
+    
+    <!-- Модальное окно: отмена брони -->
     <div class="modal-overlay" id="unbook-modal">
         <div class="modal">
             <h3>Отменить бронирование?</h3>
-            <p>Подарок снова станет доступен для других гостей.</p>
+            <p>Вы уверены, что хотите отменить бронирование этого подарка? После отмены он снова станет доступен для других гостей.</p>
             <div class="modal-buttons">
-                <button class="btn btn-cancel" id="cancel-unbook">Оставить</button>
-                <button class="btn btn-unbook" id="confirm-unbook">Отменить</button>
+                <button class="btn btn-cancel" id="cancel-unbook">Нет, оставить</button>
+                <button class="btn btn-unbook" id="confirm-unbook">Да, отменить</button>
             </div>
         </div>
     </div>
-
+    
     <div class="container">
-        <div class="header-content">
-            <div class="photo-frame">
-                <img src="./IMG_5643.jpg" alt="Настя, именинница" id="nastya-photo" onerror="showPlaceholder()">
-                <div class="photo-placeholder" id="photo-placeholder">
-                    <i class="fas fa-birthday-cake"></i>
+        <header>
+            <div class="header-content">
+                <div class="photo-frame">
+                    <img src="./IMG_5643.jpg" alt="Настя, именинница" id="nastya-photo" onerror="showPlaceholder()">
+                    <div class="photo-placeholder" id="photo-placeholder"><i class="fas fa-birthday-cake"></i></div>
+                </div>
+                <div class="header-text">
+                    <h1><i class="fas fa-birthday-cake"></i> Вишлист Насти на 8-летие</h1>
+                    <div class="intro-text">
+                        Привет! Это Я - Настя, и я очень рада, что ты придёшь ко мне на день рождения!<br>
+                        Мне исполняется уже 8 лет, и здорово, что мы отметим этот праздник вместе.
+                    </div>
+                    <div class="intro-text">
+                        Ниже — мой список хотелок. Выбирай, что тебе по душе!<br>
+                        Но, пожалуйста, помни: дарить что-то из этого списка совсем не обязательно.<br>
+                        <strong>Главное — твоё присутствие!</strong>
+                    </div>
                 </div>
             </div>
-            <div class="text-content">
-                <h1>Вишлист Насти на 8-летие</h1>
-                <div class="intro-text">
-                    Привет! Это я - Настя! Я очень рада, что ты придёшь ко мне на день рождения!<br>
-                    Мне исполняется уже 8 лет, и здорово, что мы отметим этот праздник вместе.
-                </div>
-                <div class="intro-text">
-                    Ниже — мой список хотелок. Выбирай, что тебе по душе!<br>
-                    Но помни: <strong>главное — твоё присутствие!</strong> Дарить подарок не обязательно.
-                </div>
-            </div>
-        </div>
-
+        </header>
+        
         <section class="rules">
-            <h2>Как это работает?</h2>
+            <h2><i class="fas fa-info-circle"></i> Как это работает:</h2>
             <ol>
-                <li>Нажми «Посмотреть», чтобы увидеть подарок на Wildberries.</li>
+                <li>Нажми «Посмотреть на WB», чтобы увидеть подарок на Wildberries.</li>
                 <li>Если хочешь его подарить — нажми «Забронировать».</li>
                 <li>Подтверди бронирование в появившемся окне.</li>
                 <li>Если передумаешь — нажми «Отменить бронь».</li>
                 <li>Этот список — только идеи. Главное — ты сам(а)! ❤️</li>
+
             </ol>
         </section>
-
+        
         <section>
-            <h2>Список подарков</h2>
-            <div id="gifts-container"></div>
+            <h2><i class="fas fa-gifts"></i> Список подарков</h2>
+            <div class="gifts-table-wrapper">
+                <table class="gifts-table">
+                    <thead><tr><th>№</th><th>Название</th><th>Категория</th><th>Ссылка</th><th>Статус</th></tr></thead>
+                    <tbody id="gifts-table-body"></tbody>
+                </table>
+            </div>
+            <div class="gifts-cards" id="gifts-cards-container"></div>
         </section>
-
+        
         <footer>
-            Спасибо, что делаете мой день рождения особенным! <i class="fas fa-heart" style="color: #ff69b4;"></i>
+            Спасибо, что делаете мой день рождения особенным! <i class="fas fa-heart" style="color: #e91e63;"></i>
         </footer>
     </div>
-
+    
     <script>
         const gifts = [
-            { id: 1, name: "Пижама для девочки со штанами", category: "Одежда", link: "https://www.wildberries.by/catalog/446793216/detail.aspx?size=631539819", comment: "Рост 135-145", status: "free" },
-            { id: 2, name: "Кигуруми Пикачу — Пижама", category: "Одежда", link: "https://www.wildberries.by/catalog/177554973/detail.aspx?size=293993230", comment: "Рост 140", status: "free" },
-            { id: 3, name: "Тапочки кигуруми Пикачу", category: "Одежда", link: "https://www.wildberries.by/catalog/134246810/detail.aspx?size=230177738", comment: "35-38", status: "free" },
-            { id: 4, name: "Настольная игра Словодел Великан", category: "Игры", link: "https://www.wildberries.by/catalog/374826/detail.aspx?size=1679515", comment: "", status: "free" },
-            { id: 5, name: "Настольная игра Властелин слов", category: "Игры", link: "https://www.wildberries.by/catalog/288097336/detail.aspx?size=440248049", comment: "", status: "free" },
-            { id: 6, name: "Набор для опытов «Зелье»", category: "Творчество", link: "https://www.wildberries.by/catalog/436264576/detail.aspx?size=618930955", comment: "", status: "free" },
-            { id: 7, name: "Мини-принтер для наклеек", category: "Электроника", link: "https://www.wildberries.by/catalog/202653223/detail.aspx?size=326729613", comment: "", status: "free" },
-            { id: 8, name: "Конструктор ручек для детей", category: "Творчество", link: "https://www.wildberries.by/catalog/486210468/detail.aspx?size=678077181", comment: "", status: "free" },
-            { id: 9, name: "Книга-анкета для девочек", category: "Творчество", link: "https://www.wildberries.by/catalog/15473870/detail.aspx?size=44937170", comment: "", status: "free" },
-            { id: 10, name: "Игра «Что за трек: Вечные Хиты»", category: "Игры", link: "https://www.wildberries.by/catalog/344230530/detail.aspx?size=511584735", comment: "", status: "free" },
-            { id: 11, name: "Подарок девочке создай часы", category: "Электроника", link: "https://www.wildberries.by/catalog/234551397/detail.aspx?targetUrl=EX", comment: "", status: "free" }
+            { id: 1, name: "Пижама для девочки со штанами", category: "Одежда", link: "https://www.wildberries.by/catalog/446793216/detail.aspx?size=631539819", comment: "Рост 135-145", status: "free", bookedBy: "" },
+            { id: 2, name: "Кигуруми Пикачу- Пижама Для Дома", category: "Одежда", link: "https://www.wildberries.by/catalog/177554973/detail.aspx?size=293993230", comment: "Рост 140", status: "free", bookedBy: "" },
+            { id: 3, name: "Тапочки домашние кигуруми Пикачу", category: "Одежда", link: "https://www.wildberries.by/catalog/134246810/detail.aspx?size=230177738", comment: "35-38", status: "free", bookedBy: "" },
+            { id: 4, name: "Настольная игра Словодел Великан", category: "Игры", link: "https://www.wildberries.by/catalog/374826/detail.aspx?size=1679515", comment: "", status: "free", bookedBy: "" },
+            { id: 5, name: "Настольная игра Властелин слов", category: "Игры", link: "https://www.wildberries.by/catalog/288097336/detail.aspx?size=440248049", comment: "", status: "free", bookedBy: "" },
+            { id: 6, name: "Набор для опытов и творчества Зелье", category: "Творчество", link: "https://www.wildberries.by/catalog/436264576/detail.aspx?size=618930955", comment: "", status: "free", bookedBy: "" },
+            { id: 7, name: "Портативный мини принтер для наклеек и фото", category: "Электроника", link: "https://www.wildberries.by/catalog/202653223/detail.aspx?size=326729613", comment: "", status: "free", bookedBy: "" },
+            { id: 8, name: "Конструктор ручек для детей", category: "Творчество", link: "https://www.wildberries.by/catalog/486210468/detail.aspx?size=678077181", comment: "", status: "free", bookedBy: "" },
+            { id: 9, name: "Книга интервью анкета для девочек и мальчиков", category: "Творчество", link: "https://www.wildberries.by/catalog/15473870/detail.aspx?size=44937170", comment: "", status: "free", bookedBy: "" },
+            { id: 10, name: "Настольная игра Что за трек: Вечные Хиты", category: "Игры", link: "https://www.wildberries.by/catalog/344230530/detail.aspx?size=511584735", comment: "", status: "free", bookedBy: "" },
+ 	    { id: 11, name: "Подарок девочке создай часы", category: "Электроника", link: "https://www.wildberries.by/catalog/234551397/detail.aspx?targetUrl=EX", comment: "", status: "free" }
         ];
 
         let giftToReserve = null;
         let giftToUnbook = null;
-        const giftsContainer = document.getElementById('gifts-container');
+        const tableBody = document.getElementById('gifts-table-body');
+        const cardsContainer = document.getElementById('gifts-cards-container');
         const confirmReserveModal = document.getElementById('confirm-reserve-modal');
         const cancelReserveBtn = document.getElementById('cancel-reserve');
         const confirmReserveBtn = document.getElementById('confirm-reserve');
@@ -481,21 +545,21 @@
         const nastyaPhoto = document.getElementById('nastya-photo');
 
         function showPlaceholder() {
-            nastyaPhoto.style.display = 'none';
-            photoPlaceholder.style.display = 'flex';
+            if (nastyaPhoto) nastyaPhoto.style.display = 'none';
+            if (photoPlaceholder) photoPlaceholder.style.display = 'block';
         }
 
         function getStatusBadge(status) {
             if (status === 'booked') {
                 return '<span class="status status-booked">Забронировано</span>';
             }
-            return '<span class="status status-free">Свободен</span>';
+            return '<span class="status status-free">Свободно</span>';
         }
 
         function getActionButtons(gift) {
             if (gift.status === 'free') {
                 return `
-                    <button class="btn btn-preview" onclick="window.open('${gift.link}', '_blank')">
+                    <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
                         <i class="fas fa-external-link-alt"></i> Посмотреть
                     </button>
                     <button class="btn btn-reserve" onclick="openReserveModal(${gift.id})">
@@ -503,7 +567,7 @@
                     </button>`;
             } else {
                 return `
-                    <button class="btn btn-preview" onclick="window.open('${gift.link}', '_blank')">
+                    <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
                         <i class="fas fa-external-link-alt"></i> Посмотреть
                     </button>
                     <button class="btn btn-unbook" onclick="openUnbookModal(${gift.id})">
@@ -512,29 +576,50 @@
             }
         }
 
-        function renderGifts() {
-            giftsContainer.innerHTML = '';
+        function renderTable() {
+            tableBody.innerHTML = '';
+            gifts.forEach(gift => {
+                const commentHtml = gift.comment ? `<div class="comment">${gift.comment}</div>` : '';
+                const row = document.createElement('tr');
+                if (gift.status === 'booked') row.classList.add('booked-row');
+                row.innerHTML = `
+                    <td>${gift.id}</td>
+                    <td><strong>${gift.name}</strong>${commentHtml}</td>
+                    <td><span class="category">${gift.category}</span></td>
+                    <td>${getActionButtons(gift)}</td>
+                    <td>${getStatusBadge(gift.status)}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function renderCards() {
+            cardsContainer.innerHTML = '';
             gifts.forEach(gift => {
                 const commentHtml = gift.comment ? `<div class="comment">${gift.comment}</div>` : '';
                 const card = document.createElement('div');
-                card.className = 'gift-card';
-                if (gift.status === 'booked') card.style.opacity = '0.85';
+                card.className = `gift-card ${gift.status === 'booked' ? 'booked' : ''}`;
                 card.innerHTML = `
                     <h3>${gift.name}</h3>
                     ${commentHtml}
                     <div class="category">${gift.category}</div>
                     ${getStatusBadge(gift.status)}
-                    <div>${getActionButtons(gift)}</div>
+                    <div class="btn-group">${getActionButtons(gift)}</div>
                 `;
-                giftsContainer.appendChild(card);
+                cardsContainer.appendChild(card);
             });
+        }
+
+        function render() {
+            renderTable();
+            renderCards();
         }
 
         function openReserveModal(id) {
             const gift = gifts.find(g => g.id === id);
             if (gift && gift.status === 'free') {
                 giftToReserve = id;
-                document.getElementById('confirm-reserve-text').textContent = `Забронировать «${gift.name}»?`;
+                document.getElementById('confirm-reserve-text').textContent = `Вы действительно хотите забронировать «${gift.name}»?`;
                 confirmReserveModal.style.display = 'flex';
             }
         }
@@ -542,11 +627,12 @@
         confirmReserveBtn.addEventListener('click', () => {
             if (giftToReserve !== null) {
                 const gift = gifts.find(g => g.id === giftToReserve);
-                if (gift) {
+                if (gift && gift.status === 'free') {
                     gift.status = 'booked';
-                    renderGifts();
+                    gift.bookedBy = "Вы";
+                    render();
                     saveToLocalStorage();
-                    showNotification('Подарок забронирован! Спасибо!', 'success');
+                    showNotification('Подарок успешно забронирован! Спасибо!', 'success');
                 }
                 confirmReserveModal.style.display = 'none';
                 giftToReserve = null;
@@ -566,11 +652,12 @@
         confirmUnbookBtn.addEventListener('click', () => {
             if (giftToUnbook !== null) {
                 const gift = gifts.find(g => g.id === giftToUnbook);
-                if (gift) {
+                if (gift && gift.status === 'booked') {
                     gift.status = 'free';
-                    renderGifts();
+                    gift.bookedBy = '';
+                    render();
                     saveToLocalStorage();
-                    showNotification('Бронирование отменено.', 'info');
+                    showNotification('Бронирование отменено! Подарок снова доступен.', 'success');
                 }
                 unbookModal.style.display = 'none';
                 giftToUnbook = null;
@@ -583,20 +670,24 @@
         });
 
         function showNotification(message, type) {
-            let notif = document.getElementById('custom-notification');
-            if (!notif) {
-                notif = document.createElement('div');
-                notif.id = 'custom-notification';
-                document.body.appendChild(notif);
+            let notification = document.getElementById('custom-notification');
+            if (!notification) {
+                notification = document.createElement('div');
+                notification.id = 'custom-notification';
+                document.body.appendChild(notification);
             }
-            notif.style.background = type === 'success' 
-                ? 'linear-gradient(135deg, #c8e6c9, #a5d6a7)' 
-                : 'linear-gradient(135deg, #fff3e0, #ffe0b2)';
-            notif.style.color = type === 'success' ? '#1b5e20' : '#e65100';
-            notif.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i> ${message}`;
-            notif.style.transform = 'translateX(0)';
+            const colors = {
+                success: { bg: '#c8e6c9', color: '#1b5e20', icon: 'check-circle' },
+                error: { bg: '#ffcdd2', color: '#b71c1c', icon: 'exclamation-circle' },
+                info: { bg: '#fff3e0', color: '#e65100', icon: 'info-circle' }
+            };
+            const cfg = colors[type] || colors.info;
+            notification.style.background = cfg.bg;
+            notification.style.color = cfg.color;
+            notification.innerHTML = `<i class="fas fa-${cfg.icon}"></i> <span>${message}</span>`;
+            notification.style.transform = 'translateX(0)';
             setTimeout(() => {
-                notif.style.transform = 'translateX(150%)';
+                notification.style.transform = 'translateX(150%)';
             }, 3000);
         }
 
@@ -612,6 +703,7 @@
                     gifts.forEach((gift, i) => {
                         if (parsed[i]) {
                             gift.status = parsed[i].status || 'free';
+                            gift.bookedBy = parsed[i].bookedBy || '';
                         }
                     });
                 } catch (e) {
@@ -619,12 +711,6 @@
                 }
             }
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadFromLocalStorage();
-            renderGifts();
-            nastyaPhoto.onerror = showPlaceholder;
-        });
 
         window.addEventListener('click', (e) => {
             if (e.target === confirmReserveModal) {
@@ -635,6 +721,18 @@
                 unbookModal.style.display = 'none';
                 giftToUnbook = null;
             }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFromLocalStorage();
+            render();
+            nastyaPhoto.onerror = showPlaceholder;
+            setTimeout(() => {
+                if (nastyaPhoto.complete && nastyaPhoto.naturalHeight === 0) {
+                    showPlaceholder();
+                }
+            }, 2000);
+            window.addEventListener('beforeunload', saveToLocalStorage);
         });
     </script>
 </body>

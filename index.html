@@ -1,150 +1,517 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Вишлист Насти на 8-летие</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
-body{background:linear-gradient(135deg,#ffe6f0,#fff0f9);color:#333;padding:12px;max-width:1200px;margin:auto}
-.container{background:#fff;border-radius:20px;box-shadow:0 10px 25px rgba(233,30,99,.15);padding:25px}
-h1{color:#e91e63;margin-bottom:15px}
-h2{color:#d81b60;margin:25px 0 15px}
-.intro-text{background:#fff0f5;padding:15px;border-radius:12px;margin-bottom:15px}
-.rules{background:#fff5f9;padding:20px;border-radius:15px;margin:20px 0}
-.rules ol{margin-left:20px}
-.gifts-table{width:100%;border-collapse:collapse;border-radius:15px;overflow:hidden}
-.gifts-table th{background:#f8bbd0;padding:10px;text-align:left}
-.gifts-table td{padding:10px;border-bottom:1px solid #f5f5f5}
-.gifts-table tr.booked-row{opacity:.6}
-.gifts-table tr.booked-row strong{text-decoration:line-through}
-.category{background:#fce4ec;padding:4px 10px;border-radius:12px;font-size:.85rem}
-.status{padding:5px 10px;border-radius:12px;font-weight:bold;font-size:.85rem}
-.status-free{background:#e8f5e9;color:#2e7d32}
-.status-booked{background:#f8bbd0;color:#880e4f}
-.btn{padding:7px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:600}
-.btn-preview{background:#e3f2fd;color:#0d47a1}
-.btn-reserve{background:#f8bbd0;color:#880e4f}
-.btn-unbook{background:#ffecb3;color:#e65100}
-.gifts-cards{display:none;gap:15px}
-.gift-card{background:#fff;border-radius:15px;padding:15px;box-shadow:0 5px 12px rgba(0,0,0,.1)}
-.gift-card.booked{opacity:.6}
-@media(max-width:768px){
-.gifts-table-wrapper{display:none}
-.gifts-cards{display:flex;flex-direction:column}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вишлист Насти на 8-летие</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="module">
+        // Загружаем Supabase только как модуль — это важно!
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+        window.supabase = createClient(
+            'https://yjithstkzcvcycmrfqet.supabase.co', // ← без пробелов!
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqaXRoc3RremN2Y3ljbXJmcWV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ5NjQ1NTYsImV4cCI6MjA1MDU0MDU1Nn0.7Jq5x3V6QZ7Y7X7X7X7X7X7X7X7X7X7X7X7X7X7X7X7' // ← anon public key
+        );
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffe6f0 0%, #fff0f9 100%);
+            color: #333333;
+            line-height: 1.6;
+            padding: 12px;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            opacity: 0.03;
+            z-index: -1;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.1);
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .photo-frame {
+            width: 180px;
+            height: 240px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 
+                0 8px 20px rgba(233, 30, 99, 0.2),
+                inset 0 0 0 3px white,
+                inset 0 0 0 7px #ffb6c1;
+            flex-shrink: 0;
+            background-color: #fff9fb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-frame img:hover {
+            transform: scale(1.02);
+        }
+        
+        .photo-placeholder {
+            font-size: 3rem;
+            color: #e91e63;
+            display: none;
+            z-index: 2;
+        }
+        
+        .header-text {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        h1 {
+            color: #e91e63;
+            margin-bottom: 12px;
+            font-size: 2.2rem;
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #e91e63, #ffb6c1);
+            border-radius: 5px;
+        }
+        
+        h2 {
+            color: #d81b60;
+            margin: 20px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dotted #ffcce0;
+            font-size: 1.5rem;
+        }
+        
+        .intro-text {
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            color: #444;
+            line-height: 1.7;
+            background-color: rgba(255, 240, 245, 0.5);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #ffb6c1;
+        }
+        
+        .rules {
+            background: linear-gradient(145deg, #fff5f9, #ffeef6);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 6px solid #ff99cc;
+            box-shadow: 5px 5px 15px rgba(233, 30, 99, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rules ol {
+            margin-left: 24px;
+            margin-top: 12px;
+            color: #444;
+            font-size: 1rem;
+        }
+        
+        .rules li {
+            margin-bottom: 12px;
+        }
+        
+        .gifts-table-wrapper {
+            margin-top: 20px;
+        }
+        
+        .gifts-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            box-shadow: 0 6px 16px rgba(233, 30, 99, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: white;
+            border: 1px solid #ffe6ee;
+        }
+        
+        .gifts-table th {
+            background: #f8bbd0;
+            color: #880e4f;
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .gifts-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f5f5f5;
+            vertical-align: middle;
+            font-size: 0.95rem;
+            color: #333333;
+        }
+        
+        .gifts-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .gifts-table tr.booked-row {
+            opacity: 0.75;
+            color: #777777;
+        }
+        
+        .gifts-table tr.booked-row strong {
+            text-decoration: line-through;
+            color: #777777;
+        }
+        
+        .gifts-cards {
+            display: none;
+            margin-top: 20px;
+            gap: 16px;
+            flex-direction: column;
+        }
+        
+        .gift-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 5px 12px rgba(233, 30, 99, 0.1);
+            border: 1px solid #ffe6ee;
+            color: #333333;
+        }
+        
+        .gift-card.booked {
+            opacity: 0.75;
+            color: #777777;
+        }
+        
+        .gift-card.booked h3 {
+            text-decoration: line-through;
+            color: #777777 !important;
+        }
+        
+        .gift-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #d81b60;
+        }
+        
+        .gift-card .comment {
+            font-size: 0.9rem;
+            color: #e91e63;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .gift-card .category {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #fce4ec;
+            color: #880e4f;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .gift-card .status {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+        
+        .status-free { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .status-booked { background: #f8bbd0; color: #880e4f; border: 1px solid #f48fb1; }
+        
+        .gift-card .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-preview { background: #e3f2fd; color: #0d47a1 !important; border: 1px solid #bbdefb; }
+        .btn-reserve { background: #f8bbd0; color: #880e4f !important; border: 1px solid #f48fb1; }
+        .btn-unbook { background: #ffecb3; color: #e65100 !important; border: 1px solid #ffd54f; }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            color: #d81b60;
+            font-size: 0.95rem;
+            border-top: 2px dashed #ffccd5;
+        }
+        
+        @media (max-width: 900px) {
+            .header-content { justify-content: center; text-align: center; }
+            .header-text h1::after { left: 50%; transform: translateX(-50%); width: 80%; }
+        }
+        
+        @media (max-width: 768px) {
+            .gifts-table-wrapper { display: none; }
+            .gifts-cards { display: flex; }
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            .photo-frame { width: 150px; height: 200px; }
+            .btn { padding: 7px 10px; font-size: 0.85rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-frame { width: 130px; height: 170px; border-radius: 12px; }
+            .header-content { flex-direction: column; text-align: center; gap: 15px; }
+            h1 { font-size: 1.8rem; }
+            .intro-text { font-size: 0.95rem; }
+            .btn { padding: 6px 9px; font-size: 0.8rem; }
+        }
+    </style>
 </head>
-
 <body>
 
 <div class="container">
-<h1><i class="fas fa-birthday-cake"></i> Вишлист Насти на 8-летие</h1>
-
-<div class="intro-text">
-Привет! Мне исполняется 8 лет, и я буду рада, если ты заглянешь в мой список подарков 💖
-</div>
-
-<section class="rules">
-<h2>Как это работает</h2>
-<ol>
-<li>Нажми «Посмотреть»</li>
-<li>Если хочешь подарить — «Забронировать»</li>
-<li>Подарок станет серым для всех</li>
-</ol>
-</section>
-
-<h2>Список подарков</h2>
-
-<div class="gifts-table-wrapper">
-<table class="gifts-table">
-<thead>
-<tr>
-<th>№</th><th>Название</th><th>Категория</th><th>Действия</th><th>Статус</th>
-</tr>
-</thead>
-<tbody id="gifts-table-body"></tbody>
-</table>
-</div>
-
-<div class="gifts-cards" id="gifts-cards-container"></div>
+    <header>
+        <div class="header-content">
+            <div class="photo-frame">
+                <img src="./IMG_5643.jpg" alt="Настя, именинница" id="nastya-photo" onerror="showPlaceholder()">
+                <div class="photo-placeholder" id="photo-placeholder"><i class="fas fa-birthday-cake"></i></div>
+            </div>
+            <div class="header-text">
+                <h1><i class="fas fa-birthday-cake"></i> Вишлист Насти на 8-летие</h1>
+                <div class="intro-text">
+                    Привет! Это Я - Настя, и я очень рада, что ты придёшь ко мне на день рождения!<br>
+                    Мне исполняется уже 8 лет, и здорово, что мы отметим этот праздник вместе.
+                </div>
+                <div class="intro-text">
+                    Ниже — мой список хотелок. Выбирай, что тебе по душе!<br>
+                    Но, пожалуйста, помни: дарить что-то из этого списка совсем не обязательно.<br>
+                    <strong>Главное — твоё присутствие!</strong>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="rules">
+        <h2><i class="fas fa-info-circle"></i> Как это работает:</h2>
+        <ol>
+            <li>Нажми «Посмотреть», чтобы увидеть подарок на Wildberries.</li>
+            <li>Если хочешь его подарить — нажми «Забронировать».</li>
+            <li>Подарок станет серым для всех гостей — никто не забронирует его дважды!</li>
+        </ol>
+    </section>
+    
+    <section>
+        <h2><i class="fas fa-gifts"></i> Список подарков</h2>
+        <div class="gifts-table-wrapper">
+            <table class="gifts-table">
+                <thead><tr><th>№</th><th>Название</th><th>Категория</th><th>Ссылка</th><th>Статус</th></tr></thead>
+                <tbody id="gifts-table-body"></tbody>
+            </table>
+        </div>
+        <div class="gifts-cards" id="gifts-cards-container"></div>
+    </section>
+    
+    <footer>
+        Спасибо, что делаете мой день рождения особенным! <i class="fas fa-heart" style="color: #e91e63;"></i>
+    </footer>
 </div>
 
 <script>
-const supabaseClient = supabase.createClient(
-  'https://yjithstkzcvcycmrfqet.supabase.co',
-  'sb_publishable_-3Ipd2kAASwMYidT-kEoeg_6X07zYkl'
-);
-
-const gifts=[
-{id:1,name:"Пижама со штанами",cat:"Одежда",link:"https://www.wildberries.by/catalog/446793216/detail.aspx"},
-{id:2,name:"Кигуруми Пикачу",cat:"Одежда",link:"https://www.wildberries.by/catalog/177554973/detail.aspx"},
-{id:3,name:"Тапочки Пикачу",cat:"Одежда",link:"https://www.wildberries.by/catalog/134246810/detail.aspx"},
-{id:4,name:"Словодел Великан",cat:"Игры",link:"https://www.wildberries.by/catalog/374826/detail.aspx"},
-{id:5,name:"Властелин слов",cat:"Игры",link:"https://www.wildberries.by/catalog/288097336/detail.aspx"},
-{id:6,name:"Зелье",cat:"Творчество",link:"https://www.wildberries.by/catalog/436264576/detail.aspx"},
-{id:7,name:"Мини принтер",cat:"Электроника",link:"https://www.wildberries.by/catalog/202653223/detail.aspx"},
-{id:8,name:"Конструктор ручек",cat:"Творчество",link:"https://www.wildberries.by/catalog/486210468/detail.aspx"},
-{id:9,name:"Книга анкета",cat:"Творчество",link:"https://www.wildberries.by/catalog/15473870/detail.aspx"},
-{id:10,name:"Что за трек",cat:"Игры",link:"https://www.wildberries.by/catalog/344230530/detail.aspx"},
-{id:11,name:"Создай часы",cat:"Электроника",link:"https://www.wildberries.by/catalog/234551397/detail.aspx"}
+// === Данные подарков (как в оригинале) ===
+const gifts = [
+    { id: 1, name: "Пижама для девочки со штанами", category: "Одежда", link: "https://www.wildberries.by/catalog/446793216/detail.aspx?size=631539819", comment: "Рост 135-145" },
+    { id: 2, name: "Кигуруми Пикачу- Пижама Для Дома", category: "Одежда", link: "https://www.wildberries.by/catalog/177554973/detail.aspx?size=293993230", comment: "Рост 140" },
+    { id: 3, name: "Тапочки домашние кигуруми Пикачу", category: "Одежда", link: "https://www.wildberries.by/catalog/134246810/detail.aspx?size=230177738", comment: "35-38" },
+    { id: 4, name: "Настольная игра Словодел Великан", category: "Игры", link: "https://www.wildberries.by/catalog/374826/detail.aspx?size=1679515", comment: "" },
+    { id: 5, name: "Настольная игра Властелин слов", category: "Игры", link: "https://www.wildberries.by/catalog/288097336/detail.aspx?size=440248049", comment: "" },
+    { id: 6, name: "Набор для опытов и творчества Зелье", category: "Творчество", link: "https://www.wildberries.by/catalog/436264576/detail.aspx?size=618930955", comment: "" },
+    { id: 7, name: "Портативный мини принтер для наклеек и фото", category: "Электроника", link: "https://www.wildberries.by/catalog/202653223/detail.aspx?size=326729613", comment: "" },
+    { id: 8, name: "Конструктор ручек для детей", category: "Творчество", link: "https://www.wildberries.by/catalog/486210468/detail.aspx?size=678077181", comment: "" },
+    { id: 9, name: "Книга интервью анкета для девочек и мальчиков", category: "Творчество", link: "https://www.wildberries.by/catalog/15473870/detail.aspx?size=44937170", comment: "" },
+    { id: 10, name: "Настольная игра Что за трек: Вечные Хиты", category: "Игры", link: "https://www.wildberries.by/catalog/344230530/detail.aspx?size=511584735", comment: "" },
+    { id: 11, name: "Подарок девочке создай часы", category: "Электроника", link: "https://www.wildberries.by/catalog/234551397/detail.aspx?targetUrl=EX", comment: "" }
 ];
 
-let states={};
+let giftStates = {};
 
-async function load(){
-const {data}=await supabaseClient.from('gifts').select('*');
-data.forEach(r=>states[r.id]=r.status);
-render();
+// === Supabase функции ===
+async function loadFromSupabase() {
+    try {
+        const { data, error } = await supabase.from('gifts').select('id, status');
+        if (error) throw error;
+        giftStates = {};
+        data.forEach(row => {
+            giftStates[row.id] = row.status;
+        });
+        render();
+    } catch (error) {
+        console.error("Supabase load error:", error);
+        render(); // fallback
+    }
 }
 
-async function setStatus(id,status){
-await supabaseClient.from('gifts').update({status}).eq('id',id);
-load();
+async function updateStatus(id, status) {
+    try {
+        const { error } = await supabase
+            .from('gifts')
+            .update({ status: status })
+            .eq('id', id);
+        if (error) throw error;
+        await loadFromSupabase();
+    } catch (error) {
+        console.error("Supabase update error:", error);
+        alert("Ошибка сети. Попробуйте позже.");
+    }
 }
 
-function render(){
-const tb=document.getElementById('gifts-table-body');
-const cards=document.getElementById('gifts-cards-container');
-tb.innerHTML='';cards.innerHTML='';
+// === Отображение ===
+function showPlaceholder() {
+    document.getElementById('nastya-photo').style.display = 'none';
+    document.getElementById('photo-placeholder').style.display = 'block';
+}
 
-gifts.forEach(g=>{
-const st=states[g.id]||'free';
-const tr=document.createElement('tr');
-if(st==='booked')tr.classList.add('booked-row');
-tr.innerHTML=`
-<td>${g.id}</td>
-<td><strong>${g.name}</strong></td>
-<td><span class="category">${g.cat}</span></td>
-<td>
-<button class="btn btn-preview" onclick="window.open('${g.link}')">Посмотреть</button>
-${st==='free'
-?`<button class="btn btn-reserve" onclick="setStatus(${g.id},'booked')">Забронировать</button>`
-:`<button class="btn btn-unbook" onclick="setStatus(${g.id},'free')">Отменить</button>`}
-</td>
-<td><span class="status ${st==='free'?'status-free':'status-booked'}">${st==='free'?'Свободно':'Забронировано'}</span></td>`;
-tb.appendChild(tr);
+function getStatusBadge(status) {
+    return status === 'booked'
+        ? '<span class="status status-booked">Забронировано</span>'
+        : '<span class="status status-free">Свободно</span>';
+}
 
-const card=document.createElement('div');
-card.className=`gift-card ${st==='booked'?'booked':''}`;
-card.innerHTML=`
-<h3>${g.name}</h3>
-<div class="category">${g.cat}</div>
-<span class="status ${st==='free'?'status-free':'status-booked'}">${st==='free'?'Свободно':'Забронировано'}</span>
-<button class="btn btn-preview" onclick="window.open('${g.link}')">Посмотреть</button>
-${st==='free'
-?`<button class="btn btn-reserve" onclick="setStatus(${g.id},'booked')">Забронировать</button>`
-:`<button class="btn btn-unbook" onclick="setStatus(${g.id},'free')">Отменить</button>`}
-`;
-cards.appendChild(card);
+function getActionButtons(gift) {
+    const status = giftStates[gift.id] || 'free';
+    if (status === 'free') {
+        return `
+            <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
+                <i class="fas fa-external-link-alt"></i> Посмотреть
+            </button>
+            <button class="btn btn-reserve" onclick="updateStatus(${gift.id}, 'booked')">
+                <i class="fas fa-gift"></i> Забронировать
+            </button>`;
+    } else {
+        return `
+            <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
+                <i class="fas fa-external-link-alt"></i> Посмотреть
+            </button>
+            <button class="btn btn-unbook" onclick="updateStatus(${gift.id}, 'free')">
+                <i class="fas fa-undo"></i> Отменить бронь
+            </button>`;
+    }
+}
+
+function renderTable() {
+    const tableBody = document.getElementById('gifts-table-body');
+    tableBody.innerHTML = '';
+    gifts.forEach(gift => {
+        const commentHtml = gift.comment ? `<div class="comment">${gift.comment}</div>` : '';
+        const row = document.createElement('tr');
+        const status = giftStates[gift.id] || 'free';
+        if (status === 'booked') row.classList.add('booked-row');
+        row.innerHTML = `
+            <td>${gift.id}</td>
+            <td><strong>${gift.name}</strong>${commentHtml}</td>
+            <td><span class="category">${gift.category}</span></td>
+            <td>${getActionButtons(gift)}</td>
+            <td>${getStatusBadge(status)}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+function renderCards() {
+    const cardsContainer = document.getElementById('gifts-cards-container');
+    cardsContainer.innerHTML = '';
+    gifts.forEach(gift => {
+        const commentHtml = gift.comment ? `<div class="comment">${gift.comment}</div>` : '';
+        const card = document.createElement('div');
+        const status = giftStates[gift.id] || 'free';
+        card.className = `gift-card ${status === 'booked' ? 'booked' : ''}`;
+        card.innerHTML = `
+            <h3>${gift.name}</h3>
+            ${commentHtml}
+            <div class="category">${gift.category}</div>
+            ${getStatusBadge(status)}
+            <div class="btn-group">${getActionButtons(gift)}</div>
+        `;
+        cardsContainer.appendChild(card);
+    });
+}
+
+function render() {
+    renderTable();
+    renderCards();
+}
+
+// === Запуск ===
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof supabase !== 'undefined') {
+        loadFromSupabase();
+    } else {
+        alert("Ошибка инициализации базы данных.");
+        render();
+    }
+    document.getElementById('nastya-photo').onerror = showPlaceholder;
 });
-}
-
-document.addEventListener('DOMContentLoaded',load);
 </script>
 
 </body>

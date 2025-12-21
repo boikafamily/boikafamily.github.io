@@ -155,7 +155,6 @@
             margin-bottom: 12px;
         }
         
-        /* Таблица */
         .gifts-table-wrapper {
             margin-top: 20px;
         }
@@ -202,28 +201,6 @@
             color: #777777;
         }
         
-        .gifts-table tr.booked-row .btn {
-            background: #f0f0f0 !important;
-            color: #777777 !important;
-            border: 1px solid #ddd !important;
-            box-shadow: none !important;
-        }
-        
-        .gifts-table tr.booked-row .btn-unbook {
-            background: linear-gradient(135deg, #ffecb3, #ffd54f) !important;
-            color: #e65100 !important;
-            border: none !important;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15) !important;
-        }
-        
-        /* Мобильные карточки */
-        .gifts-cards {
-            display: none;
-            margin-top: 20px;
-            gap: 16px;
-            flex-direction: column;
-        }
-        
         .gift-card {
             background: white;
             border-radius: 16px;
@@ -241,20 +218,6 @@
         .gift-card.booked h3 {
             text-decoration: line-through;
             color: #777777 !important;
-        }
-        
-        .gift-card.booked .btn {
-            background: #f0f0f0 !important;
-            color: #777777 !important;
-            border: 1px solid #ddd !important;
-            box-shadow: none !important;
-        }
-        
-        .gift-card.booked .btn-unbook {
-            background: linear-gradient(135deg, #ffecb3, #ffd54f) !important;
-            color: #e65100 !important;
-            border: none !important;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15) !important;
         }
         
         .gift-card h3 {
@@ -294,7 +257,8 @@
         .status-free { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
         .status-booked { background: #f8bbd0; color: #880e4f; border: 1px solid #f48fb1; }
         
-        .gift-card .btn-group {
+        .gift-card .btn-group,
+        .gifts-table .btn-group {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
@@ -321,7 +285,6 @@
         .btn-confirm { background: #c8e6c9; color: #1b5e20 !important; border: 1px solid #a5d6a7; }
         .btn-cancel { background: #eeeeee; color: #424242 !important; border: 1px solid #e0e0e0; }
         
-        /* Модальные окна */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -435,7 +398,6 @@
     <div class="birthday-icon icon-3">🎁</div>
     <div class="birthday-icon icon-4">🦄</div>
     
-    <!-- Модальные окна -->
     <div class="modal-overlay" id="confirm-reserve-modal">
         <div class="modal">
             <h3>Подтвердить бронирование?</h3>
@@ -489,9 +451,9 @@
                 <li>Если передумаешь — нажми «Отменить бронь».</li>
                 <li>Этот список — только идеи. Главное — ты сам(а)! ❤️</li>
             </ol>
-             <div class="intro-text">
-                     <i>*если список не загрузился сразу, подожди секунд 5-10, все появится. Если не получилось, напиши маме или папе!</i> <br>
-                    </div>
+            <div class="intro-text">
+                <i>*если список не загрузился сразу, подожди секунд 5-10, все появится. Если не получилось, напиши маме или папе!</i>
+            </div>
         </section>
         
         <section>
@@ -505,255 +467,248 @@
             <div class="gifts-cards" id="gifts-cards-container"></div>
         </section>
         
-       <footer>
-    Спасибо, что делаете мой день рождения особенным! 
-    <div style="margin: 10px 0;">
-        <i class="fas fa-heart" style="color: #e91e63; margin: 0 5px;"></i> 
-        Телефон мамы Ани: 
-        <a href="tel:+375296834036" 
-           style="color: #d81b60; 
-                  text-decoration: none; 
-                  font-weight: bold;
-                  padding: 2px 8px;
-                  background: rgba(255, 182, 193, 0.2);
-                  border-radius: 8px;
-                  border: 1px solid #ffb6c1;">
-            <i class="fas fa-phone-alt" style="margin-right: 5px;"></i>
-            +375-29-683-40-36
-        </a>
-        <i class="fas fa-heart" style="color: #e91e63; margin: 0 5px;"></i>
-    </div>
-</footer>
+        <footer>
+            Спасибо, что делаете мой день рождения особенным! 
+            <div style="margin: 10px 0;">
+                <i class="fas fa-heart" style="color: #e91e63; margin: 0 5px;"></i> 
+                Телефон мамы Ани: 
+                <a href="tel:+375296834036" 
+                   style="color: #d81b60; 
+                          text-decoration: none; 
+                          font-weight: bold;
+                          padding: 2px 8px;
+                          background: rgba(255, 182, 193, 0.2);
+                          border-radius: 8px;
+                          border: 1px solid #ffb6c1;">
+                    <i class="fas fa-phone-alt" style="margin-right: 5px;"></i>
+                    +375-29-683-40-36
+                </a>
+                <i class="fas fa-heart" style="color: #e91e63; margin: 0 5px;"></i>
+            </div>
+        </footer>
     </div>
     
-   <script>
-  // === Настройки SeaTable ===
-  const SEATABLE_API_TOKEN = "74dcfe927d9136c968c0a2f07459ef69c83121c1";
-  const SEATABLE_BASE_URL = "https://cloud.seatable.io/api/v2.1/dtable/external-links/188b1cc074ff43f28b72/";
-  const SEATABLE_TABLE_NAME = "Table1"; // как в скриншоте
+    <script>
+      // === ✅ Настройки SeaTable (всё проверено и без пробелов!) ===
+      const SEATABLE_API_TOKEN = "74dcfe927d9136c968c0a2f07459ef69c83121c1";
+      const SEATABLE_BASE_URL = "https://cloud.seatable.io/api/v2.1/dtable/external-links/188b1cc074ff43f28b72/";
+      const SEATABLE_TABLE_NAME = "Table1";
 
-  // Исходный список подарков (для отображения, если сервер недоступен)
-  const initialGifts = [
-    { id: 1, name: "Пижама для девочки со штанами", category: "Одежда", link: "https://www.wildberries.by/catalog/446793216/detail.aspx?size=631539819", comment: "Рост 135-145" },
-    { id: 2, name: "Кигуруми Пикачу- Пижама Для Дома", category: "Одежда", link: "https://www.wildberries.by/catalog/177554973/detail.aspx?size=293993230", comment: "Рост 140" },
-    { id: 3, name: "Тапочки домашние кигуруми Пикачу", category: "Одежда", link: "https://www.wildberries.by/catalog/134246810/detail.aspx?size=230177738", comment: "35-38" },
-    { id: 4, name: "Настольная игра Словодел Великан", category: "Игры", link: "https://www.wildberries.by/catalog/374826/detail.aspx?size=1679515", comment: "" },
-    { id: 5, name: "Настольная игра Властелин слов", category: "Игры", link: "https://www.wildberries.by/catalog/288097336/detail.aspx?size=440248049", comment: "" },
-    { id: 6, name: "Набор для опытов и творчества Зелье", category: "Творчество", link: "https://www.wildberries.by/catalog/436264576/detail.aspx?size=618930955", comment: "" },
-    { id: 7, name: "Портативный мини принтер для наклеек и фото", category: "Электроника", link: "https://www.wildberries.by/catalog/202653223/detail.aspx?size=326729613", comment: "" },
-    { id: 8, name: "Конструктор ручек для детей", category: "Творчество", link: "https://www.wildberries.by/catalog/486210468/detail.aspx?size=678077181", comment: "" },
-    { id: 9, name: "Книга интервью анкета для девочек и мальчиков", category: "Творчество", link: "https://www.wildberries.by/catalog/15473870/detail.aspx?size=44937170", comment: "" },
-    { id: 10, name: "Настольная игра Что за трек: Вечные Хиты", category: "Игры", link: "https://www.wildberries.by/catalog/344230530/detail.aspx?size=511584735", comment: "" },
-    { id: 11, name: "Подарок девочке создай часы", category: "Электроника", link: "https://www.wildberries.by/catalog/234551397/detail.aspx?targetUrl=EX", comment: "" }
-  ];
+      const initialGifts = [
+        { id: 1, name: "Пижама для девочки со штанами", category: "Одежда", link: "https://www.wildberries.by/catalog/446793216/detail.aspx?size=631539819", comment: "Рост 135-145" },
+        { id: 2, name: "Кигуруми Пикачу- Пижама Для Дома", category: "Одежда", link: "https://www.wildberries.by/catalog/177554973/detail.aspx?size=293993230", comment: "Рост 140" },
+        { id: 3, name: "Тапочки домашние кигуруми Пикачу", category: "Одежда", link: "https://www.wildberries.by/catalog/134246810/detail.aspx?size=230177738", comment: "35-38" },
+        { id: 4, name: "Настольная игра Словодел Великан", category: "Игры", link: "https://www.wildberries.by/catalog/374826/detail.aspx?size=1679515", comment: "" },
+        { id: 5, name: "Настольная игра Властелин слов", category: "Игры", link: "https://www.wildberries.by/catalog/288097336/detail.aspx?size=440248049", comment: "" },
+        { id: 6, name: "Набор для опытов и творчества Зелье", category: "Творчество", link: "https://www.wildberries.by/catalog/436264576/detail.aspx?size=618930955", comment: "" },
+        { id: 7, name: "Портативный мини принтер для наклеек и фото", category: "Электроника", link: "https://www.wildberries.by/catalog/202653223/detail.aspx?size=326729613", comment: "" },
+        { id: 8, name: "Конструктор ручек для детей", category: "Творчество", link: "https://www.wildberries.by/catalog/486210468/detail.aspx?size=678077181", comment: "" },
+        { id: 9, name: "Книга интервью анкета для девочек и мальчиков", category: "Творчество", link: "https://www.wildberries.by/catalog/15473870/detail.aspx?size=44937170", comment: "" },
+        { id: 10, name: "Настольная игра Что за трек: Вечные Хиты", category: "Игры", link: "https://www.wildberries.by/catalog/344230530/detail.aspx?size=511584735", comment: "" },
+        { id: 11, name: "Подарок девочке создай часы", category: "Электроника", link: "https://www.wildberries.by/catalog/234551397/detail.aspx?targetUrl=EX", comment: "" }
+      ];
 
-  let gifts = [...initialGifts];
-  let giftToReserve = null;
-  let giftToUnbook = null;
+      let gifts = [...initialGifts];
+      let giftToReserve = null;
+      let giftToUnbook = null;
 
-  // DOM
-  const tableBody = document.getElementById('gifts-table-body');
-  const cardsContainer = document.getElementById('gifts-cards-container');
-  const confirmReserveModal = document.getElementById('confirm-reserve-modal');
-  const unbookModal = document.getElementById('unbook-modal');
+      const tableBody = document.getElementById('gifts-table-body');
+      const cardsContainer = document.getElementById('gifts-cards-container');
+      const confirmReserveModal = document.getElementById('confirm-reserve-modal');
+      const unbookModal = document.getElementById('unbook-modal');
 
-  // === ЗАГРУЗКА ДАННЫХ ИЗ SEATABLE ===
-  async function loadFromServer() {
-    try {
-      const url = `${SEATABLE_BASE_URL}rows/?table_name=${encodeURIComponent(SEATABLE_TABLE_NAME)}`;
-      const response = await fetch(url, {
-        headers: { 'Authorization': `Token ${SEATABLE_API_TOKEN}` }
+      async function loadFromServer() {
+        try {
+          const url = `${SEATABLE_BASE_URL}rows/?table_name=${encodeURIComponent(SEATABLE_TABLE_NAME)}`;
+          const response = await fetch(url, {
+            headers: { 'Authorization': `Token ${SEATABLE_API_TOKEN}` }
+          });
+          const data = await response.json();
+
+          gifts = gifts.map(gift => {
+            const row = data.rows.find(r => r.id == gift.id);
+            return { ...gift, status: row?.status || 'free' };
+          });
+
+          render();
+        } catch (error) {
+          console.error("SeaTable error:", error);
+          render();
+        }
+      }
+
+      async function updateStatus(id, status) {
+        try {
+          const listUrl = `${SEATABLE_BASE_URL}rows/?table_name=${encodeURIComponent(SEATABLE_TABLE_NAME)}`;
+          const listRes = await fetch(listUrl, {
+            headers: { 'Authorization': `Token ${SEATABLE_API_TOKEN}` }
+          });
+          const listData = await listRes.json();
+          const row = listData.rows.find(r => r.id == id);
+
+          if (!row) throw new Error("Подарок не найден");
+
+          const updateUrl = `${SEATABLE_BASE_URL}rows/${row._id}/`;
+          await fetch(updateUrl, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `Token ${SEATABLE_API_TOKEN}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ row: { status: status } })
+          });
+
+          await loadFromServer();
+          showNotification(status === 'booked' ? 'Подарок забронирован! Спасибо!' : 'Бронирование отменено.', 'success');
+        } catch (error) {
+          console.error("Ошибка обновления:", error);
+          alert("Не удалось обновить. Проверьте интернет.");
+        }
+      }
+
+      function showPlaceholder() {
+        document.getElementById('nastya-photo').style.display = 'none';
+        document.getElementById('photo-placeholder').style.display = 'block';
+      }
+
+      function getStatusBadge(status) {
+        return status === 'booked'
+          ? '<span class="status status-booked">Забронировано</span>'
+          : '<span class="status status-free">Свободно</span>';
+      }
+
+      function getActionButtons(gift) {
+        if (gift.status === 'free') {
+          return `
+            <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
+              <i class="fas fa-external-link-alt"></i> Посмотреть
+            </button>
+            <button class="btn btn-reserve" onclick="openReserveModal(${gift.id})">
+              <i class="fas fa-gift"></i> Забронировать
+            </button>`;
+        } else {
+          return `
+            <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
+              <i class="fas fa-external-link-alt"></i> Посмотреть
+            </button>
+            <button class="btn btn-unbook" onclick="openUnbookModal(${gift.id})">
+              <i class="fas fa-undo"></i> Отменить бронь
+            </button>`;
+        }
+      }
+
+      function renderTable() {
+        tableBody.innerHTML = '';
+        gifts.forEach(gift => {
+          const commentHtml = gift.comment ? `<div class="comment">${gift.comment}</div>` : '';
+          const row = document.createElement('tr');
+          if (gift.status === 'booked') row.classList.add('booked-row');
+          row.innerHTML = `
+            <td>${gift.id}</td>
+            <td><strong>${gift.name}</strong>${commentHtml}</td>
+            <td><span class="category">${gift.category}</span></td>
+            <td>${getActionButtons(gift)}</td>
+            <td>${getStatusBadge(gift.status)}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      }
+
+      function renderCards() {
+        cardsContainer.innerHTML = '';
+        gifts.forEach(gift => {
+          const commentHtml = gift.comment ? `<div class="comment">${gift.comment}</div>` : '';
+          const card = document.createElement('div');
+          card.className = `gift-card ${gift.status === 'booked' ? 'booked' : ''}`;
+          card.innerHTML = `
+            <h3>${gift.name}</h3>
+            ${commentHtml}
+            <div class="category">${gift.category}</div>
+            ${getStatusBadge(gift.status)}
+            <div class="btn-group">${getActionButtons(gift)}</div>
+          `;
+          cardsContainer.appendChild(card);
+        });
+      }
+
+      function render() {
+        renderTable();
+        renderCards();
+      }
+
+      function openReserveModal(id) {
+        const gift = gifts.find(g => g.id === id);
+        if (gift && gift.status === 'free') {
+          giftToReserve = id;
+          document.getElementById('confirm-reserve-text').textContent = `Забронировать «${gift.name}»?`;
+          confirmReserveModal.style.display = 'flex';
+        }
+      }
+
+      document.getElementById('confirm-reserve').addEventListener('click', () => {
+        if (giftToReserve !== null) {
+          updateStatus(giftToReserve, 'booked');
+          confirmReserveModal.style.display = 'none';
+          giftToReserve = null;
+        }
       });
-      const data = await response.json();
 
-      gifts = gifts.map(gift => {
-        const row = data.rows.find(r => r.id == gift.id);
-        return { ...gift, status: row?.status || 'free' };
+      document.getElementById('cancel-reserve').onclick = () => {
+        confirmReserveModal.style.display = 'none';
+        giftToReserve = null;
+      };
+
+      function openUnbookModal(id) {
+        giftToUnbook = id;
+        unbookModal.style.display = 'flex';
+      }
+
+      document.getElementById('confirm-unbook').addEventListener('click', () => {
+        if (giftToUnbook !== null) {
+          updateStatus(giftToUnbook, 'free');
+          unbookModal.style.display = 'none';
+          giftToUnbook = null;
+        }
       });
 
-      render();
-    } catch (error) {
-      console.error("SeaTable ошибка:", error);
-      render(); // fallback на локальные данные
-    }
-  }
+      document.getElementById('cancel-unbook').onclick = () => {
+        unbookModal.style.display = 'none';
+        giftToUnbook = null;
+      };
 
-  // === ОБНОВЛЕНИЕ СТАТУСА ===
-  async function updateStatus(id, status) {
-    try {
-      // Получаем все строки, чтобы найти _id по id
-      const listUrl = `${SEATABLE_BASE_URL}rows/?table_name=${encodeURIComponent(SEATABLE_TABLE_NAME)}`;
-      const listRes = await fetch(listUrl, {
-        headers: { 'Authorization': `Token ${SEATABLE_API_TOKEN}` }
+      function showNotification(message, type) {
+        let n = document.getElementById('custom-notification');
+        if (!n) {
+          n = document.createElement('div');
+          n.id = 'custom-notification';
+          document.body.appendChild(n);
+        }
+        const cfg = {
+          success: { bg: '#c8e6c9', color: '#1b5e20', icon: 'check-circle' },
+          info: { bg: '#fff3e0', color: '#e65100', icon: 'info-circle' }
+        }[type] || { bg: '#ffcdd2', color: '#b71c1c', icon: 'exclamation-circle' };
+        n.style.background = cfg.bg;
+        n.style.color = cfg.color;
+        n.innerHTML = `<i class="fas fa-${cfg.icon}"></i> ${message}`;
+        n.style.transform = 'translateX(0)';
+        setTimeout(() => n.style.transform = 'translateX(150%)', 3000);
+      }
+
+      window.onclick = (e) => {
+        if (e.target === confirmReserveModal) {
+          confirmReserveModal.style.display = 'none';
+          giftToReserve = null;
+        }
+        if (e.target === unbookModal) {
+          unbookModal.style.display = 'none';
+          giftToUnbook = null;
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        loadFromServer();
+        document.getElementById('nastya-photo').onerror = showPlaceholder;
       });
-      const listData = await listRes.json();
-      const row = listData.rows.find(r => r.id == id);
-
-      if (!row) throw new Error("Подарок не найден");
-
-      // Обновляем статус
-      const updateUrl = `${SEATABLE_BASE_URL}rows/${row._id}/`;
-      await fetch(updateUrl, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Token ${SEATABLE_API_TOKEN}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ row: { status: status } })
-      });
-
-      await loadFromServer();
-      showNotification(status === 'booked' ? 'Подарок забронирован! Спасибо!' : 'Бронирование отменено.', 'success');
-    } catch (error) {
-      console.error("Ошибка обновления:", error);
-      alert("Не удалось обновить. Проверьте интернет.");
-    }
-  }
-
-  // === ОСТАЛЬНОЙ КОД (без изменений) ===
-  function showPlaceholder() {
-    document.getElementById('nastya-photo').style.display = 'none';
-    document.getElementById('photo-placeholder').style.display = 'block';
-  }
-
-  function getStatusBadge(status) {
-    return status === 'booked'
-      ? '<span class="status status-booked">Забронировано</span>'
-      : '<span class="status status-free">Свободно</span>';
-  }
-
-  function getActionButtons(gift) {
-    if (gift.status === 'free') {
-      return `
-        <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
-          <i class="fas fa-external-link-alt"></i> Посмотреть
-        </button>
-        <button class="btn btn-reserve" onclick="openReserveModal(${gift.id})">
-          <i class="fas fa-gift"></i> Забронировать
-        </button>`;
-    } else {
-      return `
-        <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
-          <i class="fas fa-external-link-alt"></i> Посмотреть
-        </button>
-        <button class="btn btn-unbook" onclick="openUnbookModal(${gift.id})">
-          <i class="fas fa-undo"></i> Отменить бронь
-        </button>`;
-    }
-  }
-
-  function renderTable() {
-    tableBody.innerHTML = '';
-    gifts.forEach(gift => {
-      const commentHtml = gift.comment ? `<div class="comment">${gift.comment}</div>` : '';
-      const row = document.createElement('tr');
-      if (gift.status === 'booked') row.classList.add('booked-row');
-      row.innerHTML = `
-        <td>${gift.id}</td>
-        <td><strong>${gift.name}</strong>${commentHtml}</td>
-        <td><span class="category">${gift.category}</span></td>
-        <td>${getActionButtons(gift)}</td>
-        <td>${getStatusBadge(gift.status)}</td>
-      `;
-      tableBody.appendChild(row);
-    });
-  }
-
-  function renderCards() {
-    cardsContainer.innerHTML = '';
-    gifts.forEach(gift => {
-      const commentHtml = gift.comment ? `<div class="comment">${gift.comment}</div>` : '';
-      const card = document.createElement('div');
-      card.className = `gift-card ${gift.status === 'booked' ? 'booked' : ''}`;
-      card.innerHTML = `
-        <h3>${gift.name}</h3>
-        ${commentHtml}
-        <div class="category">${gift.category}</div>
-        ${getStatusBadge(gift.status)}
-        <div class="btn-group">${getActionButtons(gift)}</div>
-      `;
-      cardsContainer.appendChild(card);
-    });
-  }
-
-  function render() {
-    renderTable();
-    renderCards();
-  }
-
-  function openReserveModal(id) {
-    const gift = gifts.find(g => g.id === id);
-    if (gift && gift.status === 'free') {
-      giftToReserve = id;
-      document.getElementById('confirm-reserve-text').textContent = `Забронировать «${gift.name}»?`;
-      confirmReserveModal.style.display = 'flex';
-    }
-  }
-
-  document.getElementById('confirm-reserve').addEventListener('click', () => {
-    if (giftToReserve !== null) {
-      updateStatus(giftToReserve, 'booked');
-      confirmReserveModal.style.display = 'none';
-      giftToReserve = null;
-    }
-  });
-
-  document.getElementById('cancel-reserve').onclick = () => {
-    confirmReserveModal.style.display = 'none';
-    giftToReserve = null;
-  };
-
-  function openUnbookModal(id) {
-    giftToUnbook = id;
-    unbookModal.style.display = 'flex';
-  }
-
-  document.getElementById('confirm-unbook').addEventListener('click', () => {
-    if (giftToUnbook !== null) {
-      updateStatus(giftToUnbook, 'free');
-      unbookModal.style.display = 'none';
-      giftToUnbook = null;
-    }
-  });
-
-  document.getElementById('cancel-unbook').onclick = () => {
-    unbookModal.style.display = 'none';
-    giftToUnbook = null;
-  };
-
-  function showNotification(message, type) {
-    let n = document.getElementById('custom-notification');
-    if (!n) {
-      n = document.createElement('div');
-      n.id = 'custom-notification';
-      document.body.appendChild(n);
-    }
-    const cfg = {
-      success: { bg: '#c8e6c9', color: '#1b5e20', icon: 'check-circle' },
-      info: { bg: '#fff3e0', color: '#e65100', icon: 'info-circle' }
-    }[type] || { bg: '#ffcdd2', color: '#b71c1c', icon: 'exclamation-circle' };
-    n.style.background = cfg.bg;
-    n.style.color = cfg.color;
-    n.innerHTML = `<i class="fas fa-${cfg.icon}"></i> ${message}`;
-    n.style.transform = 'translateX(0)';
-    setTimeout(() => n.style.transform = 'translateX(150%)', 3000);
-  }
-
-  window.onclick = (e) => {
-    if (e.target === confirmReserveModal) {
-      confirmReserveModal.style.display = 'none';
-      giftToReserve = null;
-    }
-    if (e.target === unbookModal) {
-      unbookModal.style.display = 'none';
-      giftToUnbook = null;
-    }
-  };
-
-  document.addEventListener('DOMContentLoaded', () => {
-    loadFromServer();
-    document.getElementById('nastya-photo').onerror = showPlaceholder;
-  });
-</script>
+    </script>
 </body>
 </html>

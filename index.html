@@ -526,13 +526,13 @@
 </footer>
     </div>
     
-    <script>
-      <script>
-  // === Airtable настройки ===
-  const AIRTABLE_BASE_ID = "appTLDZDLhTM7br8i";
-  const AIRTABLE_API_KEY = "pati6qrp53zky8fzC.b08eafdbc744b2be9dd42defa9e2b71b4c18e449ff3ea4d4802d369c5747baae";
-  const AIRTABLE_TABLE_NAME = "Table 1"; // убедись, что имя таблицы совпадает
+   <script>
+  // === Настройки SeaTable ===
+  const SEATABLE_API_TOKEN = "74dcfe927d9136c968c0a2f07459ef69c83121c1";
+  const SEATABLE_BASE_URL = "https://cloud.seatable.io/api/v2.1/dtable/external-links/188b1cc074ff43f28b72/";
+  const SEATABLE_TABLE_NAME = "Table1"; // как в скриншоте
 
+  // Исходный список подарков (для отображения, если сервер недоступен)
   const initialGifts = [
     { id: 1, name: "Пижама для девочки со штанами", category: "Одежда", link: "https://www.wildberries.by/catalog/446793216/detail.aspx?size=631539819", comment: "Рост 135-145" },
     { id: 2, name: "Кигуруми Пикачу- Пижама Для Дома", category: "Одежда", link: "https://www.wildberries.by/catalog/177554973/detail.aspx?size=293993230", comment: "Рост 140" },
@@ -551,28 +551,29 @@
   let giftToReserve = null;
   let giftToUnbook = null;
 
+  // DOM
   const tableBody = document.getElementById('gifts-table-body');
   const cardsContainer = document.getElementById('gifts-cards-container');
   const confirmReserveModal = document.getElementById('confirm-reserve-modal');
   const unbookModal = document.getElementById('unbook-modal');
 
-  // === ЗАГРУЗКА ИЗ AIRTABLE ===
+  // === ЗАГРУЗКА ДАННЫХ ИЗ SEATABLE ===
   async function loadFromServer() {
     try {
-      const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`;
+      const url = `${SEATABLE_BASE_URL}rows/?table_name=${encodeURIComponent(SEATABLE_TABLE_NAME)}`;
       const response = await fetch(url, {
-        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }
+        headers: { 'Authorization': `Token ${SEATABLE_API_TOKEN}` }
       });
       const data = await response.json();
 
       gifts = gifts.map(gift => {
-        const record = data.records.find(r => r.fields.id == gift.id);
-        return { ...gift, status: record?.fields.status || 'free' };
+        const row = data.rows.find(r => r.id == gift.id);
+        return { ...gift, status: row?.status || 'free' };
       });
 
       render();
     } catch (error) {
-      console.error("Airtable error:", error);
+      console.error("SeaTable ошибка:", error);
       render(); // fallback на локальные данные
     }
   }
@@ -580,43 +581,36 @@
   // === ОБНОВЛЕНИЕ СТАТУСА ===
   async function updateStatus(id, status) {
     try {
-      // Получаем запись по id
-      const filter = encodeURIComponent(`{id}=${id}`);
-      const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}?filterByFormula=${filter}`;
-      const response = await fetch(url, {
-        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }
+      // Получаем все строки, чтобы найти _id по id
+      const listUrl = `${SEATABLE_BASE_URL}rows/?table_name=${encodeURIComponent(SEATABLE_TABLE_NAME)}`;
+      const listRes = await fetch(listUrl, {
+        headers: { 'Authorization': `Token ${SEATABLE_API_TOKEN}` }
       });
-      const data = await response.json();
-      const recordId = data.records[0]?.id;
+      const listData = await listRes.json();
+      const row = listData.rows.find(r => r.id == id);
 
-      if (!recordId) throw new Error("Запись не найдена");
+      if (!row) throw new Error("Подарок не найден");
 
-      // Обновляем
-      await fetch(
-        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}/${recordId}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ fields: { status } })
-        }
-      );
+      // Обновляем статус
+      const updateUrl = `${SEATABLE_BASE_URL}rows/${row._id}/`;
+      await fetch(updateUrl, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Token ${SEATABLE_API_TOKEN}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ row: { status: status } })
+      });
 
       await loadFromServer();
-      showNotification(status === 'booked' 
-        ? 'Подарок забронирован! Спасибо!' 
-        : 'Бронь отменена.', 
-        'success'
-      );
+      showNotification(status === 'booked' ? 'Подарок забронирован! Спасибо!' : 'Бронирование отменено.', 'success');
     } catch (error) {
       console.error("Ошибка обновления:", error);
       alert("Не удалось обновить. Проверьте интернет.");
     }
   }
 
-  // === ОСТАЛЬНОЙ КОД (рендер, модалки и т.д.) — БЕЗ ИЗМЕНЕНИЙ ===
+  // === ОСТАЛЬНОЙ КОД (без изменений) ===
   function showPlaceholder() {
     document.getElementById('nastya-photo').style.display = 'none';
     document.getElementById('photo-placeholder').style.display = 'block';

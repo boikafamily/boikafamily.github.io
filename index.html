@@ -522,4 +522,212 @@
             { id: 7, name: "Портативный мини принтер для наклеек и фото", category: "Электроника", link: "https://www.wildberries.by/catalog/202653223/detail.aspx?size=326729613", comment: "" },
             { id: 8, name: "Конструктор ручек для детей", category: "Творчество", link: "https://www.wildberries.by/catalog/486210468/detail.aspx?size=678077181", comment: "" },
             { id: 9, name: "Книга интервью анкета для девочек и мальчиков", category: "Творчество", link: "https://www.wildberries.by/catalog/15473870/detail.aspx?size=44937170", comment: "" },
-            { id: 10, name: "Настольная игра Что за трек: Вечные Хиты", category: "Игры", link: "https://www.wildberries.by/catalog/344230530/detail.aspx?size=511584735", comment: ""
+            { id: 10, name: "Настольная игра Что за трек: Вечные Хиты", category: "Игры", link: "https://www.wildberries.by/catalog/344230530/detail.aspx?size=511584735", comment: "" },
+            { id: 11, name: "Подарок девочке создай часы", category: "Электроника", link: "https://www.wildberries.by/catalog/234551397/detail.aspx?targetUrl=EX", comment: "" }
+        ];
+
+        let gifts = [...initialGifts];
+        let giftToReserve = null;
+        let giftToUnbook = null;
+
+        // DOM
+        const tableBody = document.getElementById('gifts-table-body');
+        const cardsContainer = document.getElementById('gifts-cards-container');
+        const confirmReserveModal = document.getElementById('confirm-reserve-modal');
+        const unbookModal = document.getElementById('unbook-modal');
+
+        // === ЗАГРУЗКА ДАННЫХ ИЗ GOOGLE ТАБЛИЦЫ ===
+        async function loadFromServer() {
+            try {
+                const response = await fetch(BACKEND_URL);
+                if (!response.ok) throw new Error("Сервер не отвечает");
+                const serverData = await response.json();
+
+                // Объединяем: имя, категория — из initialGifts, статус — из сервера
+                gifts = gifts.map(gift => {
+                    const serverItem = serverData.find(item => item.id == gift.id);
+                    return {
+                        ...gift,
+                        status: serverItem?.status || 'free'
+                    };
+                });
+
+                render();
+            } catch (error) {
+                console.warn("Ошибка загрузки с сервера:", error);
+                render(); // Показываем локальные данные
+            }
+        }
+
+        // === ОТПРАВКА СТАТУСА НА СЕРВЕР ===
+        async function updateStatus(id, status) {
+            try {
+                const response = await fetch(BACKEND_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id, status })
+                });
+                if (!response.ok) throw new Error("Не удалось обновить");
+                await loadFromServer(); // Обновляем весь список
+            } catch (error) {
+                alert("Ошибка сети. Попробуйте позже.");
+                console.error(error);
+            }
+        }
+
+        // === ОСТАЛЬНОЙ КОД БЕЗ ИЗМЕНЕНИЙ ===
+        function showPlaceholder() {
+            document.getElementById('nastya-photo').style.display = 'none';
+            document.getElementById('photo-placeholder').style.display = 'block';
+        }
+
+        function getStatusBadge(status) {
+            if (status === 'booked') {
+                return '<span class="status status-booked">Забронировано</span>';
+            }
+            return '<span class="status status-free">Свободно</span>';
+        }
+
+        function getActionButtons(gift) {
+            if (gift.status === 'free') {
+                return `
+                    <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
+                        <i class="fas fa-external-link-alt"></i> Посмотреть
+                    </button>
+                    <button class="btn btn-reserve" onclick="openReserveModal(${gift.id})">
+                        <i class="fas fa-gift"></i> Забронировать
+                    </button>`;
+            } else {
+                return `
+                    <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
+                        <i class="fas fa-external-link-alt"></i> Посмотреть
+                    </button>
+                    <button class="btn btn-unbook" onclick="openUnbookModal(${gift.id})">
+                        <i class="fas fa-undo"></i> Отменить бронь
+                    </button>`;
+            }
+        }
+
+        function renderTable() {
+            tableBody.innerHTML = '';
+            gifts.forEach(gift => {
+                const commentHtml = gift.comment ? `<div class="comment">${gift.comment}</div>` : '';
+                const row = document.createElement('tr');
+                if (gift.status === 'booked') row.classList.add('booked-row');
+                row.innerHTML = `
+                    <td>${gift.id}</td>
+                    <td><strong>${gift.name}</strong>${commentHtml}</td>
+                    <td><span class="category">${gift.category}</span></td>
+                    <td>${getActionButtons(gift)}</td>
+                    <td>${getStatusBadge(gift.status)}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function renderCards() {
+            cardsContainer.innerHTML = '';
+            gifts.forEach(gift => {
+                const commentHtml = gift.comment ? `<div class="comment">${gift.comment}</div>` : '';
+                const card = document.createElement('div');
+                card.className = `gift-card ${gift.status === 'booked' ? 'booked' : ''}`;
+                card.innerHTML = `
+                    <h3>${gift.name}</h3>
+                    ${commentHtml}
+                    <div class="category">${gift.category}</div>
+                    ${getStatusBadge(gift.status)}
+                    <div class="btn-group">${getActionButtons(gift)}</div>
+                `;
+                cardsContainer.appendChild(card);
+            });
+        }
+
+        function render() {
+            renderTable();
+            renderCards();
+        }
+
+        function openReserveModal(id) {
+            const gift = gifts.find(g => g.id === id);
+            if (gift && gift.status === 'free') {
+                giftToReserve = id;
+                document.getElementById('confirm-reserve-text').textContent = `Вы действительно хотите забронировать «${gift.name}»?`;
+                confirmReserveModal.style.display = 'flex';
+            }
+        }
+
+        document.getElementById('confirm-reserve').addEventListener('click', () => {
+            if (giftToReserve !== null) {
+                updateStatus(giftToReserve, 'booked');
+                showNotification('Подарок успешно забронирован! Спасибо!', 'success');
+                confirmReserveModal.style.display = 'none';
+                giftToReserve = null;
+            }
+        });
+
+        document.getElementById('cancel-reserve').onclick = () => {
+            confirmReserveModal.style.display = 'none';
+            giftToReserve = null;
+        };
+
+        function openUnbookModal(id) {
+            giftToUnbook = id;
+            unbookModal.style.display = 'flex';
+        }
+
+        document.getElementById('confirm-unbook').addEventListener('click', () => {
+            if (giftToUnbook !== null) {
+                updateStatus(giftToUnbook, 'free');
+                showNotification('Бронирование отменено! Подарок снова доступен.', 'info');
+                unbookModal.style.display = 'none';
+                giftToUnbook = null;
+            }
+        });
+
+        document.getElementById('cancel-unbook').onclick = () => {
+            unbookModal.style.display = 'none';
+            giftToUnbook = null;
+        };
+
+        function showNotification(message, type) {
+            let n = document.getElementById('custom-notification');
+            if (!n) {
+                n = document.createElement('div');
+                n.id = 'custom-notification';
+                document.body.appendChild(n);
+            }
+            const cfg = {
+                success: { bg: '#c8e6c9', color: '#1b5e20', icon: 'check-circle' },
+                info: { bg: '#fff3e0', color: '#e65100', icon: 'info-circle' }
+            }[type] || { bg: '#ffcdd2', color: '#b71c1c', icon: 'exclamation-circle' };
+            n.style.background = cfg.bg;
+            n.style.color = cfg.color;
+            n.innerHTML = `<i class="fas fa-${cfg.icon}"></i> ${message}`;
+            n.style.transform = 'translateX(0)';
+            setTimeout(() => n.style.transform = 'translateX(150%)', 3000);
+        }
+
+        window.onclick = (e) => {
+            if (e.target === confirmReserveModal) {
+                confirmReserveModal.style.display = 'none';
+                giftToReserve = null;
+            }
+            if (e.target === unbookModal) {
+                unbookModal.style.display = 'none';
+                giftToUnbook = null;
+            }
+        };
+
+        // === ИНИЦИАЛИЗАЦИЯ ===
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFromServer(); // Загружаем данные с сервера
+
+            const photo = document.getElementById('nastya-photo');
+            photo.onerror = showPlaceholder;
+            setTimeout(() => {
+                if (photo.complete && photo.naturalHeight === 0) showPlaceholder();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

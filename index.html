@@ -10,12 +10,12 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif; /* Чётче, чем Comic Sans */
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
         
         body {
             background: linear-gradient(135deg, #ffe6f0 0%, #fff0f9 100%);
-            color: #333333; /* Улучшенная читаемость */
+            color: #333333;
             line-height: 1.6;
             padding: 12px;
             min-height: 100vh;
@@ -95,7 +95,7 @@
         }
         
         h1 {
-            color: #e91e63; /* Насыщенный, но не кричащий */
+            color: #e91e63;
             margin-bottom: 12px;
             font-size: 2.2rem;
             text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
@@ -185,7 +185,7 @@
             border-bottom: 1px solid #f5f5f5;
             vertical-align: middle;
             font-size: 0.95rem;
-            color: #333;
+            color: #333333;
         }
         
         .gifts-table tr:last-child td {
@@ -195,17 +195,17 @@
         /* Забронировано в таблице */
         .gifts-table tr.booked-row {
             opacity: 0.75;
-            color: #777 !important;
+            color: #777777;
         }
         
         .gifts-table tr.booked-row strong {
             text-decoration: line-through;
-            color: #777 !important;
+            color: #777777;
         }
         
         .gifts-table tr.booked-row .btn {
             background: #f0f0f0 !important;
-            color: #777 !important;
+            color: #777777 !important;
             border: 1px solid #ddd !important;
             box-shadow: none !important;
         }
@@ -231,22 +231,23 @@
             padding: 16px;
             box-shadow: 0 5px 12px rgba(233, 30, 99, 0.1);
             border: 1px solid #ffe6ee;
+            color: #333333;
         }
         
         /* Забронировано в карточках */
         .gift-card.booked {
             opacity: 0.75;
-            color: #777;
+            color: #777777;
         }
         
         .gift-card.booked h3 {
             text-decoration: line-through;
-            color: #777 !important;
+            color: #777777 !important;
         }
         
         .gift-card.booked .btn {
             background: #f0f0f0 !important;
-            color: #777 !important;
+            color: #777777 !important;
             border: 1px solid #ddd !important;
             box-shadow: none !important;
         }
@@ -302,6 +303,7 @@
             margin-top: 10px;
         }
         
+        /* Общие стили для кнопок - одинаковые для всех версий */
         .btn {
             padding: 8px 12px;
             border: none;
@@ -316,11 +318,35 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         
-        .btn-preview { background: #e3f2fd; color: #0d47a1; }
-        .btn-reserve { background: #f8bbd0; color: white; }
-        .btn-unbook { background: #ffecb3; color: #e65100; }
-        .btn-confirm { background: #c8e6c9; color: white; }
-        .btn-cancel { background: #eeeeee; color: #616161; }
+        .btn-preview { 
+            background: #e3f2fd; 
+            color: #0d47a1 !important;
+            border: 1px solid #bbdefb;
+        }
+        
+        .btn-reserve { 
+            background: #f8bbd0; 
+            color: #880e4f !important;
+            border: 1px solid #f48fb1;
+        }
+        
+        .btn-unbook { 
+            background: #ffecb3; 
+            color: #e65100 !important;
+            border: 1px solid #ffd54f;
+        }
+        
+        .btn-confirm { 
+            background: #c8e6c9; 
+            color: #1b5e20 !important;
+            border: 1px solid #a5d6a7;
+        }
+        
+        .btn-cancel { 
+            background: #eeeeee; 
+            color: #424242 !important;
+            border: 1px solid #e0e0e0;
+        }
         
         /* Модальные окна */
         .modal-overlay {
@@ -355,7 +381,7 @@
         
         .modal p {
             margin-bottom: 25px;
-            color: #444;
+            color: #444444;
             font-size: 1.05rem;
             line-height: 1.6;
         }
@@ -403,7 +429,7 @@
             transition: transform 0.5s ease;
             max-width: 320px;
             font-size: 0.9rem;
-            color: #333;
+            color: #333333;
         }
         
         @media (max-width: 900px) {
@@ -424,6 +450,10 @@
             .photo-frame { width: 150px; height: 200px; }
             .btn { padding: 7px 10px; font-size: 0.85rem; }
             .birthday-icon { display: none; }
+            /* Обеспечиваем одинаковые цвета в мобильной версии */
+            .gift-card, .gift-card *:not(.btn-preview):not(.btn-reserve):not(.btn-unbook):not(.btn-confirm):not(.btn-cancel) {
+                color: #333333;
+            }
         }
         
         @media (max-width: 480px) {
@@ -496,7 +526,6 @@
                 <li>Подтверди бронирование в появившемся окне.</li>
                 <li>Если передумаешь — нажми «Отменить бронь».</li>
                 <li>Этот список — только идеи. Главное — ты сам(а)! ❤️</li>
-
             </ol>
         </section>
         
@@ -528,7 +557,7 @@
             { id: 8, name: "Конструктор ручек для детей", category: "Творчество", link: "https://www.wildberries.by/catalog/486210468/detail.aspx?size=678077181", comment: "", status: "free", bookedBy: "" },
             { id: 9, name: "Книга интервью анкета для девочек и мальчиков", category: "Творчество", link: "https://www.wildberries.by/catalog/15473870/detail.aspx?size=44937170", comment: "", status: "free", bookedBy: "" },
             { id: 10, name: "Настольная игра Что за трек: Вечные Хиты", category: "Игры", link: "https://www.wildberries.by/catalog/344230530/detail.aspx?size=511584735", comment: "", status: "free", bookedBy: "" },
- 	    { id: 11, name: "Подарок девочке создай часы", category: "Электроника", link: "https://www.wildberries.by/catalog/234551397/detail.aspx?targetUrl=EX", comment: "", status: "free" }
+            { id: 11, name: "Подарок девочке создай часы", category: "Электроника", link: "https://www.wildberries.by/catalog/234551397/detail.aspx?targetUrl=EX", comment: "", status: "free", bookedBy: "" }
         ];
 
         let giftToReserve = null;

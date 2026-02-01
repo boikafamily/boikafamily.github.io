@@ -3,38 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🌊 Istanbul Flow | Современный гид</title>
+    <title>Istanbul Guide | Путеводитель</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4361EE;
-            --primary-light: #4895EF;
-            --primary-dark: #3A56D4;
-            --secondary: #7209B7;
-            --accent: #F72585;
-            --success: #4CC9F0;
-            --warning: #F8961E;
-            --error: #EF233C;
-            --bg: #0F0F23;
-            --surface: #1A1A2E;
-            --surface-light: #252547;
-            --surface-dark: #161629;
-            --text: #F8F9FA;
-            --text-light: #ADB5BD;
-            --text-lighter: #6C757D;
-            --border: rgba(255, 255, 255, 0.1);
-            --border-light: rgba(255, 255, 255, 0.05);
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            --shadow-light: 0 4px 16px rgba(0, 0, 0, 0.2);
-            --glass: rgba(255, 255, 255, 0.05);
-            --blur: blur(20px);
-            --radius: 24px;
-            --radius-lg: 32px;
+            --primary: #3B82F6;
+            --primary-dark: #2563EB;
+            --primary-light: #60A5FA;
+            --secondary: #8B5CF6;
+            --accent: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --bg: #FFFFFF;
+            --surface: #F8FAFC;
+            --surface-light: #FFFFFF;
+            --surface-dark: #F1F5F9;
+            --text: #1E293B;
+            --text-light: #64748B;
+            --text-lighter: #94A3B8;
+            --border: #E2E8F0;
+            --border-light: #F1F5F9;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+            --radius: 20px;
+            --radius-lg: 24px;
             --radius-sm: 16px;
             --radius-xs: 12px;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * {
@@ -47,339 +43,323 @@
         html {
             font-size: 16px;
             scroll-behavior: smooth;
-            background: var(--bg);
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0F0F23 0%, #1A1A2E 100%);
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-        }
-        
-        .gradient-circle {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.4;
-        }
-        
-        .circle-1 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, var(--primary), transparent 70%);
-            top: 10%;
-            left: 10%;
-            animation: float 20s infinite ease-in-out;
-        }
-        
-        .circle-2 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--secondary), transparent 70%);
-            bottom: 10%;
-            right: 10%;
-            animation: float 25s infinite ease-in-out reverse;
-        }
-        
-        /* Main Container */
-        .app {
-            max-width: 480px;
-            margin: 0 auto;
-            min-height: 100vh;
-            position: relative;
             overflow-x: hidden;
         }
         
-        /* Status Bar */
-        .status-bar {
-            height: 44px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 24px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-light);
-            background: rgba(26, 26, 46, 0.8);
-            backdrop-filter: var(--blur);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        /* Header */
-        .header {
-            padding: 20px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: 'Space Grotesk', sans-serif;
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 1.8rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-        
-        /* Floating Action Button */
-        .fab {
-            position: fixed;
-            bottom: 100px;
-            right: 24px;
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            z-index: 50;
-            box-shadow: 0 8px 24px rgba(67, 97, 238, 0.3);
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .fab:hover {
-            transform: translateY(-4px) scale(1.1);
-            box-shadow: 0 12px 32px rgba(67, 97, 238, 0.4);
-        }
-        
-        /* Main Content */
-        .content {
-            padding: 0 24px 120px;
-        }
-        
-        /* Tabs Navigation */
-        .tabs {
-            display: flex;
-            gap: 8px;
-            padding: 12px;
-            background: var(--surface-dark);
-            border-radius: var(--radius-sm);
-            margin-bottom: 24px;
-            backdrop-filter: var(--blur);
-            border: 1px solid var(--border-light);
-        }
-        
-        .tab {
-            flex: 1;
-            padding: 14px 0;
-            background: transparent;
-            border: none;
-            border-radius: var(--radius-xs);
-            color: var(--text-light);
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .tab.active {
-            background: var(--surface);
             color: var(--text);
-            box-shadow: var(--shadow-light);
         }
         
-        /* Page */
-        .page {
-            display: none;
-            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        /* Glass Card */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: var(--blur);
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            padding: 24px;
-            margin-bottom: 20px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .glass-card::before {
-            content: '';
-            position: absolute;
+        /* Sidebar Overlay */
+        .sidebar-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
         }
         
-        .glass-card:hover {
-            transform: translateY(-2px);
-            border-color: rgba(67, 97, 238, 0.2);
-            box-shadow: var(--shadow);
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
         
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(114, 9, 183, 0.1));
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 300px;
+            height: 100%;
+            background: var(--surface-light);
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        
+        .sidebar.active {
+            left: 0;
+        }
+        
+        .sidebar-header {
+            padding: 30px 24px 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        
+        .sidebar-logo i {
+            font-size: 1.8rem;
+        }
+        
+        .sidebar-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .sidebar-nav {
+            flex: 1;
+            padding: 24px 0;
+        }
+        
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 24px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+        }
+        
+        .sidebar-link:hover {
+            background: var(--surface);
+            border-left-color: var(--primary);
+        }
+        
+        .sidebar-link.active {
+            background: var(--surface);
+            border-left-color: var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .sidebar-link i {
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .sidebar-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        /* Main Content */
+        .main-content {
+            min-height: 100vh;
+            transition: var(--transition);
+            padding-bottom: 80px;
+        }
+        
+        .main-content.sidebar-open {
+            transform: translateX(300px);
+            filter: blur(2px);
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            background: var(--surface-light);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .menu-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .menu-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: scale(0.95);
+        }
+        
+        .page-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .page-title i {
+            color: var(--primary);
+        }
+        
+        /* Content Area */
+        .content {
+            padding: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Hero Card */
+        .hero-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
             border-radius: var(--radius-lg);
-            padding: 32px 24px;
+            padding: 32px;
             margin-bottom: 24px;
             position: relative;
             overflow: hidden;
         }
         
-        .hero::after {
+        .hero-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-            opacity: 0.3;
-            animation: rotate 60s linear infinite;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="white" fill-opacity="0.05" d="M0,0 L100,0 L100,100 Z"/></svg>');
+            background-size: cover;
         }
         
-        .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
+        .hero-title {
+            font-size: 1.8rem;
             margin-bottom: 12px;
-            background: linear-gradient(135deg, var(--text), var(--primary-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: white;
+        }
+        
+        .hero-text {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
         }
         
         /* Hotel Info */
-        .hotel-info {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
+        .hotel-card {
+            background: var(--surface-light);
+            border-radius: var(--radius);
+            padding: 24px;
             margin-bottom: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-light);
+        }
+        
+        .hotel-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
         }
         
         .hotel-icon {
-            width: 48px;
-            height: 48px;
+            width: 56px;
+            height: 56px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 14px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 1.5rem;
-            flex-shrink: 0;
         }
         
-        /* Weather Widget */
-        .weather {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 20px;
-            align-items: center;
+        /* Weather Card */
+        .weather-card {
+            background: var(--surface-light);
+            border-radius: var(--radius);
+            padding: 24px;
             margin-bottom: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-light);
         }
         
-        .weather-main {
-            text-align: center;
+        .weather-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
         }
         
-        .temp {
+        .temp-display {
             font-size: 3.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-light), var(--success));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
             line-height: 1;
         }
         
         .weather-icon {
-            font-size: 4rem;
-            margin-bottom: 8px;
+            font-size: 3rem;
+            color: var(--warning);
         }
         
-        .weather-stats {
+        .weather-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 16px;
         }
         
-        .stat {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: var(--radius-xs);
-            padding: 12px;
+        .weather-item {
+            background: var(--surface);
+            padding: 16px;
+            border-radius: var(--radius-sm);
             text-align: center;
         }
         
-        /* Currency Grid */
-        .currency-grid {
+        /* Currency Cards */
+        .currency-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 16px;
             margin-bottom: 24px;
         }
         
-        .currency-item {
-            background: var(--surface);
+        .currency-card {
+            background: var(--surface-light);
             border-radius: var(--radius-sm);
-            padding: 16px;
+            padding: 20px;
             text-align: center;
+            border: 1px solid var(--border);
             transition: var(--transition);
-            border: 1px solid var(--border-light);
         }
         
-        .currency-item:hover {
+        .currency-card:hover {
             transform: translateY(-4px);
             border-color: var(--primary);
-            box-shadow: 0 8px 24px rgba(67, 97, 238, 0.2);
+            box-shadow: var(--shadow);
         }
         
         .currency-flag {
@@ -395,89 +375,86 @@
         }
         
         /* Day Card */
-        .day-card {
-            margin-bottom: 24px;
+        .day-section {
+            margin-bottom: 32px;
         }
         
         .day-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             margin-bottom: 20px;
             padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 2px solid var(--border);
         }
         
         .day-title {
-            font-size: 1.4rem;
-            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
         
         .day-number {
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
             font-size: 1.2rem;
+            font-weight: 700;
             color: white;
         }
         
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 24px;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 20px;
-            padding: 20px;
-            background: var(--surface);
-            border-radius: var(--radius-sm);
+        .day-content {
+            background: var(--surface-light);
+            border-radius: var(--radius);
             border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        
+        /* Timeline */
+        .timeline-item {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
             transition: var(--transition);
         }
         
         .timeline-item:hover {
-            transform: translateX(4px);
-            border-color: var(--primary);
+            background: var(--surface);
         }
         
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -32px;
-            top: 24px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: 3px solid var(--surface);
-            box-shadow: 0 0 0 2px var(--primary);
+        .timeline-item:last-child {
+            border-bottom: none;
         }
         
-        .time {
+        .time-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--surface);
+            border-radius: 20px;
             font-weight: 600;
-            color: var(--primary-light);
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+        
+        .attraction-name {
+            font-size: 1.2rem;
+            font-weight: 700;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.95rem;
+            gap: 12px;
+        }
+        
+        .attraction-desc {
+            color: var(--text-light);
+            margin-bottom: 16px;
+            line-height: 1.5;
         }
         
         /* Tags */
@@ -485,36 +462,38 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin: 12px 0;
+            margin-bottom: 16px;
         }
         
         .tag {
-            padding: 6px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
         
         .tag.price {
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.2), rgba(67, 97, 238, 0.1));
-            color: var(--primary-light);
-            border: 1px solid rgba(67, 97, 238, 0.3);
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
         
         .tag.free {
-            background: linear-gradient(135deg, rgba(76, 201, 240, 0.2), rgba(76, 201, 240, 0.1));
-            color: var(--success);
-            border: 1px solid rgba(76, 201, 240, 0.3);
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
         
         .tag.visited {
-            background: linear-gradient(135deg, rgba(247, 37, 133, 0.2), rgba(247, 37, 133, 0.1));
-            color: var(--accent);
-            border: 1px solid rgba(247, 37, 133, 0.3);
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--secondary);
+            border: 1px solid rgba(139, 92, 246, 0.2);
         }
         
-        /* Action Buttons */
+        /* Actions */
         .actions {
             display: flex;
             gap: 12px;
@@ -522,46 +501,146 @@
         }
         
         .btn {
-            padding: 10px 18px;
-            border-radius: var(--radius-xs);
-            border: none;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition-fast);
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
             text-decoration: none;
+            border: 2px solid transparent;
         }
         
         .btn.primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: var(--primary);
             color: white;
         }
         
-        .btn.ghost {
-            background: rgba(255, 255, 255, 0.05);
+        .btn.primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn.secondary {
+            background: var(--surface);
             color: var(--text);
+            border-color: var(--border);
+        }
+        
+        .btn.secondary:hover {
+            background: var(--surface-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* Converter */
+        .converter-card {
+            background: var(--surface-light);
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        
+        .converter-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .converter-display {
+            background: var(--surface);
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            margin-bottom: 24px;
+            text-align: center;
             border: 1px solid var(--border);
         }
         
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-light);
+        .converter-input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--text);
+            margin: 16px 0;
+            outline: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .converter-result {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+        
+        .currency-selector {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .currency-option {
+            padding: 18px;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .currency-option.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        
+        .calc-btn {
+            padding: 20px;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .calc-btn:hover {
+            background: var(--surface-dark);
+            transform: scale(0.98);
+        }
+        
+        .calc-btn.operator {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
         
         /* Restaurants & Shops */
-        .place-grid {
+        .places-grid {
             display: grid;
-            gap: 16px;
+            gap: 20px;
         }
         
         .place-card {
-            background: var(--surface);
-            border-radius: var(--radius-sm);
-            padding: 20px;
+            background: var(--surface-light);
+            border-radius: var(--radius);
+            padding: 24px;
             border: 1px solid var(--border);
             transition: var(--transition);
         }
@@ -576,7 +655,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
         
         .rating {
@@ -588,132 +667,73 @@
         }
         
         .price-level {
-            color: var(--success);
+            color: var(--accent);
             font-weight: 700;
             font-size: 1.1rem;
         }
         
-        /* Converter */
-        .converter {
-            margin-bottom: 24px;
+        .place-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
         }
         
-        .converter-display {
+        .place-tag {
+            padding: 6px 12px;
             background: var(--surface);
-            border-radius: var(--radius-sm);
-            padding: 24px;
-            text-align: center;
-            margin-bottom: 20px;
-            border: 1px solid var(--border);
-        }
-        
-        .converter-input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            font-size: 3rem;
-            font-weight: 800;
-            text-align: center;
-            color: var(--text);
-            margin: 16px 0;
-            outline: none;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        
-        .converter-result {
-            font-size: 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
             color: var(--text-light);
-        }
-        
-        .currency-selector {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        
-        .currency-btn {
-            padding: 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            color: var(--text);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-fast);
-        }
-        
-        .currency-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border-color: var(--primary);
-        }
-        
-        .calculator {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-        
-        .calc-btn {
-            padding: 18px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            color: var(--text);
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-fast);
-        }
-        
-        .calc-btn:hover {
-            background: var(--surface-light);
-            transform: scale(0.98);
-        }
-        
-        .calc-btn.operator {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
         }
         
         /* Expenses */
         .expense-form {
+            background: var(--surface-light);
+            border-radius: var(--radius);
+            padding: 32px;
             margin-bottom: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
         
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
         
         .form-label {
             display: block;
             margin-bottom: 8px;
-            color: var(--text-light);
-            font-weight: 500;
-            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
         }
         
         .form-input, .form-select {
             width: 100%;
             padding: 16px;
             background: var(--surface);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: var(--radius-sm);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Manrope', sans-serif;
             font-size: 1rem;
-            transition: var(--transition-fast);
+            color: var(--text);
+            transition: var(--transition);
         }
         
         .form-input:focus, .form-select:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
         }
         
         .expense-list {
-            max-height: 400px;
+            max-height: 500px;
             overflow-y: auto;
             margin-bottom: 24px;
         }
@@ -722,8 +742,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px;
-            background: var(--surface);
+            padding: 20px;
+            background: var(--surface-light);
             border-radius: var(--radius-sm);
             margin-bottom: 12px;
             border: 1px solid var(--border);
@@ -737,14 +757,14 @@
         
         .expense-info h4 {
             font-size: 1rem;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
         
         .expense-category {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-light);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4px 10px;
+            background: var(--surface);
+            padding: 4px 12px;
             border-radius: 20px;
             display: inline-block;
         }
@@ -752,30 +772,50 @@
         .expense-amount {
             font-weight: 700;
             font-size: 1.2rem;
-            color: var(--primary-light);
+            color: var(--primary);
         }
         
         .total-card {
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(114, 9, 183, 0.1));
-            border-radius: var(--radius-sm);
-            padding: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: var(--radius);
+            padding: 32px;
             margin-bottom: 24px;
-            border: 1px solid rgba(67, 97, 238, 0.2);
         }
         
         .total-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             font-size: 1.1rem;
         }
         
         .total-row:last-child {
             margin-bottom: 0;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 24px;
+            background: var(--surface-light);
+            border-radius: var(--radius-sm);
+            padding: 16px 24px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 300px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
         }
         
         /* Bottom Navigation */
@@ -784,13 +824,13 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(26, 26, 46, 0.9);
-            backdrop-filter: blur(20px);
+            background: var(--surface-light);
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            padding: 12px 16px;
-            z-index: 100;
+            padding: 16px 12px;
             border-top: 1px solid var(--border);
+            z-index: 100;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
         }
         
         .nav-item {
@@ -800,24 +840,25 @@
             background: none;
             border: none;
             color: var(--text-light);
-            text-decoration: none;
             padding: 8px 4px;
             border-radius: var(--radius-xs);
-            transition: var(--transition-fast);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
             position: relative;
         }
         
         .nav-item.active {
-            color: var(--primary-light);
+            color: var(--primary);
         }
         
         .nav-item.active::before {
             content: '';
             position: absolute;
-            top: -12px;
+            top: -8px;
             width: 4px;
             height: 4px;
-            background: var(--primary-light);
+            background: var(--primary);
             border-radius: 50%;
         }
         
@@ -827,24 +868,13 @@
         }
         
         .nav-label {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
         
         /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(20px, -20px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        @keyframes slideUp {
+        @keyframes slideIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -855,237 +885,246 @@
             }
         }
         
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--surface);
-            border-radius: 3px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 3px;
-        }
-        
         /* Responsive */
-        @media (max-width: 360px) {
+        @media (max-width: 768px) {
             .content {
-                padding: 0 16px 120px;
-            }
-            
-            .header {
                 padding: 16px;
             }
             
-            .hero h1 {
-                font-size: 1.8rem;
+            .currency-cards {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .currency-grid {
+            .currency-selector {
                 grid-template-columns: repeat(2, 1fr);
             }
             
             .calculator {
                 grid-template-columns: repeat(3, 1fr);
             }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-card {
+                padding: 24px;
+            }
+            
+            .hero-title {
+                font-size: 1.5rem;
+            }
+            
+            .currency-cards {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <div class="gradient-circle circle-1"></div>
-        <div class="gradient-circle circle-2"></div>
-    </div>
-
-    <!-- Main App -->
-    <div class="app">
-        <!-- Status Bar -->
-        <div class="status-bar">
-            <span id="currentTime">19:41</span>
-            <div>
-                <i class="fas fa-wifi"></i>
-                <span style="margin: 0 8px;">100%</span>
-                <i class="fas fa-battery-full"></i>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <i class="fas fa-compass"></i>
+                Istanbul Guide
             </div>
+            <div class="sidebar-date">13-19 февраля 2026</div>
         </div>
-
-        <!-- Header -->
-        <header class="header">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-compass"></i>
-                </div>
-                <span>ISTANBUL.FLOW</span>
+        
+        <div class="sidebar-nav">
+            <a href="#" class="sidebar-link active" data-page="home">
+                <i class="fas fa-home"></i>
+                Главная
+            </a>
+            <a href="#" class="sidebar-link" data-page="guide">
+                <i class="fas fa-map-marked-alt"></i>
+                Маршрут
+            </a>
+            <a href="#" class="sidebar-link" data-page="restaurants">
+                <i class="fas fa-utensils"></i>
+                Рестораны
+            </a>
+            <a href="#" class="sidebar-link" data-page="shops">
+                <i class="fas fa-shopping-basket"></i>
+                Магазины
+            </a>
+            <a href="#" class="sidebar-link" data-page="converter">
+                <i class="fas fa-calculator"></i>
+                Конвертер
+            </a>
+            <a href="#" class="sidebar-link" data-page="expenses">
+                <i class="fas fa-chart-pie"></i>
+                Расходы
+            </a>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div style="margin-bottom: 12px; font-weight: 600;">Ваш отель:</div>
+            <div style="color: var(--text); margin-bottom: 8px;">Gloria Suites Old City</div>
+            <div style="font-size: 0.85rem;">Фатих, Стамбул</div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <button class="menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="page-title" id="pageTitle">
+                <i class="fas fa-home"></i>
+                Добро пожаловать в Стамбул
             </div>
             
-            <!-- Tabs Navigation -->
-            <div class="tabs">
-                <button class="tab active" data-page="home">
-                    <i class="fas fa-home"></i>
-                    Главная
-                </button>
-                <button class="tab" data-page="guide">
-                    <i class="fas fa-map"></i>
-                    Маршрут
-                </button>
-                <button class="tab" data-page="converter">
-                    <i class="fas fa-exchange-alt"></i>
-                    Курсы
-                </button>
-            </div>
-        </header>
-
-        <!-- Main Content -->
-        <main class="content">
+            <div style="width: 44px;"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
             <!-- Home Page -->
             <div class="page active" id="home">
-                <!-- Hero Section -->
-                <div class="hero">
-                    <h1>Добро пожаловать в Стамбул</h1>
-                    <p style="color: var(--text-light); font-size: 1rem;">
-                        Город на двух континентах, где история встречает современность
-                    </p>
+                <!-- Hero -->
+                <div class="hero-card">
+                    <h1 class="hero-title">Путешествие в Стамбул</h1>
+                    <p class="hero-text">Город на двух континентах, где история встречает современность</p>
+                    <div class="actions">
+                        <button class="btn primary" data-page="guide">
+                            <i class="fas fa-route"></i>
+                            Посмотреть маршрут
+                        </button>
+                        <button class="btn secondary" data-page="converter">
+                            <i class="fas fa-exchange-alt"></i>
+                            Курсы валют
+                        </button>
+                    </div>
                 </div>
-
+                
                 <!-- Hotel Info -->
-                <div class="glass-card">
-                    <div class="hotel-info">
+                <div class="hotel-card">
+                    <div class="hotel-header">
                         <div class="hotel-icon">
                             <i class="fas fa-hotel"></i>
                         </div>
                         <div>
-                            <h3 style="margin-bottom: 8px; font-size: 1.2rem;">Gloria Suites Old City</h3>
-                            <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;">
-                                Фатих, в сердце исторического центра
-                            </p>
-                            <a href="https://maps.google.com/?q=Gloria+Suites+Old+City+Istanbul" target="_blank" class="btn ghost" style="padding: 8px 16px;">
-                                <i class="fas fa-map-marker-alt"></i>
-                                Открыть на карте
-                            </a>
+                            <h3>Gloria Suites Old City</h3>
+                            <p style="color: var(--text-light);">Отель в историческом центре</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Weather -->
-                <div class="glass-card">
-                    <div class="weather">
-                        <div class="weather-main">
-                            <div class="weather-icon">☀️</div>
-                            <div class="temp">+9°C</div>
-                            <p style="color: var(--text-light); font-size: 0.9rem;">Солнечно</p>
-                        </div>
-                        <div class="weather-stats">
-                            <div class="stat">
-                                <p style="font-size: 0.8rem; color: var(--text-light);">Ветер</p>
-                                <p style="font-weight: 700;">15 км/ч</p>
-                            </div>
-                            <div class="stat">
-                                <p style="font-size: 0.8rem; color: var(--text-light);">Влажность</p>
-                                <p style="font-weight: 700;">75%</p>
-                            </div>
-                            <div class="stat">
-                                <p style="font-size: 0.8rem; color: var(--text-light);">Ощущается</p>
-                                <p style="font-weight: 700;">+6°C</p>
-                            </div>
-                            <div class="stat">
-                                <p style="font-size: 0.8rem; color: var(--text-light);">Дождь</p>
-                                <p style="font-weight: 700;">40%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="https://www.gismeteo.ru/weather-istanbul-4029/" target="_blank" class="btn ghost" style="width: 100%; margin-top: 16px; justify-content: center;">
-                        <i class="fas fa-external-link-alt"></i>
-                        Подробный прогноз
+                    <p style="margin-bottom: 20px; color: var(--text);">
+                        Идеальное расположение в районе Фатих. Все основные достопримечательности в пешей доступности.
+                    </p>
+                    <a href="https://maps.google.com/?q=Gloria+Suites+Old+City+Istanbul" target="_blank" class="btn secondary" style="width: 100%; justify-content: center;">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Открыть на карте
                     </a>
                 </div>
-
-                <!-- Currency Rates -->
-                <div class="glass-card">
-                    <h3 style="margin-bottom: 20px; font-size: 1.1rem;">💰 Курсы валют</h3>
-                    <div class="currency-grid">
-                        <div class="currency-item">
-                            <div class="currency-flag">🇹🇷</div>
-                            <div class="currency-value">100 TL</div>
-                            <div style="color: var(--text-light); font-size: 0.9rem;">≈ 6.5 BYN</div>
+                
+                <!-- Weather -->
+                <div class="weather-card">
+                    <div class="weather-header">
+                        <div>
+                            <h3 style="margin-bottom: 8px;">Погода в Стамбуле</h3>
+                            <p style="color: var(--text-light); font-size: 0.95rem;">Февраль 2026</p>
                         </div>
-                        <div class="currency-item">
-                            <div class="currency-flag">🇹🇷</div>
-                            <div class="currency-value">100 TL</div>
-                            <div style="color: var(--text-light); font-size: 0.9rem;">≈ 3.2 €</div>
+                        <div class="weather-icon">☀️</div>
+                    </div>
+                    
+                    <div style="text-align: center; margin: 24px 0;">
+                        <div class="temp-display">+9°C</div>
+                        <p style="color: var(--text-light); font-size: 1.1rem;">Солнечно, ощущается +6°C</p>
+                    </div>
+                    
+                    <div class="weather-grid">
+                        <div class="weather-item">
+                            <div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 4px;">Ветер</div>
+                            <div style="font-weight: 700; font-size: 1.1rem;">15 км/ч</div>
                         </div>
-                        <div class="currency-item">
-                            <div class="currency-flag">🇹🇷</div>
-                            <div class="currency-value">100 TL</div>
-                            <div style="color: var(--text-light); font-size: 0.9rem;">≈ 3.5 $</div>
+                        <div class="weather-item">
+                            <div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 4px;">Влажность</div>
+                            <div style="font-weight: 700; font-size: 1.1rem;">75%</div>
+                        </div>
+                        <div class="weather-item">
+                            <div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 4px;">Ощущается</div>
+                            <div style="font-weight: 700; font-size: 1.1rem;">+6°C</div>
+                        </div>
+                        <div class="weather-item">
+                            <div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 4px;">Дождь</div>
+                            <div style="font-weight: 700; font-size: 1.1rem;">40%</div>
                         </div>
                     </div>
+                    
+                    <a href="https://www.gismeteo.ru/weather-istanbul-4029/" target="_blank" class="btn secondary" style="width: 100%; margin-top: 20px; justify-content: center;">
+                        <i class="fas fa-external-link-alt"></i>
+                        Подробный прогноз на Gismeteo
+                    </a>
                 </div>
-
-                <!-- Quick Actions -->
-                <div class="glass-card">
-                    <h3 style="margin-bottom: 20px; font-size: 1.1rem;">🚀 Быстрые действия</h3>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-                        <button class="btn ghost" data-page="guide">
-                            <i class="fas fa-route"></i>
-                            Маршрут
-                        </button>
-                        <button class="btn ghost" data-page="restaurants">
-                            <i class="fas fa-utensils"></i>
-                            Рестораны
-                        </button>
-                        <button class="btn ghost" data-page="shops">
-                            <i class="fas fa-shopping-basket"></i>
-                            Магазины
-                        </button>
-                        <button class="btn ghost" data-page="expenses">
-                            <i class="fas fa-chart-line"></i>
-                            Расходы
-                        </button>
+                
+                <!-- Currency -->
+                <div style="margin-bottom: 24px;">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Курсы валют</h3>
+                    <div class="currency-cards">
+                        <div class="currency-card">
+                            <div class="currency-flag">🇹🇷</div>
+                            <div class="currency-value">100 TL</div>
+                            <div style="color: var(--text-light); font-size: 0.95rem;">≈ 6.5 BYN</div>
+                        </div>
+                        <div class="currency-card">
+                            <div class="currency-flag">🇹🇷</div>
+                            <div class="currency-value">100 TL</div>
+                            <div style="color: var(--text-light); font-size: 0.95rem;">≈ 3.2 €</div>
+                        </div>
+                        <div class="currency-card">
+                            <div class="currency-flag">🇹🇷</div>
+                            <div class="currency-value">100 TL</div>
+                            <div style="color: var(--text-light); font-size: 0.95rem;">≈ 3.5 $</div>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Guide Page -->
             <div class="page" id="guide">
-                <div class="day-card">
+                <div class="day-section">
                     <div class="day-header">
-                        <div>
-                            <h2 class="day-title">День 2: Султанахмет</h2>
-                            <p style="color: var(--text-light); font-size: 0.9rem;">Суббота, 14 февраля</p>
+                        <div class="day-title">
+                            <div class="day-number">1</div>
+                            <div>
+                                <h2 style="font-size: 1.5rem;">День 2: Суббота</h2>
+                                <p style="color: var(--text-light);">Исторический Султанахмет, часть 1</p>
+                            </div>
                         </div>
-                        <div class="day-number">1</div>
                     </div>
-
-                    <div class="timeline">
+                    
+                    <div class="day-content">
+                        <!-- Timeline Item -->
                         <div class="timeline-item">
-                            <div class="time">
+                            <div class="time-badge">
                                 <i class="far fa-clock"></i>
                                 09:00 - 40 мин
                             </div>
-                            <h3 style="margin-bottom: 8px; font-size: 1.1rem;">Площадь Ипподром, Обелиски</h3>
-                            <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 12px;">
-                                Древняя площадь с египетскими обелисками
-                            </p>
-                            <div class="tags">
-                                <span class="tag free">Бесплатно</span>
-                                <span class="tag visited">Открыто 24/7</span>
+                            <div class="attraction-name">
+                                Площадь Ипподром, Обелиски
+                                <div class="tags">
+                                    <span class="tag free">
+                                        <i class="fas fa-tag"></i>
+                                        Бесплатно
+                                    </span>
+                                </div>
                             </div>
+                            <p class="attraction-desc">
+                                Древняя площадь с египетскими и византийскими обелисками
+                            </p>
                             <div class="actions">
-                                <a href="https://maps.google.com/?q=Hippodrome+Istanbul" target="_blank" class="btn ghost">
-                                    <i class="fas fa-map"></i>
+                                <a href="https://maps.google.com/?q=Hippodrome+Istanbul" target="_blank" class="btn secondary">
+                                    <i class="fas fa-map-marker-alt"></i>
                                     Карта
                                 </a>
                                 <button class="btn primary mark-visited">
@@ -1094,98 +1133,58 @@
                                 </button>
                             </div>
                         </div>
-
+                        
+                        <!-- Timeline Item -->
                         <div class="timeline-item">
-                            <div class="time">
+                            <div class="time-badge">
                                 <i class="far fa-clock"></i>
                                 09:40 - 1 час
                             </div>
-                            <h3 style="margin-bottom: 8px; font-size: 1.1rem;">Собор Святой Софии</h3>
-                            <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 12px;">
-                                Бывший собор, мечеть, музей. Вход платный
-                            </p>
-                            <div class="tags">
-                                <span class="tag price">900 TL</span>
-                                <span class="tag">09:00-19:00</span>
+                            <div class="attraction-name">
+                                Собор Святой Софии
+                                <div class="tags">
+                                    <span class="tag price">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        900 TL
+                                    </span>
+                                </div>
                             </div>
+                            <p class="attraction-desc">
+                                Бывший собор, мечеть, а ныне музей. Вход платный
+                            </p>
                             <div class="actions">
-                                <a href="https://maps.google.com/?q=Hagia+Sophia+Istanbul" target="_blank" class="btn ghost">
-                                    <i class="fas fa-map"></i>
+                                <a href="https://maps.google.com/?q=Hagia+Sophia+Istanbul" target="_blank" class="btn secondary">
+                                    <i class="fas fa-map-marker-alt"></i>
                                     Карта
                                 </a>
-                                <a href="https://ayasofyacamii.gov.tr/" target="_blank" class="btn ghost">
-                                    <i class="fas fa-ticket-alt"></i>
-                                    Билеты
+                                <a href="https://ayasofyacamii.gov.tr/" target="_blank" class="btn secondary">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Сайт
                                 </a>
                             </div>
                         </div>
-
+                        
+                        <!-- Timeline Item -->
                         <div class="timeline-item">
-                            <div class="time">
+                            <div class="time-badge">
                                 <i class="far fa-clock"></i>
                                 10:40 - 1 час
                             </div>
-                            <h3 style="margin-bottom: 8px; font-size: 1.1rem;">Голубая мечеть</h3>
-                            <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 12px;">
+                            <div class="attraction-name">
+                                Голубая мечеть
+                                <div class="tags">
+                                    <span class="tag free">
+                                        <i class="fas fa-tag"></i>
+                                        Бесплатно
+                                    </span>
+                                </div>
+                            </div>
+                            <p class="attraction-desc">
                                 Одна из самых красивых мечетей Стамбула
                             </p>
-                            <div class="tags">
-                                <span class="tag free">Бесплатно</span>
-                                <span class="tag">08:30-18:30</span>
-                            </div>
                             <div class="actions">
-                                <a href="https://maps.google.com/?q=Blue+Mosque+Istanbul" target="_blank" class="btn ghost">
-                                    <i class="fas fa-map"></i>
-                                    Карта
-                                </a>
-                                <button class="btn primary mark-visited">
-                                    <i class="fas fa-check"></i>
-                                    Посетил
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="time">
-                                <i class="far fa-clock"></i>
-                                11:40 - 1 час
-                            </div>
-                            <h3 style="margin-bottom: 8px; font-size: 1.1rem;">Цистерна Базилика</h3>
-                            <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 12px;">
-                                Древнее подземное водохранилище
-                            </p>
-                            <div class="tags">
-                                <span class="tag price">450 TL</span>
-                                <span class="tag">09:00-19:00</span>
-                            </div>
-                            <div class="actions">
-                                <a href="https://maps.google.com/?q=Basilica+Cistern+Istanbul" target="_blank" class="btn ghost">
-                                    <i class="fas fa-map"></i>
-                                    Карта
-                                </a>
-                                <a href="https://yerebatan.com/" target="_blank" class="btn ghost">
-                                    <i class="fas fa-ticket-alt"></i>
-                                    Билеты
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="time">
-                                <i class="far fa-clock"></i>
-                                12:40 - 1.5 часа
-                            </div>
-                            <h3 style="margin-bottom: 8px; font-size: 1.1rem;">Египетский базар</h3>
-                            <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 12px;">
-                                Знаменитый рынок специй и сладостей
-                            </p>
-                            <div class="tags">
-                                <span class="tag free">Бесплатно</span>
-                                <span class="tag">08:00-19:30</span>
-                            </div>
-                            <div class="actions">
-                                <a href="https://maps.google.com/?q=Egyptian+Bazaar+Istanbul" target="_blank" class="btn ghost">
-                                    <i class="fas fa-map"></i>
+                                <a href="https://maps.google.com/?q=Blue+Mosque+Istanbul" target="_blank" class="btn secondary">
+                                    <i class="fas fa-map-marker-alt"></i>
                                     Карта
                                 </a>
                                 <button class="btn primary mark-visited">
@@ -1196,39 +1195,151 @@
                         </div>
                     </div>
                 </div>
-
-                <button class="btn primary" style="width: 100%; padding: 16px;" id="loadMoreDays">
+                
+                <button class="btn primary" id="loadMoreDays" style="width: 100%; padding: 16px;">
                     <i class="fas fa-calendar-plus"></i>
                     Показать остальные дни
                 </button>
             </div>
-
+            
+            <!-- Restaurants Page -->
+            <div class="page" id="restaurants">
+                <h2 style="margin-bottom: 8px; font-size: 1.8rem;">Лучшие рестораны</h2>
+                <p style="color: var(--text-light); margin-bottom: 32px;">Рейтинг выше 4.9⭐ с бюджетными ценами</p>
+                
+                <div class="places-grid">
+                    <!-- Restaurant Card -->
+                    <div class="place-card">
+                        <div class="place-header">
+                            <div>
+                                <h3 style="margin-bottom: 4px;">Dürümzade</h3>
+                                <p style="color: var(--text-light);">Бейоглу • Кебабы</p>
+                            </div>
+                            <div>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i> 4.9
+                                </div>
+                                <div class="price-level">80-120 TL</div>
+                            </div>
+                        </div>
+                        <p style="color: var(--text); margin: 16px 0;">
+                            Лучшие дюрюмы (кебабы в лаваше) в Стамбуле. Местное заведение с огромными очередями.
+                        </p>
+                        <div class="place-tags">
+                            <span class="place-tag">Кебабы</span>
+                            <span class="place-tag">Быстро</span>
+                            <span class="place-tag">Дешево</span>
+                        </div>
+                        <a href="https://maps.google.com/?q=Dürümzade+Istanbul" target="_blank" class="btn secondary" style="width: 100%; margin-top: 20px; justify-content: center;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Открыть на карте
+                        </a>
+                    </div>
+                    
+                    <!-- Restaurant Card -->
+                    <div class="place-card">
+                        <div class="place-header">
+                            <div>
+                                <h3 style="margin-bottom: 4px;">Tarihi Sultanahmet Köftecisi</h3>
+                                <p style="color: var(--text-light);">Султанахмет • Котлеты</p>
+                            </div>
+                            <div>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i> 4.9
+                                </div>
+                                <div class="price-level">120-180 TL</div>
+                            </div>
+                        </div>
+                        <p style="color: var(--text); margin: 16px 0;">
+                            Исторический ресторан с 1920 года. Знаменитые котлеты по-турецки.
+                        </p>
+                        <div class="place-tags">
+                            <span class="place-tag">Котлеты</span>
+                            <span class="place-tag">Исторический</span>
+                            <span class="place-tag">Очереди</span>
+                        </div>
+                        <a href="https://maps.google.com/?q=Tarihi+Sultanahmet+Köftecisi" target="_blank" class="btn secondary" style="width: 100%; margin-top: 20px; justify-content: center;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Открыть на карте
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Shops Page -->
+            <div class="page" id="shops">
+                <h2 style="margin-bottom: 8px; font-size: 1.8rem;">Продуктовые магазины</h2>
+                <p style="color: var(--text-light); margin-bottom: 32px;">Где купить продукты и воду по хорошим ценам</p>
+                
+                <div class="places-grid">
+                    <!-- Shop Card -->
+                    <div class="place-card">
+                        <div class="place-header">
+                            <div>
+                                <h3 style="margin-bottom: 4px;">Migros</h3>
+                                <p style="color: var(--text-light);">Сеть супермаркетов</p>
+                            </div>
+                            <div class="price-level">💰💰</div>
+                        </div>
+                        <p style="color: var(--text); margin: 16px 0;">
+                            Крупнейшая сеть супермаркетов. Хорошие цены, есть во всех районах.
+                        </p>
+                        <div class="place-tags">
+                            <span class="place-tag">Супермаркет</span>
+                            <span class="place-tag">Вода 5 TL</span>
+                            <span class="place-tag">Фрукты</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Shop Card -->
+                    <div class="place-card">
+                        <div class="place-header">
+                            <div>
+                                <h3 style="margin-bottom: 4px;">Şok</h3>
+                                <p style="color: var(--text-light);">Дискаунтер</p>
+                            </div>
+                            <div class="price-level">💰</div>
+                        </div>
+                        <p style="color: var(--text); margin: 16px 0;">
+                            Самые низкие цены. Маленькие магазины, но хороший выбор.
+                        </p>
+                        <div class="place-tags">
+                            <span class="place-tag">Дискаунтер</span>
+                            <span class="place-tag">Дешево</span>
+                            <span class="place-tag">Вода 3.5 TL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Converter Page -->
             <div class="page" id="converter">
-                <div class="converter">
+                <div class="converter-card">
+                    <div class="converter-header">
+                        <h2 style="margin-bottom: 8px; font-size: 1.8rem;">Конвертер валют</h2>
+                        <p style="color: var(--text-light);">Курс: 100 TL = 6.5 BYN = 3.2 €</p>
+                    </div>
+                    
                     <div class="converter-display">
-                        <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 8px;">
-                            100 TL = 6.5 BYN = 3.2 €
-                        </p>
                         <input type="text" class="converter-input" id="converterInput" value="100">
                         <div class="converter-result" id="converterResult">≈ 6.5 BYN</div>
                     </div>
-
+                    
                     <div class="currency-selector">
-                        <button class="currency-btn active" data-currency="TRY">
+                        <button class="currency-option active" data-currency="TRY">
                             ₺ TL
                         </button>
-                        <button class="currency-btn" data-currency="BYN">
+                        <button class="currency-option" data-currency="BYN">
                             Br BYN
                         </button>
-                        <button class="currency-btn" data-currency="EUR">
+                        <button class="currency-option" data-currency="EUR">
                             € EUR
                         </button>
-                        <button class="currency-btn" data-currency="USD">
+                        <button class="currency-option" data-currency="USD">
                             $ USD
                         </button>
                     </div>
-
+                    
                     <div class="calculator">
                         <button class="calc-btn" data-value="7">7</button>
                         <button class="calc-btn" data-value="8">8</button>
@@ -1248,9 +1359,9 @@
                         <button class="calc-btn operator" data-action="swap">↻</button>
                     </div>
                 </div>
-
-                <div class="glass-card">
-                    <h3 style="margin-bottom: 16px; font-size: 1.1rem;">💡 Примерные цены</h3>
+                
+                <div class="hotel-card">
+                    <h3 style="margin-bottom: 20px;">Примерные цены в TL</h3>
                     <div style="display: grid; gap: 12px;">
                         <div style="display: flex; justify-content: space-between;">
                             <span style="color: var(--text-light);">Вода 1.5л</span>
@@ -1261,11 +1372,11 @@
                             <span style="font-weight: 600;">80-120 TL</span>
                         </div>
                         <div style="display: flex; justify-content: space-between;">
-                            <span style="color: var(--text-light);">Проезд в трамвае</span>
+                            <span style="color: var(--text-light);">Проезд на трамвае</span>
                             <span style="font-weight: 600;">10 TL</span>
                         </div>
                         <div style="display: flex; justify-content: space-between;">
-                            <span style="color: var(--text-light);">Айя-София</span>
+                            <span style="color: var(--text-light);">Вход в Айя-Софию</span>
                             <span style="font-weight: 600;">900 TL</span>
                         </div>
                         <div style="display: flex; justify-content: space-between;">
@@ -1275,272 +1386,208 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Restaurants Page -->
-            <div class="page" id="restaurants">
-                <div class="glass-card">
-                    <h2 style="margin-bottom: 24px; font-size: 1.3rem;">🍽️ Лучшие рестораны</h2>
-                    <p style="color: var(--text-light); margin-bottom: 20px;">
-                        Рейтинг выше 4.9⭐ с бюджетными ценами
-                    </p>
-
-                    <div class="place-grid">
-                        <div class="place-card">
-                            <div class="place-header">
-                                <div>
-                                    <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Dürümzade</h3>
-                                    <p style="color: var(--text-light); font-size: 0.9rem;">Бейоглу • Кебабы</p>
-                                </div>
-                                <div>
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i> 4.9
-                                    </div>
-                                    <div class="price-level">80-120 TL</div>
-                                </div>
-                            </div>
-                            <p style="color: var(--text-light); font-size: 0.95rem; margin: 12px 0;">
-                                Лучшие дюрюмы в Стамбуле. Местное заведение с огромными очередями.
-                            </p>
-                            <a href="https://maps.google.com/?q=Dürümzade+Istanbul" target="_blank" class="btn ghost" style="width: 100%; justify-content: center;">
-                                <i class="fas fa-map-marker-alt"></i>
-                                Открыть на карте
-                            </a>
-                        </div>
-
-                        <div class="place-card">
-                            <div class="place-header">
-                                <div>
-                                    <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Tarihi Sultanahmet Köftecisi</h3>
-                                    <p style="color: var(--text-light); font-size: 0.9rem;">Султанахмет • Котлеты</p>
-                                </div>
-                                <div>
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i> 4.9
-                                    </div>
-                                    <div class="price-level">120-180 TL</div>
-                                </div>
-                            </div>
-                            <p style="color: var(--text-light); font-size: 0.95rem; margin: 12px 0;">
-                                Исторический ресторан с 1920 года. Знаменитые котлеты по-турецки.
-                            </p>
-                            <a href="https://maps.google.com/?q=Tarihi+Sultanahmet+Köftecisi" target="_blank" class="btn ghost" style="width: 100%; justify-content: center;">
-                                <i class="fas fa-map-marker-alt"></i>
-                                Открыть на карте
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Shops Page -->
-            <div class="page" id="shops">
-                <div class="glass-card">
-                    <h2 style="margin-bottom: 24px; font-size: 1.3rem;">🛒 Продуктовые магазины</h2>
-
-                    <div class="place-grid">
-                        <div class="place-card">
-                            <div class="place-header">
-                                <div>
-                                    <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Migros</h3>
-                                    <p style="color: var(--text-light); font-size: 0.9rem;">Сеть супермаркетов</p>
-                                </div>
-                                <div class="price-level">💰💰</div>
-                            </div>
-                            <p style="color: var(--text-light); font-size: 0.95rem; margin: 12px 0;">
-                                Крупнейшая сеть. Хорошие цены, есть во всех районах.
-                            </p>
-                            <div style="display: flex; gap: 8px; margin-top: 12px;">
-                                <span style="background: rgba(67, 97, 238, 0.1); color: var(--primary-light); padding: 4px 10px; border-radius: 12px; font-size: 0.8rem;">Вода 5 TL</span>
-                                <span style="background: rgba(67, 97, 238, 0.1); color: var(--primary-light); padding: 4px 10px; border-radius: 12px; font-size: 0.8rem;">Фрукты</span>
-                            </div>
-                        </div>
-
-                        <div class="place-card">
-                            <div class="place-header">
-                                <div>
-                                    <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Şok</h3>
-                                    <p style="color: var(--text-light); font-size: 0.9rem;">Дискаунтер</p>
-                                </div>
-                                <div class="price-level">💰</div>
-                            </div>
-                            <p style="color: var(--text-light); font-size: 0.95rem; margin: 12px 0;">
-                                Самые низкие цены. Маленькие магазины, хороший выбор.
-                            </p>
-                            <div style="display: flex; gap: 8px; margin-top: 12px;">
-                                <span style="background: rgba(67, 97, 238, 0.1); color: var(--primary-light); padding: 4px 10px; border-radius: 12px; font-size: 0.8rem;">Вода 3.5 TL</span>
-                                <span style="background: rgba(67, 97, 238, 0.1); color: var(--primary-light); padding: 4px 10px; border-radius: 12px; font-size: 0.8rem;">Дешево</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            
             <!-- Expenses Page -->
             <div class="page" id="expenses">
-                <div class="glass-card">
-                    <h2 style="margin-bottom: 24px; font-size: 1.3rem;">📊 Трекер расходов</h2>
-
-                    <div class="expense-form">
+                <div class="expense-form">
+                    <h2 style="margin-bottom: 8px; font-size: 1.8rem;">Трекер расходов</h2>
+                    <p style="color: var(--text-light); margin-bottom: 32px;">Отслеживайте свои расходы в путешествии</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Описание расхода</label>
+                        <input type="text" class="form-input" id="expenseName" placeholder="Например: Обед в ресторане">
+                    </div>
+                    
+                    <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">Описание</label>
-                            <input type="text" class="form-input" id="expenseName" placeholder="Например: Обед в ресторане">
+                            <label class="form-label">Категория</label>
+                            <select class="form-select" id="expenseCategory">
+                                <option value="food">🍽️ Питание</option>
+                                <option value="transport">🚇 Транспорт</option>
+                                <option value="sightseeing">🏛️ Достопримечательности</option>
+                                <option value="shopping">🛍️ Шопинг</option>
+                                <option value="hotel">🏨 Отель</option>
+                                <option value="other">📦 Прочее</option>
+                            </select>
                         </div>
-
-                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 16px;">
-                            <div class="form-group">
-                                <label class="form-label">Категория</label>
-                                <select class="form-select" id="expenseCategory">
-                                    <option value="food">🍽️ Питание</option>
-                                    <option value="transport">🚇 Транспорт</option>
-                                    <option value="sightseeing">🏛️ Достопримечательности</option>
-                                    <option value="shopping">🛍️ Шопинг</option>
-                                    <option value="hotel">🏨 Отель</option>
-                                    <option value="other">📦 Прочее</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Дата</label>
-                                <input type="date" class="form-input" id="expenseDate" value="2026-02-13">
-                            </div>
-                        </div>
-
-                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 20px;">
-                            <div class="form-group">
-                                <label class="form-label">Сумма</label>
-                                <input type="number" class="form-input" id="expenseAmount" placeholder="0.00" step="0.01">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Валюта</label>
-                                <select class="form-select" id="expenseCurrency">
-                                    <option value="TRY">₺ TL</option>
-                                    <option value="BYN">Br BYN</option>
-                                    <option value="EUR">€ EUR</option>
-                                    <option value="USD">$ USD</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <button class="btn primary" id="addExpense" style="width: 100%; padding: 16px;">
-                            <i class="fas fa-plus-circle"></i>
-                            Добавить расход
-                        </button>
-                    </div>
-
-                    <div class="expense-list" id="expenseList">
-                        <!-- Expenses will be loaded here -->
-                    </div>
-
-                    <div class="total-card">
-                        <div class="total-row">
-                            <span>Всего расходов:</span>
-                            <span id="totalTRY">0 ₺</span>
-                        </div>
-                        <div class="total-row">
-                            <span>В пересчете:</span>
-                            <span id="totalBYN">0 BYN</span>
-                        </div>
-                        <div class="total-row">
-                            <span>Средний в день:</span>
-                            <span id="avgPerDay">0 ₺</span>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Дата</label>
+                            <input type="date" class="form-input" id="expenseDate" value="2026-02-13">
                         </div>
                     </div>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px;">
-                        <button class="btn ghost" id="clearExpenses">
-                            <i class="fas fa-trash"></i>
-                            Очистить все
-                        </button>
-                        <button class="btn ghost" id="exportExpenses">
-                            <i class="fas fa-download"></i>
-                            Сохранить
-                        </button>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Сумма</label>
+                            <input type="number" class="form-input" id="expenseAmount" placeholder="0.00" step="0.01">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Валюта</label>
+                            <select class="form-select" id="expenseCurrency">
+                                <option value="TRY">₺ TL</option>
+                                <option value="BYN">Br BYN</option>
+                                <option value="EUR">€ EUR</option>
+                                <option value="USD">$ USD</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn primary" id="addExpense" style="width: 100%; padding: 16px;">
+                        <i class="fas fa-plus-circle"></i>
+                        Добавить расход
+                    </button>
+                </div>
+                
+                <div class="expense-list" id="expenseList">
+                    <!-- Expenses will be loaded here -->
+                </div>
+                
+                <div class="total-card">
+                    <div class="total-row">
+                        <span>Всего расходов:</span>
+                        <span id="totalTRY">0 ₺</span>
+                    </div>
+                    <div class="total-row">
+                        <span>В пересчете:</span>
+                        <span id="totalBYN">0 BYN</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Средний расход в день:</span>
+                        <span id="avgPerDay">0 ₺</span>
                     </div>
                 </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px;">
+                    <button class="btn secondary" id="clearExpenses">
+                        <i class="fas fa-trash"></i>
+                        Очистить все
+                    </button>
+                    <button class="btn secondary" id="exportExpenses">
+                        <i class="fas fa-download"></i>
+                        Сохранить
+                    </button>
+                </div>
             </div>
-        </main>
-
-        <!-- Floating Action Button -->
-        <button class="fab" id="quickAdd">
-            <i class="fas fa-plus"></i>
-        </button>
-
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <button class="nav-item active" data-page="home">
-                <i class="fas fa-home nav-icon"></i>
-                <span class="nav-label">Главная</span>
-            </button>
-            <button class="nav-item" data-page="guide">
-                <i class="fas fa-map nav-icon"></i>
-                <span class="nav-label">Маршрут</span>
-            </button>
-            <button class="nav-item" data-page="restaurants">
-                <i class="fas fa-utensils nav-icon"></i>
-                <span class="nav-label">Еда</span>
-            </button>
-            <button class="nav-item" data-page="shops">
-                <i class="fas fa-shopping-basket nav-icon"></i>
-                <span class="nav-label">Магазины</span>
-            </button>
-            <button class="nav-item" data-page="expenses">
-                <i class="fas fa-chart-pie nav-icon"></i>
-                <span class="nav-label">Расходы</span>
-            </button>
-        </nav>
+        </div>
     </div>
-
+    
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-page="home">
+            <i class="fas fa-home nav-icon"></i>
+            <span class="nav-label">Главная</span>
+        </button>
+        <button class="nav-item" data-page="guide">
+            <i class="fas fa-map nav-icon"></i>
+            <span class="nav-label">Маршрут</span>
+        </button>
+        <button class="nav-item" data-page="restaurants">
+            <i class="fas fa-utensils nav-icon"></i>
+            <span class="nav-label">Еда</span>
+        </button>
+        <button class="nav-item" data-page="converter">
+            <i class="fas fa-calculator nav-icon"></i>
+            <span class="nav-label">Курсы</span>
+        </button>
+        <button class="nav-item" data-page="expenses">
+            <i class="fas fa-chart-pie nav-icon"></i>
+            <span class="nav-label">Расходы</span>
+        </button>
+    </nav>
+    
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+    
     <script>
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
-            // Update current time
-            function updateTime() {
-                const now = new Date();
-                document.getElementById('currentTime').textContent = 
-                    now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+            // Sidebar functionality
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const menuBtn = document.getElementById('menuBtn');
+            const mainContent = document.getElementById('mainContent');
+            
+            function openSidebar() {
+                sidebar.classList.add('active');
+                sidebarOverlay.classList.add('active');
+                mainContent.classList.add('sidebar-open');
+                document.body.style.overflow = 'hidden';
             }
             
-            updateTime();
-            setInterval(updateTime, 60000);
+            function closeSidebar() {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+                mainContent.classList.remove('sidebar-open');
+                document.body.style.overflow = 'auto';
+            }
+            
+            menuBtn.addEventListener('click', openSidebar);
+            sidebarOverlay.addEventListener('click', closeSidebar);
             
             // Page navigation
             const pages = document.querySelectorAll('.page');
-            const navItems = document.querySelectorAll('.tab, .nav-item');
+            const navItems = document.querySelectorAll('.sidebar-link, .nav-item, .btn[data-page]');
+            const pageTitle = document.getElementById('pageTitle');
+            
+            const pageTitles = {
+                home: { title: 'Добро пожаловать в Стамбул', icon: 'fa-home' },
+                guide: { title: 'Маршрут по дням', icon: 'fa-map-marked-alt' },
+                restaurants: { title: 'Лучшие рестораны', icon: 'fa-utensils' },
+                shops: { title: 'Продуктовые магазины', icon: 'fa-shopping-basket' },
+                converter: { title: 'Конвертер валют', icon: 'fa-calculator' },
+                expenses: { title: 'Трекер расходов', icon: 'fa-chart-pie' }
+            };
             
             function showPage(pageId) {
+                // Hide all pages
                 pages.forEach(page => page.classList.remove('active'));
-                navItems.forEach(item => item.classList.remove('active'));
                 
+                // Show selected page
                 document.getElementById(pageId).classList.add('active');
                 
                 // Update active nav items
                 navItems.forEach(item => {
+                    item.classList.remove('active');
                     if (item.getAttribute('data-page') === pageId) {
                         item.classList.add('active');
                     }
                 });
                 
+                // Update page title
+                const pageInfo = pageTitles[pageId];
+                if (pageInfo) {
+                    pageTitle.innerHTML = `
+                        <i class="fas ${pageInfo.icon}"></i>
+                        ${pageInfo.title}
+                    `;
+                }
+                
+                // Close sidebar if open
+                closeSidebar();
+                
                 // Save active page
                 localStorage.setItem('activePage', pageId);
+                
+                // Show notification
+                showNotification(`Переключено на: ${pageInfo.title}`);
             }
             
+            // Add click handlers to all navigation items
             navItems.forEach(item => {
-                item.addEventListener('click', () => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
                     const pageId = item.getAttribute('data-page');
-                    showPage(pageId);
+                    if (pageId) {
+                        showPage(pageId);
+                    }
                 });
             });
             
             // Load saved page
             const savedPage = localStorage.getItem('activePage') || 'home';
             showPage(savedPage);
-            
-            // Quick add FAB
-            document.getElementById('quickAdd').addEventListener('click', () => {
-                showPage('expenses');
-                document.getElementById('expenseName').focus();
-            });
             
             // Converter logic
             const rates = {
@@ -1553,10 +1600,10 @@
             let currentCurrency = 'TRY';
             let converterValue = 100;
             
-            // Currency buttons
-            document.querySelectorAll('.currency-btn').forEach(btn => {
+            // Currency options
+            document.querySelectorAll('.currency-option').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    document.querySelectorAll('.currency-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.currency-option').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     currentCurrency = this.getAttribute('data-currency');
                     updateConverter();
@@ -1607,8 +1654,8 @@
                             const nextIndex = (currentIndex + 1) % currencies.length;
                             currentCurrency = currencies[nextIndex];
                             
-                            document.querySelectorAll('.currency-btn').forEach(b => b.classList.remove('active'));
-                            document.querySelector(`.currency-btn[data-currency="${currentCurrency}"]`).classList.add('active');
+                            document.querySelectorAll('.currency-option').forEach(b => b.classList.remove('active'));
+                            document.querySelector(`.currency-option[data-currency="${currentCurrency}"]`).classList.add('active');
                             break;
                     }
                     
@@ -1668,7 +1715,7 @@
                     expenseList.innerHTML = '';
                     
                     expenses.forEach((expense, index) => {
-                        // Convert to TRY
+                        // Convert to TRY for totals
                         const tryAmount = expense.currency === 'TRY' ? expense.amount :
                                          expense.currency === 'BYN' ? expense.amount / 0.065 :
                                          expense.currency === 'EUR' ? expense.amount / 0.032 :
@@ -1695,9 +1742,10 @@
                         
                         const expenseElement = document.createElement('div');
                         expenseElement.className = 'expense-item';
+                        expenseElement.style.animation = 'slideIn 0.3s ease';
                         expenseElement.innerHTML = `
                             <div>
-                                <div style="font-weight: 600; margin-bottom: 4px;">${expense.name}</div>
+                                <div style="font-weight: 600; margin-bottom: 6px;">${expense.name}</div>
                                 <div class="expense-category">
                                     ${categoryIcons[expense.category]} ${expense.category} • ${expense.date}
                                 </div>
@@ -1706,23 +1754,22 @@
                                 <div class="expense-amount">
                                     ${currencySymbols[expense.currency]}${expense.amount.toFixed(2)}
                                 </div>
-                                <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 4px;">
+                                <div style="font-size: 0.85rem; color: var(--text-light); margin-top: 4px;">
                                     ≈ ${tryAmount.toFixed(2)} TL
                                 </div>
                                 <button onclick="removeExpense(${index})" style="
                                     background: none;
                                     border: none;
-                                    color: var(--error);
+                                    color: var(--danger);
                                     margin-top: 8px;
-                                    font-size: 0.9rem;
                                     cursor: pointer;
+                                    font-size: 0.9rem;
                                 ">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                         `;
                         
-                        expenseElement.style.animation = 'fadeIn 0.3s ease';
                         expenseList.appendChild(expenseElement);
                     });
                 }
@@ -1749,7 +1796,7 @@
                 const currency = document.getElementById('expenseCurrency').value;
                 
                 if (!name || isNaN(amount) || amount <= 0) {
-                    showNotification('Заполните все поля', 'error');
+                    showNotification('Заполните все поля правильно', 'error');
                     return;
                 }
                 
@@ -1782,11 +1829,11 @@
             
             document.getElementById('clearExpenses').addEventListener('click', function() {
                 if (expenses.length === 0) {
-                    showNotification('Нет расходов', 'warning');
+                    showNotification('Нет расходов для очистки', 'warning');
                     return;
                 }
                 
-                if (confirm('Удалить все расходы?')) {
+                if (confirm('Удалить все расходы? Это действие нельзя отменить.')) {
                     expenses = [];
                     saveExpenses();
                     showNotification('Все расходы удалены');
@@ -1799,11 +1846,13 @@
                     return;
                 }
                 
+                // Create CSV
                 let csv = 'Дата,Описание,Категория,Сумма,Валюта\n';
                 expenses.forEach(expense => {
                     csv += `${expense.date},"${expense.name}",${expense.category},${expense.amount},${expense.currency}\n`;
                 });
                 
+                // Create download link
                 const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
                 const url = URL.createObjectURL(blob);
                 const link = document.createElement('a');
@@ -1825,8 +1874,8 @@
                 const days = [
                     {
                         day: 3,
-                        title: "День 3: Султанахмет, часть 2",
-                        date: "Воскресенье, 15 февраля",
+                        title: "День 3: Воскресенье",
+                        subtitle: "Исторический Султанахмет, часть 2",
                         attractions: [
                             { time: "09:00 - 2.5ч", name: "Дворец Топкапы", price: "750 TL", desc: "Главный дворец Османской империи" },
                             { time: "12:00 - 2ч", name: "Археологический музей", price: "340 TL", desc: "Уникальные саркофаги из Некрополя Сидона" },
@@ -1838,30 +1887,34 @@
                 ];
                 
                 days.forEach(dayData => {
-                    const dayCard = document.createElement('div');
-                    dayCard.className = 'day-card';
-                    dayCard.style.animation = 'slideUp 0.4s ease';
+                    const daySection = document.createElement('div');
+                    daySection.className = 'day-section';
+                    daySection.style.animation = 'slideIn 0.4s ease';
                     
                     let attractionsHTML = '';
                     dayData.attractions.forEach(attraction => {
                         const isPaid = !attraction.price.includes('Бесплатно');
                         attractionsHTML += `
                             <div class="timeline-item">
-                                <div class="time">
+                                <div class="time-badge">
                                     <i class="far fa-clock"></i>
                                     ${attraction.time}
                                 </div>
-                                <h3 style="margin-bottom: 8px; font-size: 1.1rem;">${attraction.name}</h3>
-                                <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 12px;">
+                                <div class="attraction-name">
+                                    ${attraction.name}
+                                    <div class="tags">
+                                        <span class="tag ${isPaid ? 'price' : 'free'}">
+                                            <i class="fas ${isPaid ? 'fa-ticket-alt' : 'fa-tag'}"></i>
+                                            ${attraction.price}
+                                        </span>
+                                    </div>
+                                </div>
+                                <p class="attraction-desc">
                                     ${attraction.desc}
                                 </p>
-                                <div class="tags">
-                                    <span class="tag ${isPaid ? 'price' : 'free'}">${attraction.price}</span>
-                                    <span class="tag">${isPaid ? 'Платно' : 'Бесплатно'}</span>
-                                </div>
                                 <div class="actions">
-                                    <a href="https://maps.google.com/?q=${encodeURIComponent(attraction.name)}+Istanbul" target="_blank" class="btn ghost">
-                                        <i class="fas fa-map"></i>
+                                    <a href="https://maps.google.com/?q=${encodeURIComponent(attraction.name)}+Istanbul" target="_blank" class="btn secondary">
+                                        <i class="fas fa-map-marker-alt"></i>
                                         Карта
                                     </a>
                                     <button class="btn primary mark-visited">
@@ -1873,27 +1926,29 @@
                         `;
                     });
                     
-                    dayCard.innerHTML = `
+                    daySection.innerHTML = `
                         <div class="day-header">
-                            <div>
-                                <h2 class="day-title">${dayData.title}</h2>
-                                <p style="color: var(--text-light); font-size: 0.9rem;">${dayData.date}</p>
+                            <div class="day-title">
+                                <div class="day-number">${dayData.day}</div>
+                                <div>
+                                    <h2 style="font-size: 1.5rem;">${dayData.title}</h2>
+                                    <p style="color: var(--text-light);">${dayData.subtitle}</p>
+                                </div>
                             </div>
-                            <div class="day-number">${dayData.day}</div>
                         </div>
-                        <div class="timeline">
+                        <div class="day-content">
                             ${attractionsHTML}
                         </div>
                     `;
                     
-                    guidePage.appendChild(dayCard);
+                    guidePage.insertBefore(daySection, document.getElementById('loadMoreDays'));
                 });
                 
                 this.style.display = 'none';
                 showNotification('Загружены остальные дни!');
             });
             
-            // Mark visited
+            // Mark visited functionality
             document.addEventListener('click', function(e) {
                 if (e.target.closest('.mark-visited')) {
                     const btn = e.target.closest('.mark-visited');
@@ -1902,8 +1957,8 @@
                     btn.innerHTML = '<i class="fas fa-check"></i> Посетил';
                     btn.disabled = true;
                     
-                    timelineItem.style.opacity = '0.7';
-                    timelineItem.style.borderColor = 'rgba(247, 37, 133, 0.3)';
+                    timelineItem.style.opacity = '0.8';
+                    timelineItem.style.borderColor = 'var(--accent)';
                     
                     showNotification('Отмечено как посещенное!');
                 }
@@ -1911,37 +1966,19 @@
             
             // Notification system
             function showNotification(message, type = 'success') {
+                const notification = document.getElementById('notification');
                 const colors = {
-                    success: 'var(--success)',
-                    error: 'var(--error)',
+                    success: 'var(--accent)',
+                    error: 'var(--danger)',
                     warning: 'var(--warning)'
                 };
                 
-                const notification = document.createElement('div');
-                notification.style.cssText = `
-                    position: fixed;
-                    top: 80px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background: ${colors[type] || colors.success};
-                    color: white;
-                    padding: 12px 24px;
-                    border-radius: var(--radius-xs);
-                    font-weight: 600;
-                    font-size: 0.9rem;
-                    z-index: 2000;
-                    box-shadow: var(--shadow);
-                    animation: slideUp 0.3s ease;
-                    max-width: 90%;
-                    text-align: center;
-                    white-space: nowrap;
-                `;
-                notification.textContent = message;
-                document.body.appendChild(notification);
+                notification.innerHTML = message;
+                notification.style.borderLeftColor = colors[type] || colors.success;
+                notification.classList.add('show');
                 
                 setTimeout(() => {
-                    notification.style.animation = 'slideUp 0.3s ease reverse';
-                    setTimeout(() => notification.remove(), 300);
+                    notification.classList.remove('show');
                 }, 3000);
             }
             

@@ -2,33 +2,31 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Istanbul Guide | Экономное путешествие по Стамбулу</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Istanbul Guide | Экономное путешествие</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #E31E25;
             --primary-dark: #B91C22;
-            --secondary: #2D3748;
-            --accent: #F6AD55;
-            --light: #F7FAFC;
-            --dark: #1A202C;
-            --success: #38A169;
-            --warning: #D69E2E;
-            --info: #3182CE;
-            --gray-100: #F7FAFC;
-            --gray-200: #EDF2F7;
-            --gray-300: #E2E8F0;
-            --gray-400: #CBD5E0;
-            --gray-500: #A0AEC0;
-            --gray-600: #718096;
-            --gray-700: #4A5568;
-            --gray-800: #2D3748;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --radius: 12px;
-            --radius-sm: 8px;
+            --secondary: #1E3A8A;
+            --accent: #F59E0B;
+            --light: #F8FAFC;
+            --dark: #0F172A;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --info: #3B82F6;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-500: #64748B;
+            --gray-600: #475569;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+            --radius-sm: 12px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
@@ -36,240 +34,151 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
         }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--light);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            padding-bottom: 80px;
         }
         
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
             font-weight: 600;
-            color: var(--secondary);
         }
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            max-width: 100%;
+            padding: 0 16px;
         }
         
-        /* Header & Navigation */
-        header {
-            background: linear-gradient(135deg, rgba(26, 32, 44, 0.95) 0%, rgba(45, 55, 72, 0.95) 100%);
-            backdrop-filter: blur(10px);
-            color: white;
+        /* Bottom Navigation - Мобильное меню */
+        .bottom-nav {
             position: fixed;
-            width: 100%;
-            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 1px solid var(--gray-200);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
         }
         
-        .header-container {
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: var(--gray-500);
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            min-width: 60px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+            background: rgba(227, 30, 37, 0.08);
+        }
+        
+        .nav-icon {
+            font-size: 1.2rem;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--dark), var(--secondary));
+            color: white;
+            padding: 20px 0 16px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
         }
         
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: white;
-            text-decoration: none;
         }
         
         .logo-icon {
             color: var(--accent);
-            font-size: 1.8rem;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 0;
-            position: relative;
-            transition: var(--transition);
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-        
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(26, 32, 44, 0.8), rgba(26, 32, 44, 0.9)), 
-                        url('https://images.unsplash.com/photo-1527838832700-5059252407fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            padding: 160px 0 100px;
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            color: white;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            color: var(--gray-300);
-            animation: fadeInUp 1s ease-out 0.2s both;
+            font-size: 1.4rem;
         }
         
         .date-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-top: 1rem;
-            animation: fadeInUp 1s ease-out 0.4s both;
-            box-shadow: var(--shadow);
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
         }
         
         /* Main Content */
-        main {
-            padding-top: 2rem;
-            position: relative;
+        .main-content {
+            padding: 16px 0;
         }
         
-        /* Dashboard Layout */
-        .dashboard {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            position: sticky;
-            top: 100px;
-            height: fit-content;
-        }
-        
-        .sidebar-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow-light);
-            border: 1px solid var(--gray-200);
-        }
-        
-        .hotel-card {
-            background: linear-gradient(135deg, var(--secondary), var(--dark));
-            color: white;
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow);
-        }
-        
-        .hotel-card h3 {
-            color: white;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        /* Main Content Area */
-        .content-area {
-            min-height: 100vh;
-        }
-        
-        /* Cards */
+        /* Карточки */
         .card {
             background: white;
             border-radius: var(--radius);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow-light);
-            border: 1px solid var(--gray-200);
-            transition: var(--transition);
-        }
-        
-        .card:hover {
+            padding: 20px;
+            margin-bottom: 16px;
             box-shadow: var(--shadow);
-            transform: translateY(-5px);
+            border: 1px solid var(--gray-200);
         }
         
         .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--gray-200);
+            align-items: flex-start;
+            margin-bottom: 16px;
         }
         
         .day-badge {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1rem;
+            flex-shrink: 0;
         }
         
-        /* Timeline */
+        /* Таймлайн */
         .timeline {
             position: relative;
-            padding-left: 30px;
+            padding-left: 20px;
         }
         
         .timeline::before {
@@ -278,14 +187,14 @@
             left: 0;
             top: 0;
             bottom: 0;
-            width: 2px;
+            width: 3px;
             background: linear-gradient(to bottom, var(--primary), var(--accent));
         }
         
         .timeline-item {
             position: relative;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
+            margin-bottom: 16px;
+            padding: 12px;
             background: var(--gray-100);
             border-radius: var(--radius-sm);
             border-left: 4px solid var(--primary);
@@ -294,10 +203,10 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -36px;
-            top: 20px;
-            width: 12px;
-            height: 12px;
+            left: -24px;
+            top: 16px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: var(--primary);
             border: 3px solid white;
@@ -307,1114 +216,1274 @@
         .time {
             font-weight: 600;
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
         
-        /* Tags & Badges */
+        /* Теги */
         .tag {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            padding: 0.4rem 0.8rem;
+            gap: 4px;
+            padding: 6px 12px;
             background: var(--gray-200);
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
+            margin: 4px 4px 4px 0;
         }
         
-        .price-tag {
-            background: linear-gradient(135deg, var(--success), #2F855A);
-            color: white;
-        }
+        .tag.price { background: linear-gradient(135deg, var(--success), #059669); color: white; }
+        .tag.transport { background: linear-gradient(135deg, var(--info), #2563EB); color: white; }
+        .tag.food { background: linear-gradient(135deg, var(--warning), #D97706); color: white; }
+        .tag.accommodation { background: linear-gradient(135deg, #8B5CF6, #7C3AED); color: white; }
         
-        .transport-tag {
-            background: linear-gradient(135deg, var(--info), #2B6CB0);
-            color: white;
-        }
-        
-        .food-tag {
-            background: linear-gradient(135deg, var(--warning), #B7791F);
-            color: white;
-        }
-        
-        /* Converter */
-        .converter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .currency-card {
-            background: white;
+        /* Заметки */
+        .note {
+            padding: 12px;
             border-radius: var(--radius-sm);
-            padding: 1.5rem;
-            text-align: center;
-            border: 2px solid var(--gray-200);
-            transition: var(--transition);
+            margin: 12px 0;
+            border-left: 4px solid;
+            font-size: 0.9rem;
         }
         
-        .currency-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
-        }
+        .note.tip { background: #ECFDF5; border-color: var(--success); color: #065F46; }
+        .note.warning { background: #FEF3C7; border-color: var(--warning); color: #92400E; }
+        .note.info { background: #E0F2FE; border-color: var(--info); color: #075985; }
         
-        .currency-flag {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .currency-input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--gray-300);
-            border-radius: var(--radius-sm);
-            font-size: 1.2rem;
-            text-align: center;
-            margin: 1rem 0;
-            transition: var(--transition);
-        }
-        
-        .currency-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(227, 30, 37, 0.1);
-        }
-        
-        /* Transport */
-        .transport-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .transport-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: var(--gray-100);
-            border-radius: var(--radius-sm);
-            transition: var(--transition);
-        }
-        
-        .transport-item:hover {
-            background: white;
-            box-shadow: var(--shadow-light);
-        }
-        
-        .transport-icon {
-            font-size: 2rem;
-            color: var(--primary);
-            min-width: 50px;
-        }
-        
-        /* Food */
-        .food-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .food-item {
-            background: white;
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-            border: 1px solid var(--gray-200);
-            transition: var(--transition);
-        }
-        
-        .food-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-        }
-        
-        .food-image {
-            height: 150px;
-            background: linear-gradient(135deg, var(--gray-300), var(--gray-400));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--gray-600);
-        }
-        
-        .food-content {
-            padding: 1.5rem;
-        }
-        
-        /* Buttons */
+        /* Кнопки */
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 0.8rem 1.8rem;
+            padding: 14px 20px;
             border-radius: var(--radius-sm);
             text-decoration: none;
             font-weight: 600;
             border: none;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 4px 6px rgba(227, 30, 37, 0.2);
+            width: 100%;
+            font-size: 1rem;
+            margin: 8px 0;
         }
         
-        .btn:hover {
+        .btn:hover, .btn:active {
+            opacity: 0.9;
             transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(227, 30, 37, 0.3);
         }
         
         .btn-outline {
             background: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
-            box-shadow: none;
         }
         
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            width: auto;
         }
         
-        /* Tabs */
-        .tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid var(--gray-200);
-            padding-bottom: 1rem;
+        /* Конвертер */
+        .converter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0;
         }
         
-        .tab-btn {
-            padding: 0.8rem 1.5rem;
-            background: none;
-            border: none;
+        .currency-card {
+            background: white;
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            text-align: center;
+            border: 2px solid var(--gray-200);
+        }
+        
+        .currency-flag {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .currency-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius-sm);
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 8px 0;
+        }
+        
+        /* Форма расходов */
+        .expense-form {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 600;
             color: var(--gray-600);
-            cursor: pointer;
-            border-radius: var(--radius-sm);
-            transition: var(--transition);
-            position: relative;
         }
         
-        .tab-btn.active {
+        .form-input, .form-select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(227, 30, 37, 0.1);
+        }
+        
+        /* Список расходов */
+        .expenses-list {
+            margin-top: 20px;
+        }
+        
+        .expense-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: white;
+            border-radius: var(--radius-sm);
+            margin-bottom: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .expense-category {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+        
+        .expense-amount {
+            font-weight: 700;
+            font-size: 1.2rem;
             color: var(--primary);
         }
         
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1.2rem;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-radius: 3px 3px 0 0;
+        .total-expenses {
+            position: sticky;
+            bottom: 70px;
+            background: white;
+            padding: 16px;
+            border-radius: var(--radius);
+            margin: 16px 0;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
         }
         
+        /* Вкладки контента */
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn 0.3s ease-out;
         }
         
         .tab-content.active {
             display: block;
         }
         
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--dark), var(--secondary));
-            color: white;
-            padding: 4rem 0 2rem;
-            margin-top: 4rem;
+        /* Карточки еды */
+        .food-card {
+            background: white;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            margin-bottom: 12px;
+            border: 1px solid var(--gray-200);
         }
         
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+        .food-card-header {
+            padding: 12px;
+            background: var(--gray-100);
+            font-weight: 600;
         }
         
-        .footer-section h3 {
-            color: var(--accent);
-            margin-bottom: 1.5rem;
+        .food-card-body {
+            padding: 12px;
         }
         
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--gray-400);
+        .food-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-200);
         }
         
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
+        /* Анимации */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Mobile Responsive */
-        @media (max-width: 992px) {
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-            
-            .sidebar {
-                position: static;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
         }
         
-        @media (max-width: 768px) {
-            .nav-links {
+        /* Адаптивность */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+                margin: 0 auto;
+            }
+            
+            .converter-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .bottom-nav {
                 display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--dark);
-                flex-direction: column;
-                padding: 1rem;
-                gap: 0;
             }
             
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li {
-                padding: 0.8rem 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding: 140px 0 80px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .converter-grid,
-            .transport-grid,
-            .food-grid {
-                grid-template-columns: 1fr;
+            body {
+                padding-bottom: 0;
             }
         }
         
-        /* Utilities */
-        .mb-1 { margin-bottom: 0.5rem; }
-        .mb-2 { margin-bottom: 1rem; }
-        .mb-3 { margin-bottom: 1.5rem; }
-        .mb-4 { margin-bottom: 2rem; }
+        /* Специальные стили для очень маленьких экранов */
+        @media (max-width: 320px) {
+            html {
+                font-size: 14px;
+            }
+            
+            .container {
+                padding: 0 12px;
+            }
+            
+            .card {
+                padding: 16px;
+            }
+        }
         
-        .mt-1 { margin-top: 0.5rem; }
-        .mt-2 { margin-top: 1rem; }
-        .mt-3 { margin-top: 1.5rem; }
-        .mt-4 { margin-top: 2rem; }
+        /* Улучшения для касаний */
+        .touch-target {
+            min-height: 44px;
+            min-width: 44px;
+        }
         
-        .text-center { text-align: center; }
-        .text-primary { color: var(--primary); }
-        .text-accent { color: var(--accent); }
+        /* Скрытие скроллбара на iOS */
+        .no-scrollbar {
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
         
-        .icon-sm { font-size: 1rem; }
-        .icon-md { font-size: 1.5rem; }
-        .icon-lg { font-size: 2rem; }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
         
-        /* Map Link */
-        .map-link {
-            display: inline-flex;
+        /* Подсветка активных элементов */
+        .active-tab {
+            transform: scale(0.98);
+        }
+        
+        /* Лоадер */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+        }
+        
+        /* Toast уведомления */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            z-index: 2000;
+            animation: slideIn 0.3s ease-out;
+            display: none;
+        }
+        
+        /* Иконки действий */
+        .action-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
-            gap: 5px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 0.5rem;
+            justify-content: center;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            font-size: 1.2rem;
+            cursor: pointer;
             transition: var(--transition);
         }
         
-        .map-link:hover {
-            color: var(--primary-dark);
+        .action-icon:hover, .action-icon:active {
+            background: var(--primary);
+            color: white;
         }
         
-        /* Warning & Tips */
-        .note {
-            padding: 1rem;
-            border-radius: var(--radius-sm);
-            margin: 1rem 0;
-            border-left: 4px solid;
+        /* Прогресс-бар */
+        .progress-bar {
+            height: 6px;
+            background: var(--gray-200);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 8px 0;
         }
         
-        .note.warning {
-            background: #FEF3C7;
-            border-left-color: var(--warning);
-            color: #92400E;
-        }
-        
-        .note.tip {
-            background: #D1FAE5;
-            border-left-color: var(--success);
-            color: #065F46;
-        }
-        
-        .note.info {
-            background: #DBEAFE;
-            border-left-color: var(--info);
-            color: #1E40AF;
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+            transition: width 0.3s ease;
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
                 <i class="fas fa-mosque logo-icon"></i>
                 <span>Istanbul Guide</span>
-            </a>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="active"><i class="fas fa-home icon-sm"></i> Главная</a></li>
-                <li><a href="#itinerary"><i class="fas fa-route icon-sm"></i> Маршрут</a></li>
-                <li><a href="#transport"><i class="fas fa-subway icon-sm"></i> Транспорт</a></li>
-                <li><a href="#food"><i class="fas fa-utensils icon-sm"></i> Питание</a></li>
-                <li><a href="#converter"><i class="fas fa-calculator icon-sm"></i> Конвертер</a></li>
-            </ul>
+            </div>
+            <div class="date-badge">
+                <i class="fas fa-calendar-alt"></i> 13-19.02.2026
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Путеводитель по Стамбулу</h1>
-            <p class="hero-subtitle">
-                Идеальный маршрут на 7 дней для экономных путешественников. Все основные достопримечательности, 
-                проверенные места для бюджетного питания и полезные советы.
-            </p>
-            <div class="date-badge">
-                <i class="fas fa-calendar-alt"></i> 13-19 февраля 2026
-            </div>
-        </div>
-    </section>
-
     <!-- Main Content -->
-    <main class="container">
-        <!-- Dashboard Layout -->
-        <div class="dashboard">
-            <!-- Sidebar -->
-            <aside class="sidebar">
-                <!-- Hotel Info -->
-                <div class="hotel-card">
-                    <h3><i class="fas fa-hotel"></i> Ваш отель</h3>
-                    <p class="mb-2"><strong>Gloria Suites Old City</strong></p>
-                    <p class="mb-2" style="font-size: 0.9rem; color: var(--gray-300);">
-                        <i class="fas fa-map-marker-alt"></i> Фатих, Стамбул
-                    </p>
-                    <a href="https://maps.google.com/?q=Gloria+Suites+Old+City+Istanbul" target="_blank" class="btn btn-outline" style="width: 100%; justify-content: center;">
-                        <i class="fas fa-map-marked-alt"></i> Открыть на карте
-                    </a>
-                </div>
-
-                <!-- Weather Widget -->
-                <div class="sidebar-card">
-                    <h3 class="mb-3"><i class="fas fa-cloud-sun"></i> Погода</h3>
-                    <div class="weather-widget">
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-                            <div>
-                                <div class="text-primary" style="font-size: 2rem; font-weight: bold;">+9°C</div>
-                                <div style="color: var(--gray-600); font-size: 0.9rem;">Февраль 2026</div>
-                            </div>
-                            <div style="font-size: 3rem;">⛅</div>
-                        </div>
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
-                            <div style="background: var(--gray-100); padding: 0.5rem; border-radius: var(--radius-sm); text-align: center;">
-                                <div style="font-size: 0.8rem; color: var(--gray-600);">Ветер</div>
-                                <div style="font-weight: 600;">15 км/ч</div>
-                            </div>
-                            <div style="background: var(--gray-100); padding: 0.5rem; border-radius: var(--radius-sm); text-align: center;">
-                                <div style="font-size: 0.8rem; color: var(--gray-600);">Влажность</div>
-                                <div style="font-weight: 600;">75%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Navigation -->
-                <div class="sidebar-card">
-                    <h3 class="mb-3"><i class="fas fa-compass"></i> Быстрый доступ</h3>
-                    <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-                        <a href="#day1" class="btn btn-outline" style="justify-content: start;">
-                            <i class="fas fa-1"></i> День 1: Прилет
-                        </a>
-                        <a href="#day2" class="btn btn-outline" style="justify-content: start;">
-                            <i class="fas fa-2"></i> День 2: Султанахмет
-                        </a>
-                        <a href="#day3" class="btn btn-outline" style="justify-content: start;">
-                            <i class="fas fa-3"></i> День 3: Базары
-                        </a>
-                        <a href="#transport" class="btn btn-outline" style="justify-content: start;">
-                            <i class="fas fa-subway"></i> Транспорт
-                        </a>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- Main Content Area -->
-            <div class="content-area">
-                <!-- Tabs Navigation -->
-                <div class="tabs" id="mainTabs">
-                    <button class="tab-btn active" data-tab="itinerary">
-                        <i class="fas fa-calendar-day"></i> Маршрут
-                    </button>
-                    <button class="tab-btn" data-tab="transport">
-                        <i class="fas fa-train"></i> Транспорт
-                    </button>
-                    <button class="tab-btn" data-tab="converter">
-                        <i class="fas fa-money-bill-wave"></i> Конвертер
-                    </button>
-                    <button class="tab-btn" data-tab="food">
-                        <i class="fas fa-utensils"></i> Питание
-                    </button>
-                </div>
-
-                <!-- Tab Contents -->
-                <div id="tabContents">
-                    <!-- Itinerary Tab -->
-                    <div class="tab-content active" id="itinerary">
-                        <!-- Day 1 -->
-                        <div class="card" id="day1">
-                            <div class="card-header">
-                                <div>
-                                    <h2>День 1: Пятница, 13.02</h2>
-                                    <p class="text-primary">Прилет и заселение</p>
-                                </div>
-                                <div class="day-badge">1</div>
-                            </div>
-                            
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-plane-departure"></i> 09:10 - 14:50
-                                    </div>
-                                    <p>Вылет из Минска, прилет в Стамбул (аэропорт SAW)</p>
-                                    <div class="tag price-tag">
-                                        <i class="fas fa-tag"></i> Перелет
-                                    </div>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-bus"></i> 15:50 - 17:30
-                                    </div>
-                                    <p>Трансфер в отель: Havabus до Таксим → метро M2 до Vezneciler</p>
-                                    <div class="tag transport-tag">
-                                        <i class="fas fa-subway"></i> ~90 TL
-                                    </div>
-                                    <a href="https://maps.app.goo.gl/route" target="_blank" class="map-link">
-                                        <i class="fas fa-map-marked-alt"></i> Маршрут на карте
-                                    </a>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-hotel"></i> 17:30 - 18:00
-                                    </div>
-                                    <p>Заселение в отель Gloria Suites Old City</p>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-utensils"></i> 18:00 - 19:00
-                                    </div>
-                                    <p>Ужин: McDonald's или местная пекарня</p>
-                                    <div class="tag food-tag">
-                                        <i class="fas fa-utensil-spoon"></i> ~50-100 TL
-                                    </div>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-walking"></i> 19:00 - 22:00
-                                    </div>
-                                    <p>Вечерняя прогулка к Голубой мечети и площади Султанахмет</p>
-                                    <a href="https://maps.google.com/?q=Sultanahmet+Istanbul" target="_blank" class="map-link">
-                                        <i class="fas fa-map-marked-alt"></i> Открыть на карте
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Day 2 -->
-                        <div class="card" id="day2">
-                            <div class="card-header">
-                                <div>
-                                    <h2>День 2: Суббота, 14.02</h2>
-                                    <p class="text-primary">Классический Султанахмет</p>
-                                </div>
-                                <div class="day-badge">2</div>
-                            </div>
-                            
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-coffee"></i> Завтрак
-                                    </div>
-                                    <p>Пекарня на улице Divan Yolu: симит (бублик) + чай</p>
-                                    <div class="tag food-tag">
-                                        <i class="fas fa-bread-slice"></i> ~15-30 TL
-                                    </div>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-monument"></i> 09:00 - 13:00
-                                    </div>
-                                    <p><strong>Голубая мечеть</strong> (бесплатно) → <strong>Айя-София</strong> (бесплатно)</p>
-                                    <a href="https://maps.google.com/?q=Sultanahmet+Meydanı+Istanbul" target="_blank" class="map-link">
-                                        <i class="fas fa-map-marked-alt"></i> Маршрут на карте
-                                    </a>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-utensils"></i> Обед
-                                    </div>
-                                    <p>Столовая "Sultanahmet Dönercisi"</p>
-                                    <div class="tag food-tag">
-                                        <i class="fas fa-drumstick-bite"></i> ~80-120 TL
-                                    </div>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-landmark"></i> 14:00 - 18:00
-                                    </div>
-                                    <p><strong>Цистерна Базилика</strong> (450 TL) → парк Гюльхане → Эминёню</p>
-                                    <div class="tag price-tag">
-                                        <i class="fas fa-ticket-alt"></i> 450 TL / Museum Pass: 850 TL
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="note tip">
-                                <i class="fas fa-lightbulb"></i> <strong>Совет:</strong> Это пеший день - все достопримечательности в шаговой доступности от отеля.
-                            </div>
-                        </div>
-
-                        <!-- Day 3 -->
-                        <div class="card" id="day3">
-                            <div class="card-header">
-                                <div>
-                                    <h2>День 3: Воскресенье, 15.02</h2>
-                                    <p class="text-primary">Базары и Бейоглу</p>
-                                </div>
-                                <div class="day-badge">3</div>
-                            </div>
-                            
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-store"></i> 09:30 - 11:30
-                                    </div>
-                                    <p><strong>Гранд-Базар</strong> (открывается в 10:00)</p>
-                                    <a href="https://maps.google.com/?q=Grand+Bazaar+Istanbul" target="_blank" class="map-link">
-                                        <i class="fas fa-map-marked-alt"></i> Открыть на карте
-                                    </a>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-mosque"></i> 11:30 - 13:00
-                                    </div>
-                                    <p>Мечеть Сулеймание (бесплатно, лучший вид на город)</p>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-subway"></i> 14:00 - 15:00
-                                    </div>
-                                    <p>Пешком к Египетскому базару → фуникулер Tünel до Бейоглу</p>
-                                    <div class="tag transport-tag">
-                                        <i class="fas fa-train"></i> ~15 TL
-                                    </div>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <div class="time">
-                                        <i class="fas fa-walking"></i> 15:00 - 19:00
-                                    </div>
-                                    <p>Прогулка по Истикляль, площадь Таксим, район Чукурджума</p>
-                                </div>
-                            </div>
-                            
-                            <div class="note info">
-                                <i class="fas fa-info-circle"></i> <strong>Питание:</strong> Обед в столовой при мечети Сулеймание (60-100 TL), ужин в кафе на боковых улочках от Истикляль.
-                            </div>
-                        </div>
-
-                        <!-- More Days Button -->
-                        <div class="card text-center">
-                            <h3 class="mb-2">Полный маршрут на 7 дней</h3>
-                            <p class="mb-3">Дни 4-7 содержат посещение азиатской стороны, круиз по Босфору и многое другое</p>
-                            <button class="btn" id="showAllDays">
-                                <i class="fas fa-calendar-alt"></i> Показать все дни
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Transport Tab -->
-                    <div class="tab-content" id="transport">
-                        <div class="card">
-                            <div class="card-header">
-                                <h2><i class="fas fa-subway"></i> Транспорт в Стамбуле</h2>
-                            </div>
-                            
-                            <h3 class="mb-2"><i class="fas fa-ticket-alt"></i> Istanbulkart</h3>
-                            <p class="mb-3">Пополняемая карта для всего общественного транспорта. Одна карта на всех (проходите по очереди). Экономия до 50%.</p>
-                            
-                            <div class="transport-grid">
-                                <div class="transport-item">
-                                    <div class="transport-icon">
-                                        <i class="fas fa-tram"></i>
-                                    </div>
-                                    <div>
-                                        <h4>Трамвай T1</h4>
-                                        <p>Основная линия через все ключевые точки</p>
-                                        <div class="tag price-tag">9.90 TL</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="transport-item">
-                                    <div class="transport-icon">
-                                        <i class="fas fa-ship"></i>
-                                    </div>
-                                    <div>
-                                        <h4>Паромы</h4>
-                                        <p>Самый живописный транспорт</p>
-                                        <div class="tag price-tag">15-25 TL</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="transport-item">
-                                    <div class="transport-icon">
-                                        <i class="fas fa-train"></i>
-                                    </div>
-                                    <div>
-                                        <h4>Метро</h4>
-                                        <p>Быстрое перемещение по городу</p>
-                                        <div class="tag price-tag">9.90 TL</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="note tip mt-3">
-                                <i class="fas fa-child"></i> <strong>С ребенком 8 лет:</strong> Дети до 6 лет бесплатно. Для ребенка 8 лет можно использовать вашу карту или купить отдельную. В час пик (8:00-9:30, 17:30-19:30) будьте осторожны в толпе.
-                            </div>
-                            
-                            <h3 class="mt-4 mb-2">Стоимость проезда с Istanbulkart</h3>
-                            <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
-                                <thead>
-                                    <tr style="background: var(--gray-100);">
-                                        <th style="padding: 1rem; text-align: left;">Транспорт</th>
-                                        <th style="padding: 1rem; text-align: center;">Первая поездка</th>
-                                        <th style="padding: 1rem; text-align: center;">Детский (8 лет)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr style="border-bottom: 1px solid var(--gray-200);">
-                                        <td style="padding: 1rem;">Трамвай T1</td>
-                                        <td style="padding: 1rem; text-align: center; font-weight: 600;">9.90 TL</td>
-                                        <td style="padding: 1rem; text-align: center;">3.47 TL</td>
-                                    </tr>
-                                    <tr style="border-bottom: 1px solid var(--gray-200);">
-                                        <td style="padding: 1rem;">Паром (короткий)</td>
-                                        <td style="padding: 1rem; text-align: center; font-weight: 600;">15.00 TL</td>
-                                        <td style="padding: 1rem; text-align: center;">5.50 TL</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 1rem;">Автобус/Метро</td>
-                                        <td style="padding: 1rem; text-align: center; font-weight: 600;">9.90 TL</td>
-                                        <td style="padding: 1rem; text-align: center;">3.47 TL</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Converter Tab -->
-                    <div class="tab-content" id="converter">
-                        <div class="card">
-                            <div class="card-header">
-                                <h2><i class="fas fa-calculator"></i> Конвертер валют</h2>
-                            </div>
-                            
-                            <p class="mb-3">Актуальный курс на февраль 2026 (примерный): 1 TL ≈ 10.5 BYN | 1 EUR ≈ 35 TL | 1 USD ≈ 32 TL</p>
-                            
-                            <div style="text-align: center; margin-bottom: 2rem;">
-                                <input type="number" id="amountInput" class="currency-input" placeholder="Введите сумму" value="100" style="max-width: 300px;">
-                                <button class="btn mt-2" id="convertBtn">
-                                    <i class="fas fa-sync-alt"></i> Конвертировать
-                                </button>
-                            </div>
-                            
-                            <div class="converter-grid">
-                                <div class="currency-card">
-                                    <div class="currency-flag">🇹🇷</div>
-                                    <h3>Турецкая лира</h3>
-                                    <div id="tlValue" style="font-size: 1.8rem; font-weight: bold; color: var(--primary);">100</div>
-                                    <input type="number" id="tlInput" class="currency-input" value="100">
-                                </div>
-                                
-                                <div class="currency-card">
-                                    <div class="currency-flag">🇧🇾</div>
-                                    <h3>Белорусский рубль</h3>
-                                    <div id="bynValue" style="font-size: 1.8rem; font-weight: bold; color: var(--primary);">1050</div>
-                                    <input type="number" id="bynInput" class="currency-input" value="1050">
-                                </div>
-                                
-                                <div class="currency-card">
-                                    <div class="currency-flag">🇪🇺</div>
-                                    <h3>Евро</h3>
-                                    <div id="eurValue" style="font-size: 1.8rem; font-weight: bold; color: var(--primary);">2.86</div>
-                                    <input type="number" id="eurInput" class="currency-input" value="2.86">
-                                </div>
-                                
-                                <div class="currency-card">
-                                    <div class="currency-flag">🇺🇸</div>
-                                    <h3>Доллар</h3>
-                                    <div id="usdValue" style="font-size: 1.8rem; font-weight: bold; color: var(--primary);">3.13</div>
-                                    <input type="number" id="usdInput" class="currency-input" value="3.13">
-                                </div>
-                            </div>
-                            
-                            <div class="note tip mt-3">
-                                <i class="fas fa-lightbulb"></i> <strong>Совет:</strong> Меняйте деньги в обменниках в центре города (не в аэропорту). Ищите вывески "Döviz" или "Exchange".
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Food Tab -->
-                    <div class="tab-content" id="food">
-                        <div class="card">
-                            <div class="card-header">
-                                <h2><i class="fas fa-utensils"></i> Бюджетное питание</h2>
-                            </div>
-                            
-                            <div class="food-grid">
-                                <div class="food-item">
-                                    <div class="food-image">
-                                        <i class="fas fa-hamburger"></i>
-                                    </div>
-                                    <div class="food-content">
-                                        <h3>Уличная еда</h3>
-                                        <ul style="list-style: none; padding: 0;">
-                                            <li class="mb-1">• Симит (бублик) - <strong>5-10 TL</strong></li>
-                                            <li class="mb-1">• Балык-экмек - <strong>50-80 TL</strong></li>
-                                            <li class="mb-1">• Мидье долма - <strong>10-15 TL</strong></li>
-                                            <li>• Каштаны - <strong>20-30 TL</strong></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                
-                                <div class="food-item">
-                                    <div class="food-image">
-                                        <i class="fas fa-pizza-slice"></i>
-                                    </div>
-                                    <div class="food-content">
-                                        <h3>Фаст-фуд</h3>
-                                        <ul style="list-style: none; padding: 0;">
-                                            <li class="mb-1">• Дёнер-кебаб - <strong>60-100 TL</strong></li>
-                                            <li class="mb-1">• Лахмаджун - <strong>40-70 TL</strong></li>
-                                            <li class="mb-1">• Пиде - <strong>80-150 TL</strong></li>
-                                            <li>• Кёфте - <strong>100-150 TL</strong></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                
-                                <div class="food-item">
-                                    <div class="food-image">
-                                        <i class="fas fa-coffee"></i>
-                                    </div>
-                                    <div class="food-content">
-                                        <h3>Напитки</h3>
-                                        <ul style="list-style: none; padding: 0;">
-                                            <li class="mb-1">• Чай - <strong>10-20 TL</strong></li>
-                                            <li class="mb-1">• Турецкий кофе - <strong>30-50 TL</strong></li>
-                                            <li class="mb-1">• Айран - <strong>15-25 TL</strong></li>
-                                            <li>• Свежий сок - <strong>40-60 TL</strong></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <h3 class="mt-4 mb-2"><i class="fas fa-map-marker-alt"></i> Рекомендуемые места</h3>
-                            
-                            <div class="timeline mt-3">
-                                <div class="timeline-item">
-                                    <h4>Sultanahmet Dönercisi</h4>
-                                    <p class="mb-1">Возле мечети Султанахмет, лучший дёнер в историческом центре</p>
-                                    <div class="tag food-tag">80-120 TL</div>
-                                    <a href="https://maps.google.com/?q=Sultanahmet+Dönercisi+Istanbul" target="_blank" class="map-link">
-                                        <i class="fas fa-map-marked-alt"></i> На карте
-                                    </a>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <h4>Столовая при мечети Сулеймание</h4>
-                                    <p class="mb-1">Аутентично, дешево и с прекрасным видом</p>
-                                    <div class="tag food-tag">60-100 TL</div>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <h4>Bereket Döner</h4>
-                                    <p class="mb-1">Район Аксарай, огромные порции</p>
-                                    <div class="tag food-tag">70-100 TL</div>
-                                    <a href="https://maps.google.com/?q=Bereket+Döner+Aksaray+Istanbul" target="_blank" class="map-link">
-                                        <i class="fas fa-map-marked-alt"></i> На карте
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <main class="main-content">
+        <div class="container">
+            <!-- Контент будет меняться через JS -->
+            <div id="content-area">
+                <!-- День 1 загрузится по умолчанию -->
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Контакты</h3>
-                    <p>Экстренные номера:</p>
-                    <p><i class="fas fa-phone"></i> Полиция: 155</p>
-                    <p><i class="fas fa-ambulance"></i> Скорая: 112</p>
-                    <p><i class="fas fa-fire"></i> Пожарная: 110</p>
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" data-page="day1">
+            <i class="fas fa-route nav-icon"></i>
+            <span>Маршрут</span>
+        </a>
+        <a href="#" class="nav-item" data-page="transport">
+            <i class="fas fa-subway nav-icon"></i>
+            <span>Транспорт</span>
+        </a>
+        <a href="#" class="nav-item" data-page="expenses">
+            <i class="fas fa-money-bill-wave nav-icon"></i>
+            <span>Расходы</span>
+        </a>
+        <a href="#" class="nav-item" data-page="converter">
+            <i class="fas fa-calculator nav-icon"></i>
+            <span>Конвертер</span>
+        </a>
+        <a href="#" class="nav-item" data-page="food">
+            <i class="fas fa-utensils nav-icon"></i>
+            <span>Питание</span>
+        </a>
+    </nav>
+
+    <!-- Toast уведомления -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Шаблоны для разных страниц -->
+    <template id="day1-template">
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <h2>День 1: Пятница, 13.02</h2>
+                    <p style="color: var(--primary); margin-top: 4px;">Прилет и заселение</p>
+                </div>
+                <div class="day-badge">1</div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="time">
+                        <i class="fas fa-plane-departure"></i> 09:10 - 14:50
+                    </div>
+                    <p>Вылет из Минска, прилет в Стамбул (аэропорт SAW)</p>
+                    <div class="tag price">
+                        <i class="fas fa-tag"></i> Перелет
+                    </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>Полезные ссылки</h3>
-                    <p><a href="https://www.istanbulkart.istanbul/" target="_blank" style="color: white;"><i class="fas fa-external-link-alt"></i> Istanbulkart</a></p>
-                    <p><a href="https://sehirhatlari.istanbul/" target="_blank" style="color: white;"><i class="fas fa-ship"></i> Паромы</a></p>
-                    <p><a href="https://www.muze.gov.tr/" target="_blank" style="color: white;"><i class="fas fa-landmark"></i> Музеи Турции</a></p>
+                <div class="timeline-item">
+                    <div class="time">
+                        <i class="fas fa-bus"></i> 15:50 - 17:30
+                    </div>
+                    <p>Трансфер в отель: Havabus до Таксим → метро M2 до Vezneciler</p>
+                    <div class="tag transport">
+                        <i class="fas fa-subway"></i> ~90 TL
+                    </div>
+                    <a href="https://maps.app.goo.gl/" target="_blank" style="display: inline-flex; align-items: center; gap: 4px; color: var(--primary); margin-top: 8px;">
+                        <i class="fas fa-map-marked-alt"></i> Маршрут на карте
+                    </a>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>Советы</h3>
-                    <p><i class="fas fa-shoe-prints"></i> Удобная обувь</p>
-                    <p><i class="fas fa-umbrella"></i> Зонт и дождевик</p>
-                    <p><i class="fas fa-money-bill-wave"></i> Мелкие купюры</p>
-                    <p><i class="fas fa-passport"></i> Копии документов</p>
+                <div class="timeline-item">
+                    <div class="time">
+                        <i class="fas fa-hotel"></i> 17:30 - 18:00
+                    </div>
+                    <p>Заселение в отель Gloria Suites Old City</p>
+                    <a href="https://maps.google.com/?q=Gloria+Suites+Old+City+Istanbul" target="_blank" style="display: inline-flex; align-items: center; gap: 4px; color: var(--primary); margin-top: 8px;">
+                        <i class="fas fa-map-marker-alt"></i> Адрес отеля
+                    </a>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="time">
+                        <i class="fas fa-utensils"></i> 18:00 - 19:00
+                    </div>
+                    <p>Ужин: McDonald's или местная пекарня</p>
+                    <div class="tag food">
+                        <i class="fas fa-utensil-spoon"></i> ~50-100 TL
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="time">
+                        <i class="fas fa-walking"></i> 19:00 - 22:00
+                    </div>
+                    <p>Вечерняя прогулка к Голубой мечети и площади Султанахмет</p>
+                    <a href="https://maps.google.com/?q=Sultanahmet+Istanbul" target="_blank" style="display: inline-flex; align-items: center; gap: 4px; color: var(--primary); margin-top: 8px;">
+                        <i class="fas fa-map-marked-alt"></i> На карте
+                    </a>
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>© 2026 Istanbul Guide. Все права защищены.</p>
-                <p>Информация актуальна на февраль 2026 года. Цены могут меняться.</p>
+            <div class="note tip">
+                <i class="fas fa-lightbulb"></i> <strong>Совет:</strong> После заселения купите Istanbulkart для транспорта.
+            </div>
+            
+            <div style="display: flex; gap: 12px; margin-top: 16px;">
+                <button class="btn btn-outline btn-small" onclick="addExpense('Трансфер из аэропорта', 90, 'Транспорт')">
+                    <i class="fas fa-plus"></i> Добавить расход
+                </button>
+                <button class="btn btn-small" onclick="loadPage('day2')">
+                    Следующий день <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </div>
-    </footer>
+    </template>
+
+    <template id="day2-template">
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <h2>День 2: Суббота, 14.02</h2>
+                    <p style="color: var(--primary); margin-top: 4px;">Классический Султанахмет</p>
+                </div>
+                <div class="day-badge">2</div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="time">
+                        <i class="fas fa-coffee"></i> Завтрак
+                    </div>
+                    <p>Пекарня на улице Divan Yolu: симит (бублик) + чай</p>
+                    <div class="tag food">
+                        <i class="fas fa-bread-slice"></i> ~15-30 TL
+                    </div>
+                    <button class="btn btn-outline btn-small" style="margin-top: 8px; padding: 6px 12px;" onclick="addExpense('Завтрак', 25, 'Еда')">
+                        <i class="fas fa-plus"></i> Добавить
+                    </button>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="time">
+                        <i class="fas fa-monument"></i> 09:00 - 13:00
+                    </div>
+                    <p><strong>Голубая мечеть</strong> (бесплатно) → <strong>Айя-София</strong> (бесплатно)</p>
+                    <a href="https://maps.google.com/?q=Sultanahmet+Meydanı+Istanbul" target="_blank" style="display: inline-flex; align-items: center; gap: 4px; color: var(--primary); margin-top: 8px;">
+                        <i class="fas fa-map-marked-alt"></i> Маршрут на карте
+                    </a>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="time">
+                        <i class="fas fa-utensils"></i> Обед
+                    </div>
+                    <p>Столовая "Sultanahmet Dönercisi"</p>
+                    <div class="tag food">
+                        <i class="fas fa-drumstick-bite"></i> ~80-120 TL
+                    </div>
+                    <button class="btn btn-outline btn-small" style="margin-top: 8px; padding: 6px 12px;" onclick="addExpense('Обед в Sultanahmet', 100, 'Еда')">
+                        <i class="fas fa-plus"></i> Добавить
+                    </button>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="time">
+                        <i class="fas fa-landmark"></i> 14:00 - 18:00
+                    </div>
+                    <p><strong>Цистерна Базилика</strong> (450 TL) → парк Гюльхане → Эминёню</p>
+                    <div class="tag price">
+                        <i class="fas fa-ticket-alt"></i> 450 TL
+                    </div>
+                    <button class="btn btn-outline btn-small" style="margin-top: 8px; padding: 6px 12px;" onclick="addExpense('Цистерна Базилика', 450, 'Развлечения')">
+                        <i class="fas fa-plus"></i> Добавить
+                    </button>
+                </div>
+            </div>
+            
+            <div class="note info">
+                <i class="fas fa-info-circle"></i> <strong>Museum Pass:</strong> 850 TL на 5 дней (включает Топкапы, Айя-Софию и другие музеи)
+            </div>
+            
+            <div style="display: flex; gap: 12px; margin-top: 16px;">
+                <button class="btn btn-outline btn-small" onclick="loadPage('day1')">
+                    <i class="fas fa-arrow-left"></i> Назад
+                </button>
+                <button class="btn btn-small" onclick="loadPage('day3')">
+                    Следующий день <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <template id="transport-template">
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-subway"></i> Транспорт в Стамбуле</h2>
+            </div>
+            
+            <div class="note info">
+                <i class="fas fa-ticket-alt"></i> <strong>Istanbulkart</strong> - пополняемая карта для всего транспорта. Экономия до 50%.
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <div style="display: flex; align-items: center; gap: 12px; padding: 16px; background: var(--gray-100); border-radius: var(--radius-sm); margin-bottom: 12px;">
+                    <div style="font-size: 2rem; color: var(--primary);">
+                        <i class="fas fa-tram"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 4px;">Трамвай T1</h3>
+                        <p>Основная линия через все ключевые точки</p>
+                        <div class="tag price" style="margin-top: 8px;">9.90 TL</div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 12px; padding: 16px; background: var(--gray-100); border-radius: var(--radius-sm); margin-bottom: 12px;">
+                    <div style="font-size: 2rem; color: var(--primary);">
+                        <i class="fas fa-ship"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 4px;">Паромы</h3>
+                        <p>Самый живописный транспорт по Босфору</p>
+                        <div class="tag price" style="margin-top: 8px;">15-25 TL</div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 12px; padding: 16px; background: var(--gray-100); border-radius: var(--radius-sm);">
+                    <div style="font-size: 2rem; color: var(--primary);">
+                        <i class="fas fa-train"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 4px;">Метро</h3>
+                        <p>Быстрое перемещение по городу</p>
+                        <div class="tag price" style="margin-top: 8px;">9.90 TL</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin: 20px 0 12px 0;">Стоимость проезда с Istanbulkart</h3>
+            <div style="background: white; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--gray-200);">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; background: var(--gray-100); padding: 12px; font-weight: 600;">
+                    <div>Транспорт</div>
+                    <div style="text-align: center;">Взрослый</div>
+                    <div style="text-align: center;">Детский 8+</div>
+                </div>
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 12px; border-bottom: 1px solid var(--gray-200);">
+                    <div>Трамвай T1</div>
+                    <div style="text-align: center; font-weight: 600;">9.90 TL</div>
+                    <div style="text-align: center;">3.47 TL</div>
+                </div>
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 12px; border-bottom: 1px solid var(--gray-200);">
+                    <div>Паром</div>
+                    <div style="text-align: center; font-weight: 600;">15.00 TL</div>
+                    <div style="text-align: center;">5.50 TL</div>
+                </div>
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 12px;">
+                    <div>Метро/Автобус</div>
+                    <div style="text-align: center; font-weight: 600;">9.90 TL</div>
+                    <div style="text-align: center;">3.47 TL</div>
+                </div>
+            </div>
+            
+            <div class="note tip" style="margin-top: 20px;">
+                <i class="fas fa-child"></i> <strong>С ребенком:</strong> Дети до 6 лет бесплатно. Для ребенка 8 лет можно купить отдельную карту или использовать одну на всех.
+            </div>
+        </div>
+    </template>
+
+    <template id="expenses-template">
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-money-bill-wave"></i> Учет расходов</h2>
+            </div>
+            
+            <!-- Форма добавления расходов -->
+            <div class="expense-form">
+                <h3 style="margin-bottom: 16px;">Добавить расход</h3>
+                
+                <div class="form-group">
+                    <label class="form-label">Описание</label>
+                    <input type="text" class="form-input" id="expense-description" placeholder="Например: Обед в кафе" maxlength="50">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px;">
+                    <div class="form-group">
+                        <label class="form-label">Сумма</label>
+                        <input type="number" class="form-input" id="expense-amount" placeholder="0" min="0" step="0.01">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Валюта</label>
+                        <select class="form-select" id="expense-currency">
+                            <option value="TL">TL</option>
+                            <option value="BYN">BYN</option>
+                            <option value="EUR">EUR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Категория</label>
+                    <select class="form-select" id="expense-category">
+                        <option value="Транспорт">🚌 Транспорт</option>
+                        <option value="Еда">🍽️ Еда</option>
+                        <option value="Жилье">🏨 Жилье</option>
+                        <option value="Развлечения">🎭 Развлечения</option>
+                        <option value="Сувениры">🎁 Сувениры</option>
+                        <option value="Прочее">📦 Прочее</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="addNewExpense()">
+                    <i class="fas fa-plus"></i> Добавить расход
+                </button>
+            </div>
+            
+            <!-- Список расходов -->
+            <div class="expenses-list">
+                <h3 style="margin-bottom: 12px;">История расходов</h3>
+                <div id="expenses-container">
+                    <!-- Расходы будут добавляться сюда -->
+                </div>
+            </div>
+            
+            <!-- Итоги -->
+            <div class="total-expenses">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>Всего расходов:</span>
+                    <span id="total-amount" style="font-weight: 700; font-size: 1.3rem; color: var(--primary);">0 TL</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="budget-progress" style="width: 0%"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--gray-500); margin-top: 4px;">
+                    <span>Бюджет: 10,000 TL</span>
+                    <span id="budget-left">Осталось: 10,000 TL</span>
+                </div>
+                
+                <div style="display: flex; gap: 12px; margin-top: 16px;">
+                    <button class="btn btn-outline btn-small" onclick="clearAllExpenses()">
+                        <i class="fas fa-trash"></i> Очистить все
+                    </button>
+                    <button class="btn btn-outline btn-small" onclick="exportExpenses()">
+                        <i class="fas fa-download"></i> Экспорт
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="converter-template">
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-calculator"></i> Конвертер валют</h2>
+            </div>
+            
+            <p style="margin-bottom: 16px; color: var(--gray-600);">
+                Курс на февраль 2026: 1 TL ≈ 0.03 BYN | 1 EUR ≈ 112 TL | 1 USD ≈ 94,7 TL
+            </p>
+            
+            <div style="text-align: center; margin-bottom: 20px;">
+                <input type="number" id="amount-input" class="currency-input" placeholder="Введите сумму" value="100" style="max-width: 200px;">
+                <button class="btn" onclick="convertCurrency('tl', document.getElementById('amount-input').value)" style="width: auto; margin-top: 12px;">
+                    <i class="fas fa-sync-alt"></i> Конвертировать
+                </button>
+            </div>
+            
+            <div class="converter-grid">
+                <div class="currency-card">
+                    <div class="currency-flag">🇹🇷</div>
+                    <h3 style="font-size: 1rem; margin-bottom: 8px;">Турецкая лира</h3>
+                    <div id="tl-value" style="font-size: 1.4rem; font-weight: bold; color: var(--primary); margin: 8px 0;">100</div>
+                    <input type="number" id="tl-input" class="currency-input" value="100" oninput="convertCurrency('tl', this.value)">
+                </div>
+                
+                <div class="currency-card">
+                    <div class="currency-flag">🇧🇾</div>
+                    <h3 style="font-size: 1rem; margin-bottom: 8px;">Белорусский рубль</h3>
+                    <div id="byn-value" style="font-size: 1.4rem; font-weight: bold; color: var(--primary); margin: 8px 0;">11050</div>
+                    <input type="number" id="byn-input" class="currency-input" value="1050" oninput="convertCurrency('byn', this.value)">
+                </div>
+                
+                <div class="currency-card">
+                    <div class="currency-flag">🇪🇺</div>
+                    <h3 style="font-size: 1rem; margin-bottom: 8px;">Евро</h3>
+                    <div id="eur-value" style="font-size: 1.4rem; font-weight: bold; color: var(--primary); margin: 8px 0;">2.86</div>
+                    <input type="number" id="eur-input" class="currency-input" value="2.86" oninput="convertCurrency('eur', this.value)">
+                </div>
+                
+                <div class="currency-card">
+                    <div class="currency-flag">🇺🇸</div>
+                    <h3 style="font-size: 1rem; margin-bottom: 8px;">Доллар</h3>
+                    <div id="usd-value" style="font-size: 1.4rem; font-weight: bold; color: var(--primary); margin: 8px 0;">3.13</div>
+                    <input type="number" id="usd-input" class="currency-input" value="3.13" oninput="convertCurrency('usd', this.value)">
+                </div>
+            </div>
+            
+            <div class="note tip" style="margin-top: 20px;">
+                <i class="fas fa-lightbulb"></i> <strong>Совет:</strong> Меняйте деньги в обменниках в центре города, а не в аэропорту.
+            </div>
+        </div>
+    </template>
+
+    <template id="food-template">
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-utensils"></i> Бюджетное питание</h2>
+            </div>
+            
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-hamburger"></i> Уличная еда
+                </div>
+                <div class="food-card-body">
+                    <div class="food-item">
+                        <span>Симит (бублик)</span>
+                        <span style="font-weight: 600; color: var(--primary);">5-10 TL</span>
+                    </div>
+                    <div class="food-item">
+                        <span>Балык-экмек (рыба в хлебе)</span>
+                        <span style="font-weight: 600; color: var(--primary);">50-80 TL</span>
+                    </div>
+                    <div class="food-item">
+                        <span>Мидье долма (мидии)</span>
+                        <span style="font-weight: 600; color: var(--primary);">10-15 TL/шт</span>
+                    </div>
+                    <div class="food-item" style="border-bottom: none;">
+                        <span>Каштаны/кукуруза</span>
+                        <span style="font-weight: 600; color: var(--primary);">20-30 TL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-pizza-slice"></i> Фаст-фуд
+                </div>
+                <div class="food-card-body">
+                    <div class="food-item">
+                        <span>Дёнер-кебаб</span>
+                        <span style="font-weight: 600; color: var(--primary);">60-100 TL</span>
+                    </div>
+                    <div class="food-item">
+                        <span>Пиде (турецкая пицца)</span>
+                        <span style="font-weight: 600; color: var(--primary);">80-150 TL</span>
+                    </div>
+                    <div class="food-item">
+                        <span>Лахмаджун</span>
+                        <span style="font-weight: 600; color: var(--primary);">40-70 TL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-coffee"></i> Напитки
+                </div>
+                <div class="food-card-body">
+                    <div class="food-item">
+                        <span>Чай</span>
+                        <span style="font-weight: 600; color: var(--primary);">10-20 TL</span>
+                    </div>
+                    <div class="food-item">
+                        <span>Турецкий кофе</span>
+                        <span style="font-weight: 600; color: var(--primary);">30-50 TL</span>
+                    </div>
+                    <div class="food-item" style="border-bottom: none;">
+                        <span>Айран</span>
+                        <span style="font-weight: 600; color: var(--primary);">15-25 TL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin: 20px 0 12px 0;">Рекомендуемые места</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div style="font-weight: 600; margin-bottom: 4px;">Sultanahmet Dönercisi</div>
+                    <p style="font-size: 0.9rem; color: var(--gray-600);">Возле мечети Султанахмет</p>
+                    <div class="tag food" style="margin-top: 8px;">
+                        <i class="fas fa-utensils"></i> 80-120 TL
+                    </div>
+                    <button class="btn btn-outline btn-small" style="margin-top: 8px; padding: 6px 12px;" onclick="addExpense('Обед Sultanahmet Dönercisi', 100, 'Еда')">
+                        <i class="fas fa-plus"></i> Добавить расход
+                    </button>
+                </div>
+                
+                <div class="timeline-item">
+                    <div style="font-weight: 600; margin-bottom: 4px;">Столовая при мечети Сулеймание</div>
+                    <p style="font-size: 0.9rem; color: var(--gray-600);">Аутентично и дешево, лучший вид</p>
+                    <div class="tag food" style="margin-top: 8px;">
+                        <i class="fas fa-utensils"></i> 60-100 TL
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note tip" style="margin-top: 20px;">
+                <i class="fas fa-map-marker-alt"></i> <strong>Где искать дешевую еду:</strong> Районы Аксарай, Лалели, столовые при мечетях, улочки вдали от туристических центров.
+            </div>
+        </div>
+    </template>
 
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('active');
-        });
-
-        // Tab switching
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons and contents
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked button and corresponding content
-                btn.classList.add('active');
-                const tabId = btn.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    // Update active nav link
-                    document.querySelectorAll('.nav-links a').forEach(link => {
-                        link.classList.remove('active');
+        // Хранилище данных
+        let expenses = JSON.parse(localStorage.getItem('istanbul_expenses')) || [];
+        let currentPage = 'day1';
+        const BUDGET = 10000; // Бюджет в TL
+        
+        // Курсы валют
+        const rates = {
+            TL: 1,
+            BYN: 10.5,
+            EUR: 0.0286,
+            USD: 0.0313
+        };
+        
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPage('day1');
+            updateExpensesList();
+            updateBudgetInfo();
+            
+            // Обработчики навигации
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.dataset.page;
+                    loadPage(page);
+                    
+                    // Обновляем активный элемент навигации
+                    document.querySelectorAll('.nav-item').forEach(nav => {
+                        nav.classList.remove('active');
                     });
                     this.classList.add('active');
-                    
-                    // Scroll to target
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    document.getElementById('navLinks').classList.remove('active');
-                }
+                });
             });
+            
+            // Загрузка дней при скролле (ленивая загрузка)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const day = entry.target.id;
+                        // Можно подгрузить дополнительный контент для дня
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Инициализируем конвертер
+            convertCurrency('tl', 100);
         });
-
-        // Currency converter
-        const rates = {
-            tl: 1,
-            byn: 10.5,
-            eur: 0.0286,
-            usd: 0.0313
-        };
-
+        
+        // Загрузка страницы
+        function loadPage(page) {
+            currentPage = page;
+            const contentArea = document.getElementById('content-area');
+            
+            // Показываем лоадер
+            contentArea.innerHTML = '<div style="text-align: center; padding: 40px;"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary);"></i></div>';
+            
+            // Имитация загрузки для UX
+            setTimeout(() => {
+                const template = document.getElementById(`${page}-template`);
+                if (template) {
+                    contentArea.innerHTML = template.innerHTML;
+                    
+                    // Прокручиваем вверх
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Обновляем заголовок в хедере
+                    updateHeaderTitle(page);
+                }
+            }, 300);
+        }
+        
+        // Обновление заголовка
+        function updateHeaderTitle(page) {
+            const titles = {
+                'day1': 'День 1: Прилет',
+                'day2': 'День 2: Султанахмет',
+                'day3': 'День 3: Базары',
+                'transport': 'Транспорт',
+                'expenses': 'Учет расходов',
+                'converter': 'Конвертер валют',
+                'food': 'Бюджетное питание'
+            };
+            
+            const header = document.querySelector('.header-content .logo span');
+            if (header && titles[page]) {
+                const originalText = 'Istanbul Guide';
+                header.textContent = titles[page];
+                
+                // Возвращаем оригинальный текст через 3 секунды
+                setTimeout(() => {
+                    header.textContent = originalText;
+                }, 3000);
+            }
+        }
+        
+        // Конвертер валют
         function convertCurrency(from, value) {
             let tlValue;
-            if (from === 'tl') tlValue = value;
-            else if (from === 'byn') tlValue = value / rates.byn;
-            else if (from === 'eur') tlValue = value / rates.eur;
-            else if (from === 'usd') tlValue = value / rates.usd;
-
-            // Update all fields
-            document.getElementById('tlValue').textContent = tlValue.toFixed(2);
-            document.getElementById('bynValue').textContent = (tlValue * rates.byn).toFixed(2);
-            document.getElementById('eurValue').textContent = (tlValue * rates.eur).toFixed(2);
-            document.getElementById('usdValue').textContent = (tlValue * rates.usd).toFixed(2);
-
-            document.getElementById('tlInput').value = tlValue.toFixed(2);
-            document.getElementById('bynInput').value = (tlValue * rates.byn).toFixed(2);
-            document.getElementById('eurInput').value = (tlValue * rates.eur).toFixed(2);
-            document.getElementById('usdInput').value = (tlValue * rates.usd).toFixed(2);
+            const numValue = parseFloat(value) || 0;
+            
+            switch(from) {
+                case 'tl': tlValue = numValue; break;
+                case 'byn': tlValue = numValue / rates.BYN; break;
+                case 'eur': tlValue = numValue / rates.EUR; break;
+                case 'usd': tlValue = numValue / rates.USD; break;
+                default: tlValue = numValue;
+            }
+            
+            // Обновляем значения
+            document.getElementById('tl-value').textContent = tlValue.toFixed(2);
+            document.getElementById('byn-value').textContent = (tlValue * rates.BYN).toFixed(2);
+            document.getElementById('eur-value').textContent = (tlValue * rates.EUR).toFixed(2);
+            document.getElementById('usd-value').textContent = (tlValue * rates.USD).toFixed(2);
+            
+            // Обновляем инпуты
+            document.getElementById('tl-input').value = tlValue.toFixed(2);
+            document.getElementById('byn-input').value = (tlValue * rates.BYN).toFixed(2);
+            document.getElementById('eur-input').value = (tlValue * rates.EUR).toFixed(2);
+            document.getElementById('usd-input').value = (tlValue * rates.USD).toFixed(2);
         }
-
-        // Initialize converter
-        document.getElementById('convertBtn').addEventListener('click', function() {
-            const amount = parseFloat(document.getElementById('amountInput').value) || 100;
-            convertCurrency('tl', amount);
-        });
-
-        // Add input event listeners for currency inputs
-        document.getElementById('tlInput').addEventListener('input', function() {
-            convertCurrency('tl', parseFloat(this.value) || 0);
-        });
-
-        document.getElementById('bynInput').addEventListener('input', function() {
-            convertCurrency('byn', parseFloat(this.value) || 0);
-        });
-
-        document.getElementById('eurInput').addEventListener('input', function() {
-            convertCurrency('eur', parseFloat(this.value) || 0);
-        });
-
-        document.getElementById('usdInput').addEventListener('input', function() {
-            convertCurrency('usd', parseFloat(this.value) || 0);
-        });
-
-        // Show all days
-        document.getElementById('showAllDays').addEventListener('click', function() {
-            const days = ['4', '5', '6', '7'];
-            const dayTitles = [
-                'День 4: Азиатская сторона',
-                'День 5: Фатих и стены Константинополя',
-                'День 6: Свободный день / Круиз по Босфору',
-                'День 7: Отъезд'
-            ];
+        
+        // Быстрое добавление расхода
+        function addExpense(description, amount, category) {
+            const expense = {
+                id: Date.now(),
+                description: description,
+                amount: amount,
+                currency: 'TL',
+                category: category,
+                date: new Date().toLocaleDateString('ru-RU'),
+                timestamp: Date.now()
+            };
             
-            const dayContents = [
-                `Паром до Кадыкёя, исследование азиатской стороны, паром в Каракёй или Ускюдар.`,
-                `Мечеть Фатих, монастырь Хора (проверить открытие), стены Константинополя, район Вефа.`,
-                `Длинный круиз до Анадолу Кавагы или шопинг, прощальный ужин.`,
-                `Трансфер в аэропорт: T1 → F1 → автобус Havabus. Вылет в 15:50.`
-            ];
+            expenses.push(expense);
+            saveExpenses();
+            updateExpensesList();
+            updateBudgetInfo();
+            showToast(`Добавлен расход: ${description} - ${amount} TL`);
             
-            const itineraryTab = document.getElementById('itinerary');
+            // Переходим на страницу расходов
+            loadPage('expenses');
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
+                if (nav.dataset.page === 'expenses') {
+                    nav.classList.add('active');
+                }
+            });
+        }
+        
+        // Добавление нового расхода из формы
+        function addNewExpense() {
+            const description = document.getElementById('expense-description').value.trim();
+            const amount = parseFloat(document.getElementById('expense-amount').value);
+            const currency = document.getElementById('expense-currency').value;
+            const category = document.getElementById('expense-category').value;
             
-            days.forEach((dayNum, index) => {
-                const dayCard = document.createElement('div');
-                dayCard.className = 'card';
-                dayCard.id = `day${parseInt(dayNum) + 3}`;
-                
-                dayCard.innerHTML = `
-                    <div class="card-header">
-                        <div>
-                            <h2>${dayTitles[index]}</h2>
-                            <p class="text-primary">${index === 3 ? 'Возвращение домой' : 'Исследование города'}</p>
-                        </div>
-                        <div class="day-badge">${parseInt(dayNum) + 3}</div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="time">
-                                <i class="fas fa-ship"></i> Основные активности
-                            </div>
-                            <p>${dayContents[index]}</p>
-                            <div class="tag ${index === 0 ? 'transport-tag' : index === 3 ? 'price-tag' : 'food-tag'}">
-                                <i class="fas fa-${index === 0 ? 'ship' : index === 3 ? 'plane' : 'camera'}"></i>
-                                ${index === 0 ? 'Паромы' : index === 3 ? 'Трансфер' : 'Достопримечательности'}
-                            </div>
-                        </div>
+            if (!description || !amount || amount <= 0) {
+                showToast('Пожалуйста, заполните все поля правильно', 'error');
+                return;
+            }
+            
+            const expense = {
+                id: Date.now(),
+                description: description,
+                amount: amount,
+                currency: currency,
+                category: category,
+                date: new Date().toLocaleDateString('ru-RU'),
+                timestamp: Date.now()
+            };
+            
+            expenses.push(expense);
+            saveExpenses();
+            updateExpensesList();
+            updateBudgetInfo();
+            showToast(`Расход добавлен: ${description}`);
+            
+            // Очищаем форму
+            document.getElementById('expense-description').value = '';
+            document.getElementById('expense-amount').value = '';
+            
+            // Прокручиваем к списку расходов
+            document.getElementById('expenses-container').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Удаление расхода
+        function deleteExpense(id) {
+            expenses = expenses.filter(expense => expense.id !== id);
+            saveExpenses();
+            updateExpensesList();
+            updateBudgetInfo();
+            showToast('Расход удален');
+        }
+        
+        // Обновление списка расходов
+        function updateExpensesList() {
+            const container = document.getElementById('expenses-container');
+            if (!container) return;
+            
+            if (expenses.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px 20px; color: var(--gray-500);">
+                        <i class="fas fa-receipt" style="font-size: 3rem; margin-bottom: 16px; opacity: 0.5;"></i>
+                        <p>Расходов пока нет</p>
+                        <p style="font-size: 0.9rem; margin-top: 8px;">Добавьте первый расход</p>
                     </div>
                 `;
-                
-                itineraryTab.insertBefore(dayCard, itineraryTab.lastElementChild);
-            });
-            
-            this.style.display = 'none';
-        });
-
-        // Initialize with default conversion
-        convertCurrency('tl', 100);
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.background = 'linear-gradient(135deg, rgba(26, 32, 44, 0.98) 0%, rgba(45, 55, 72, 0.98) 100%)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, rgba(26, 32, 44, 0.95) 0%, rgba(45, 55, 72, 0.95) 100%)';
+                return;
             }
+            
+            // Сортируем по дате (новые сверху)
+            expenses.sort((a, b) => b.timestamp - a.timestamp);
+            
+            container.innerHTML = expenses.map(expense => `
+                <div class="expense-item">
+                    <div>
+                        <div style="font-weight: 600;">${expense.description}</div>
+                        <div class="expense-category">
+                            ${getCategoryIcon(expense.category)} ${expense.category} • ${expense.date}
+                        </div>
+                    </div>
+                    <div>
+                        <div class="expense-amount">${expense.amount} ${expense.currency}</div>
+                        <div style="text-align: right; margin-top: 4px;">
+                            <button onclick="deleteExpense(${expense.id})" style="background: none; border: none; color: var(--gray-400); font-size: 0.9rem; padding: 4px 8px;">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Иконки категорий
+        function getCategoryIcon(category) {
+            const icons = {
+                'Транспорт': '🚌',
+                'Еда': '🍽️',
+                'Жилье': '🏨',
+                'Развлечения': '🎭',
+                'Сувениры': '🎁',
+                'Прочее': '📦'
+            };
+            return icons[category] || '💰';
+        }
+        
+        // Обновление информации о бюджете
+        function updateBudgetInfo() {
+            const total = expenses.reduce((sum, expense) => {
+                // Конвертируем все в TL
+                let amountInTL = expense.amount;
+                if (expense.currency !== 'TL') {
+                    amountInTL = expense.amount / rates[expense.currency];
+                }
+                return sum + amountInTL;
+            }, 0);
+            
+            const totalElement = document.getElementById('total-amount');
+            const budgetLeftElement = document.getElementById('budget-left');
+            const progressElement = document.getElementById('budget-progress');
+            
+            if (totalElement) {
+                totalElement.textContent = `${total.toFixed(2)} TL`;
+            }
+            
+            if (budgetLeftElement) {
+                const left = BUDGET - total;
+                budgetLeftElement.textContent = `Осталось: ${left.toFixed(2)} TL`;
+                budgetLeftElement.style.color = left < 0 ? 'var(--primary)' : left < BUDGET * 0.2 ? 'var(--warning)' : 'var(--gray-500)';
+            }
+            
+            if (progressElement) {
+                const progress = Math.min((total / BUDGET) * 100, 100);
+                progressElement.style.width = `${progress}%`;
+                progressElement.style.background = progress > 80 ? 
+                    'linear-gradient(90deg, var(--primary), #EF4444)' : 
+                    'linear-gradient(90deg, var(--primary), var(--accent))';
+            }
+        }
+        
+        // Очистка всех расходов
+        function clearAllExpenses() {
+            if (expenses.length === 0) {
+                showToast('Нет расходов для удаления', 'info');
+                return;
+            }
+            
+            if (confirm('Вы уверены, что хотите удалить все расходы? Это действие нельзя отменить.')) {
+                expenses = [];
+                saveExpenses();
+                updateExpensesList();
+                updateBudgetInfo();
+                showToast('Все расходы удалены');
+            }
+        }
+        
+        // Экспорт расходов
+        function exportExpenses() {
+            if (expenses.length === 0) {
+                showToast('Нет расходов для экспорта', 'info');
+                return;
+            }
+            
+            const csv = [
+                ['Описание', 'Сумма', 'Валюта', 'Категория', 'Дата'],
+                ...expenses.map(exp => [
+                    exp.description,
+                    exp.amount,
+                    exp.currency,
+                    exp.category,
+                    exp.date
+                ])
+            ].map(row => row.join(',')).join('\n');
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `istanbul_expenses_${new Date().toISOString().slice(0, 10)}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            showToast('Расходы экспортированы в CSV');
+        }
+        
+        // Сохранение расходов в localStorage
+        function saveExpenses() {
+            localStorage.setItem('istanbul_expenses', JSON.stringify(expenses));
+        }
+        
+        // Toast уведомления
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            if (!toast) return;
+            
+            toast.textContent = message;
+            toast.style.display = 'block';
+            toast.style.background = type === 'error' ? '#EF4444' : type === 'info' ? '#3B82F6' : '#10B981';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Адаптация для touch устройств
+        document.addEventListener('touchstart', function() {}, {passive: true});
+        
+        // Предотвращение масштабирования при двойном тапе
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+        
+        // Обработка свайпов для навигации
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                const pages = ['day1', 'day2', 'day3', 'transport', 'expenses', 'converter', 'food'];
+                const currentIndex = pages.indexOf(currentPage);
+                
+                if (diff > 0 && currentIndex < pages.length - 1) {
+                    // Свайп влево - следующая страница
+                    const nextPage = pages[currentIndex + 1];
+                    loadPage(nextPage);
+                    updateNavActive(nextPage);
+                } else if (diff < 0 && currentIndex > 0) {
+                    // Свайп вправо - предыдущая страница
+                    const prevPage = pages[currentIndex - 1];
+                    loadPage(prevPage);
+                    updateNavActive(prevPage);
+                }
+            }
+        }
+        
+        function updateNavActive(page) {
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
+                if (nav.dataset.page === page) {
+                    nav.classList.add('active');
+                }
+            });
+        }
+        
+        // Автоматическое сохранение при закрытии
+        window.addEventListener('beforeunload', function() {
+            saveExpenses();
         });
     </script>
 </body>

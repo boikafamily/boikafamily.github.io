@@ -3,941 +3,1147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вишлист Насти на 8-летие</title>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>Путеводитель по Стамбулу - Экономное путешествие</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        :root {
+            --primary: #e30a17;
+            --secondary: #1b458f;
+            --accent: #ffc107;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #ffe6f0 0%, #fff0f9 100%);
-            color: #333333;
+            background-color: #f5f5f5;
+            color: var(--dark);
             line-height: 1.6;
-            padding: 12px;
-            min-height: 100vh;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            opacity: 0.03;
-            z-index: -1;
         }
         
         .container {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.1);
-            padding: 25px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255, 182, 193, 0.3);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        .header-content {
+        header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1527838832700-5059252407fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav {
+            background-color: var(--secondary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
         }
         
-        .photo-frame {
-            width: 180px;
-            height: 240px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 
-                0 8px 20px rgba(233, 30, 99, 0.2),
-                inset 0 0 0 3px white,
-                inset 0 0 0 7px #ffb6c1;
-            flex-shrink: 0;
-            background-color: #fff9fb;
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            padding: 1rem 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        section {
+            padding: 3rem 0;
+            background-color: white;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .section-title {
+            color: var(--secondary);
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .hotel-info {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .day-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .day-title {
+            color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .day-number {
+            background-color: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            font-weight: bold;
         }
         
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+        .day-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
         
-        .photo-frame img:hover {
-            transform: scale(1.02);
+        .time-slot {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 6px;
         }
         
-        .photo-placeholder {
-            font-size: 3rem;
-            color: #e91e63;
-            display: none;
-            z-index: 2;
-        }
-        
-        .header-text {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        h1 {
-            color: #e91e63;
-            margin-bottom: 12px;
-            font-size: 2.2rem;
-            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
-            position: relative;
-            display: inline-block;
-        }
-        
-        h1::after {
-            content: "";
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #e91e63, #ffb6c1);
-            border-radius: 5px;
-        }
-        
-        h2 {
-            color: #d81b60;
-            margin: 20px 0 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px dotted #ffcce0;
-            font-size: 1.5rem;
-        }
-        
-        .intro-text {
-            font-size: 1.05rem;
-            margin-bottom: 15px;
-            color: #444;
-            line-height: 1.7;
-            background-color: rgba(255, 240, 245, 0.5);
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid #ffb6c1;
-        }
-        
-        .rules {
-            background: linear-gradient(145deg, #fff5f9, #ffeef6);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 25px 0;
-            border-left: 6px solid #ff99cc;
-            box-shadow: 5px 5px 15px rgba(233, 30, 99, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .rules ol {
-            margin-left: 24px;
-            margin-top: 12px;
-            color: #444;
-            font-size: 1rem;
-        }
-        
-        .rules li {
-            margin-bottom: 12px;
-        }
-        
-        /* Таблица */
-        .gifts-table-wrapper {
-            margin-top: 20px;
-        }
-        
-        .gifts-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            box-shadow: 0 6px 16px rgba(233, 30, 99, 0.1);
-            border-radius: 15px;
-            overflow: hidden;
-            background-color: white;
-            border: 1px solid #ffe6ee;
-        }
-        
-        .gifts-table th {
-            background: #f8bbd0;
-            color: #880e4f;
-            padding: 12px 10px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        
-        .gifts-table td {
-            padding: 12px 10px;
-            border-bottom: 1px solid #f5f5f5;
-            vertical-align: middle;
-            font-size: 0.95rem;
-            color: #333333;
-        }
-        
-        .gifts-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .gifts-table tr.booked-row {
-            opacity: 0.75;
-            color: #777777;
-        }
-        
-        .gifts-table tr.booked-row strong {
-            text-decoration: line-through;
-            color: #777777;
-        }
-        
-        .gifts-table tr.booked-row .btn {
-            background: #f0f0f0 !important;
-            color: #777777 !important;
-            border: 1px solid #ddd !important;
-            box-shadow: none !important;
-        }
-        
-        .gifts-table tr.booked-row .btn-unbook {
-            background: linear-gradient(135deg, #ffecb3, #ffd54f) !important;
-            color: #e65100 !important;
-            border: none !important;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15) !important;
-        }
-        
-        /* Мобильные карточки */
-        .gifts-cards {
-            display: none;
-            margin-top: 20px;
-            gap: 16px;
-            flex-direction: column;
-        }
-        
-        .gift-card {
-            background: white;
-            border-radius: 16px;
-            padding: 16px;
-            box-shadow: 0 5px 12px rgba(233, 30, 99, 0.1);
-            border: 1px solid #ffe6ee;
-            color: #333333;
-        }
-        
-        .gift-card.booked {
-            opacity: 0.75;
-            color: #777777;
-        }
-        
-        .gift-card.booked h3 {
-            text-decoration: line-through;
-            color: #777777 !important;
-        }
-        
-        .gift-card.booked .btn {
-            background: #f0f0f0 !important;
-            color: #777777 !important;
-            border: 1px solid #ddd !important;
-            box-shadow: none !important;
-        }
-        
-        .gift-card.booked .btn-unbook {
-            background: linear-gradient(135deg, #ffecb3, #ffd54f) !important;
-            color: #e65100 !important;
-            border: none !important;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15) !important;
-        }
-        
-        .gift-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            color: #d81b60;
-        }
-        
-        .gift-card .comment {
-            font-size: 0.9rem;
-            color: #e91e63;
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-        
-        .gift-card .category {
-            display: inline-block;
-            padding: 4px 10px;
-            background: #fce4ec;
-            color: #880e4f;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        
-        .gift-card .status {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-        }
-        
-        .status-free { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
-        .status-booked { background: #f8bbd0; color: #880e4f; border: 1px solid #f48fb1; }
-        
-        .gift-card .btn-group {
+        .time {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
+            align-items: center;
+        }
+        
+        .time i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        
+        .place-card {
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+            background-color: white;
+        }
+        
+        .place-name {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-tag {
+            background-color: #e8f5e9;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 0.5rem 0;
+            color: #2e7d32;
+            font-weight: 500;
         }
         
         .btn {
-            padding: 8px 12px;
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
             border: none;
-            border-radius: 10px;
             cursor: pointer;
-            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c90a14;
+        }
+        
+        .btn-small {
+            padding: 0.3rem 0.8rem;
             font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         
-        .btn-preview { background: #e3f2fd; color: #0d47a1 !important; border: 1px solid #bbdefb; }
-        .btn-reserve { background: #f8bbd0; color: #880e4f !important; border: 1px solid #f48fb1; }
-        .btn-unbook { background: linear-gradient(135deg, #ffecb3, #ffd54f); color: #e65100 !important; border: 1px solid #ffd54f; }
-        .btn-confirm { background: #c8e6c9; color: #1b5e20 !important; border: 1px solid #a5d6a7; }
-        .btn-cancel { background: #eeeeee; color: #424242 !important; border: 1px solid #e0e0e0; }
-        .btn-disabled { background: #f5f5f5; color: #999 !important; border: 1px solid #ddd; cursor: not-allowed; opacity: 0.6; }
-        
-        /* Модальные окна */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.65);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
+        .converter {
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
         }
         
-        .modal {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            width: 90%;
-            max-width: 480px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            border: 2px solid #ffb6c1;
+        .converter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .converter-box {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
             text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
         }
         
-        .modal h3 {
-            color: #d81b60;
-            margin-bottom: 20px;
-            font-size: 1.4rem;
+        .currency-flag {
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
         
-        .modal p {
-            margin-bottom: 25px;
-            color: #444444;
-            font-size: 1.05rem;
-            line-height: 1.6;
+        .currency-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 1rem 0;
         }
         
-        .modal-buttons {
+        .weather-widget {
+            background: linear-gradient(135deg, #1b458f, #2a5cb5);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .weather-header {
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .temp {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        
+        .weather-icon {
+            font-size: 4rem;
+        }
+        
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .weather-item {
+            text-align: center;
+            padding: 1rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+        
+        .transport-card {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .transport-icon {
+            font-size: 2.5rem;
+            margin-right: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .transport-info h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .child-info {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 0.8rem;
+            text-align: left;
+        }
+        
+        table th {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
         
         footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
             text-align: center;
-            margin-top: 30px;
-            padding-top: 15px;
-            color: #d81b60;
-            font-size: 0.95rem;
-            border-top: 2px dashed #ffccd5;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
         }
         
-        .birthday-icon {
-            position: absolute;
-            font-size: 1.5rem;
-            color: rgba(233, 30, 99, 0.15);
-            z-index: -1;
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            margin-top: 0.5rem;
         }
         
-        .icon-1 { top: 5%; left: 5%; }
-        .icon-2 { top: 10%; right: 10%; }
-        .icon-3 { bottom: 15%; left: 8%; }
-        .icon-4 { bottom: 20%; right: 5%; }
+        .map-link i {
+            margin-right: 5px;
+        }
         
-        #custom-notification {
-            position: fixed;
-            top: 12px;
-            right: 12px;
-            padding: 10px 18px;
-            border-radius: 12px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-            z-index: 10000;
-            font-weight: bold;
+        .food-place {
             display: flex;
             align-items: center;
-            gap: 8px;
-            transform: translateX(150%);
-            transition: transform 0.5s ease;
-            max-width: 320px;
-            font-size: 0.9rem;
-            color: #333333;
+            padding: 0.8rem;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            margin: 0.5rem 0;
         }
         
-        @media (max-width: 900px) {
-            .header-content { justify-content: center; text-align: center; }
-            .header-text h1::after { left: 50%; transform: translateX(-50%); width: 80%; }
+        .food-icon {
+            color: #e30a17;
+            margin-right: 10px;
         }
         
         @media (max-width: 768px) {
-            .gifts-table-wrapper { display: none; }
-            .gifts-cards { display: flex; }
-            .container { padding: 20px; }
-            h1 { font-size: 2rem; }
-            .photo-frame { width: 150px; height: 200px; }
-            .btn { padding: 7px 10px; font-size: 0.85rem; }
-            .birthday-icon { display: none; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--secondary);
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .day-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .converter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .transport-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .transport-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
         }
         
-       @media (max-width: 480px) {
-    body {
-        padding: 8px;
-    }
-    .container {
-        padding: 15px;
-        border-radius: 15px;
-    }
-    .photo-frame {
-        width: 140px;
-        height: 190px;
-        margin: 0 auto;
-        border-radius: 12px;
-    }
-    .header-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-    .header-text {
-        min-width: 100%;
-    }
-    h1 {
-        font-size: 1.6rem;
-        margin-bottom: 15px;
-    }
-    h2 {
-        font-size: 1.3rem;
-        margin: 15px 0 12px;
-    }
-    .intro-text {
-        font-size: 0.9rem;
-        padding: 12px;
-        line-height: 1.5;
-        margin-bottom: 12px;
-    }
-    .rules {
-        padding: 15px;
-        font-size: 0.9rem;
-        margin: 15px 0;
-    }
-    .rules li {
-        margin-bottom: 10px;
-    }
-    .btn {
-        padding: 10px 14px !important;
-        font-size: 0.85rem !important;
-        min-height: 44px;
-        min-width: 44px;
-    }
-    .gift-card {
-        padding: 14px;
-        margin-bottom: 12px;
-    }
-    .gift-card h3 {
-        font-size: 1rem;
-        line-height: 1.3;
-    }
-    footer {
-        font-size: 0.85rem;
-        padding: 10px 0;
-        margin-top: 20px;
-    }
-    footer a {
-        display: inline-block;
-        padding: 6px 10px;
-        font-size: 0.85rem;
-        margin: 8px 0;
-        word-break: break-all;
-    }
-}
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .tip {
+            background-color: #d1ecf1;
+            border-left: 4px solid #0dcaf0;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+        }
     </style>
 </head>
 <body>
-    <div class="birthday-icon icon-1">🎀</div>
-    <div class="birthday-icon icon-2">🎈</div>
-    <div class="birthday-icon icon-3">🎁</div>
-    <div class="birthday-icon icon-4">🦄</div>
-    
-    <!-- Модальные окна -->
-    <div class="modal-overlay" id="confirm-reserve-modal">
-        <div class="modal">
-            <h3>Подтвердить бронирование?</h3>
-            <p id="confirm-reserve-text">Вы действительно хотите забронировать этот подарок?</p>
-            <div class="modal-buttons">
-                <button class="btn btn-cancel" id="cancel-reserve">Отменить</button>
-                <button class="btn btn-confirm" id="confirm-reserve">Да, забронировать</button>
-            </div>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">Стамбул<span>Гид</span></div>
+            <p>Полный путеводитель по Стамбулу с экономичным маршрутом на 7 дней</p>
+            <p>13-19 февраля 2026 года</p>
         </div>
-    </div>
+    </header>
     
-    <div class="modal-overlay" id="unbook-modal">
-        <div class="modal">
-            <h3>Отменить бронирование?</h3>
-            <p id="unbook-text">Вы уверены, что хотите отменить бронирование этого подарка? После отмены он снова станет доступен для других гостей.</p>
-            <div class="modal-buttons">
-                <button class="btn btn-cancel" id="cancel-unbook">Нет, оставить</button>
-                <button class="btn btn-unbook" id="confirm-unbook">Да, отменить</button>
-            </div>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="#home"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="#itinerary"><i class="fas fa-route"></i> Маршрут по дням</a></li>
+                <li><a href="#transport"><i class="fas fa-subway"></i> Транспорт</a></li>
+                <li><a href="#converter"><i class="fas fa-calculator"></i> Конвертер валют</a></li>
+                <li><a href="#food"><i class="fas fa-utensils"></i> Бюджетное питание</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-    </div>
+    </nav>
     
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <div class="photo-frame">
-                    <img src="./IMG_5643.jpg" alt="Настя, именинница" id="nastya-photo" onerror="showPlaceholder()">
-                    <div class="photo-placeholder" id="photo-placeholder"><i class="fas fa-birthday-cake"></i></div>
-                </div>
-                <div class="header-text">
-                    <h1><i class="fas fa-birthday-cake"></i> Вишлист Насти на 8-летие</h1>
-                    <div class="intro-text">
-                        Привет! Это Я - Настя, и я очень рада, что ты придёшь ко мне на день рождения!<br>
-                        Мне исполняется уже 8 лет, и здорово, что мы отметим этот праздник вместе.
-                    </div>
-                    <div class="intro-text">
-                        Ниже — мой список хотелок. Выбирай, что тебе по душе!<br>
-                        Но, пожалуйста, помни: дарить что-то из этого списка совсем не обязательно.<br>
-                        <strong>Главное — твоё присутствие!</strong>
-                    </div>
-                </div>
+    <main class="container">
+        <!-- Hotel Information -->
+        <section id="hotel">
+            <h2 class="section-title">Ваш отель</h2>
+            <div class="hotel-info">
+                <h3><i class="fas fa-hotel"></i> Gloria Suites Old City</h3>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Адрес:</strong> Gedikpasa Caddesi Sehsuvarbey Mahallesi Paye Sokak NO:2, Фатих, 34126 Стамбул</p>
+                <p><i class="fas fa-info-circle"></i> Отель расположен в историческом центре, в пешей доступности от основных достопримечательностей. Ближайшая остановка трамвая T1 - Çemberlitaş (5 минут пешком).</p>
+                <a href="https://maps.google.com/?q=Gedikpasa+Caddesi+Sehsuvarbey+Mahallesi+Paye+Sokak+NO2+Fatih+Istanbul" target="_blank" class="btn btn-small">
+                    <i class="fas fa-map-marked-alt"></i> Открыть на карте
+                </a>
             </div>
-        </header>
-        
-        <section class="rules">
-            <h2><i class="fas fa-info-circle"></i> Как это работает:</h2>
-            <ol>
-                <li>Нажми «Посмотреть», чтобы увидеть подарок на Wildberries.</li>
-                <li>Если хочешь его подарить — нажми «Забронировать».</li>
-                <li>Подтверди бронирование в появившемся окне.</li>
-                <li>Если передумаешь — нажми «Отменить бронь» (только свои брони).</li>
-                <li>Этот список — только идеи. Главное — ты сам(а)! ❤️</li>
-            </ol>
-             <div class="intro-text">
-                     <i>*если список не загрузился сразу, подожди секунд 5-10, все появится. Если не получилось, напиши маме или папе!</i> <br>
-                    </div>
         </section>
         
-        <section>
-            <h2><i class="fas fa-gifts"></i> Список подарков</h2>
-            <div class="gifts-table-wrapper">
-                <table class="gifts-table">
-                    <thead><tr><th>№</th><th>Название</th><th>Категория</th><th>Ссылка</th><th>Статус</th></tr></thead>
-                    <tbody id="gifts-table-body"></tbody>
-                </table>
+        <!-- Weather Widget -->
+        <section id="weather">
+            <h2 class="section-title">Погода в Стамбуле</h2>
+            <div class="weather-widget">
+                <div class="weather-header">
+                    <div>
+                        <h3>Февраль 2026</h3>
+                        <p>Средняя температура: +8°C</p>
+                    </div>
+                    <div class="temp">+9°C</div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="weather-icon">⛅</div>
+                    <p>Переменная облачность, возможен дождь</p>
+                </div>
+                <div class="weather-details">
+                    <div class="weather-item">
+                        <p><i class="fas fa-wind"></i> Ветер</p>
+                        <p>15 км/ч</p>
+                    </div>
+                    <div class="weather-item">
+                        <p><i class="fas fa-tint"></i> Влажность</p>
+                        <p>75%</p>
+                    </div>
+                    <div class="weather-item">
+                        <p><i class="fas fa-sun"></i> День</p>
+                        <p>10:30 - 19:00</p>
+                    </div>
+                    <div class="weather-item">
+                        <p><i class="fas fa-temperature-low"></i> Ощущается</p>
+                        <p>+6°C</p>
+                    </div>
+                </div>
+                <div class="tip">
+                    <p><strong>Совет:</strong> В феврале в Стамбуле прохладно и ветрено. Берите теплую одежду, непромокаемую обувь и зонт.</p>
+                </div>
             </div>
-            <div class="gifts-cards" id="gifts-cards-container"></div>
         </section>
         
-       <footer>
-    Спасибо, что делаете мой день рождения особенным! 
-    <div style="margin: 10px 0;">
-        <i class="fas fa-heart" style="color: #e91e63; margin: 0 5px;"></i> 
-        Телефон мамы Ани: 
-        <a href="tel:+375296834036" 
-           style="color: #d81b60; 
-                  text-decoration: none; 
-                  font-weight: bold;
-                  padding: 2px 8px;
-                  background: rgba(255, 182, 193, 0.2);
-                  border-radius: 8px;
-                  border: 1px solid #ffb6c1;">
-            <i class="fas fa-phone-alt" style="margin-right: 5px;"></i>
-            +375-29-683-40-36
-        </a>
-        <i class="fas fa-heart" style="color: #e91e63; margin: 0 5px;"></i>
-    </div>
-</footer>
-    </div>
-    
-   <script>
-   /* ================== SUPABASE ================== */
-const supabaseClient = supabase.createClient(
-  'https://yjithstkzcvcycmrfqet.supabase.co',
-  'sb_publishable_-3Ipd2kAASwMYidT-kEoeg_6X07zYkl'
-);
-
-// Исходный список подарков
-const initialGifts = [
-  { id: 1, name: "Пижама для девочки со штанами", category: "Одежда", link: "https://www.wildberries.by/catalog/446793216/detail.aspx?size=631539819", comment: "Рост 135-145" },
-  { id: 2, name: "Кигуруми Пикачу- Пижама Для Дома", category: "Одежда", link: "https://www.wildberries.by/catalog/177554973/detail.aspx?size=293993230", comment: "Рост 140" },
-  { id: 3, name: "Тапочки домашние кигуруми Панда", category: "Одежда", link: "https://www.wildberries.by/catalog/569754672/detail.aspx?size=780884503", comment: "34-39" },
-  { id: 4, name: "Настольная игра Словодел Великан", category: "Игры", link: "https://www.wildberries.by/catalog/374826/detail.aspx?size=1679515", comment: "" },
-  { id: 5, name: "Настольная игра Властелин слов", category: "Игры", link: "https://www.wildberries.by/catalog/288097336/detail.aspx?size=440248049", comment: "" },
-  { id: 6, name: "Набор для опытов и творчества Зелье", category: "Творчество", link: "https://www.wildberries.by/catalog/436264576/detail.aspx?size=618930955", comment: "" },
-  { id: 7, name: "Портативный мини принтер для наклеек и фото", category: "Электроника", link: "https://www.wildberries.by/catalog/202653223/detail.aspx?size=326729613", comment: "" },
-  { id: 8, name: "Книга интервью анкета для девочек и мальчиков", category: "Творчество", link: "https://www.wildberries.by/catalog/15473870/detail.aspx?size=44937170", comment: "" },
-  { id: 9, name: "Подарок девочке создай часы", category: "Электроника", link: "https://www.wildberries.by/catalog/234551397/detail.aspx?targetUrl=EX", comment: "" },
-  { id: 10, name: "Набор для создания сквишей лапка", category: "Творчество", link: "https://www.wildberries.by/catalog/314533756/detail.aspx", comment: "" },
-  { id: 11, name: "Волшебная палочка Гермионы Грейнджер", category: "Игры", link: "https://www.wildberries.by/catalog/98330970/detail.aspx?targetUrl=MI", comment: "" },
-  { id: 12, name: "Мантия Гарри Поттер Гриффиндор с галстуком и палочкой", category: "Одежда", link: "https://www.wildberries.by/catalog/300570771/detail.aspx?targetUrl=MI&size=815358965", comment: "Рост 135-145" }
-];
-
-// Глобальные переменные
-let gifts = [...initialGifts];
-let giftToReserve = null;
-let giftToUnbook = null;
-let userBookings = {}; // Хранит ID подарков, забронированных текущим пользователем
-let userId = null; // Уникальный ID пользователя
-
-// DOM
-const tableBody = document.getElementById('gifts-table-body');
-const cardsContainer = document.getElementById('gifts-cards-container');
-const confirmReserveModal = document.getElementById('confirm-reserve-modal');
-const unbookModal = document.getElementById('unbook-modal');
-
-/* ===== ГЕНЕРАЦИЯ УНИКАЛЬНОГО ID ПОЛЬЗОВАТЕЛЯ ===== */
-function generateUserId() {
-    // Проверяем, есть ли уже ID в localStorage
-    let id = localStorage.getItem('nastya_wishlist_user_id');
-    
-    if (!id) {
-        // Генерируем новый уникальный ID
-        id = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-        localStorage.setItem('nastya_wishlist_user_id', id);
+        <!-- Itinerary -->
+        <section id="itinerary">
+            <h2 class="section-title">Маршрут по дням</h2>
+            
+            <!-- Day 1 -->
+            <div class="day-card">
+                <div class="day-title">
+                    <h3>День 1: Пятница, 13.02 - Прилет и заселение</h3>
+                    <div class="day-number">1</div>
+                </div>
+                <div class="day-content">
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-plane-departure"></i> 09:10 - 14:50</div>
+                        <p>Вылет из Минска, прилет в Стамбул (аэропорт SAW)</p>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-bus"></i> 15:50 - 17:30</div>
+                        <p>Трансфер в отель: автобус Havabus до Таксим → метро M2 до Vezneciler → пешком до отеля</p>
+                        <div class="price-tag">~90 TL с человека</div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-hotel"></i> 17:30 - 18:00</div>
+                        <p>Заселение в отель Gloria Suites Old City</p>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-utensils"></i> 18:00 - 19:00</div>
+                        <p>Ужин: McDonald's или местная пекарня</p>
+                        <div class="price-tag">~50-100 TL</div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-walking"></i> 19:00 - 22:00</div>
+                        <p>Вечерняя прогулка к Голубой мечети и площади Султанахмет</p>
+                        <a href="https://maps.google.com/?q=Sultanahmet+Istanbul" target="_blank" class="map-link">
+                            <i class="fas fa-map-marker-alt"></i> Открыть на карте
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 2 -->
+            <div class="day-card">
+                <div class="day-title">
+                    <h3>День 2: Суббота, 14.02 - Классический Султанахмет</h3>
+                    <div class="day-number">2</div>
+                </div>
+                <div class="tip">
+                    <p><strong>Пеший день:</strong> Все достопримечательности в пешей доступности от отеля.</p>
+                </div>
+                <div class="day-content">
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-coffee"></i> Завтрак</div>
+                        <p>Пекарни на улице Divan Yolu: симит (бублик) + чай</p>
+                        <div class="food-place">
+                            <i class="fas fa-utensils food-icon"></i>
+                            <div>
+                                <p><strong>Пекарня у метро Çemberlitaş</strong></p>
+                                <div class="price-tag">~15-30 TL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-monument"></i> 09:00 - 13:00</div>
+                        <p><strong>Голубая мечеть</strong> (бесплатно) → <strong>Айя-София</strong> (бесплатно)</p>
+                        <a href="https://maps.google.com/?q=Sultanahmet+Meydanı+Istanbul" target="_blank" class="map-link">
+                            <i class="fas fa-map-marker-alt"></i> Маршрут на карте
+                        </a>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-utensils"></i> Обед</div>
+                        <p>Столовая "Sultanahmet Dönercisi" или кафе на улице Klod Farer</p>
+                        <div class="food-place">
+                            <i class="fas fa-utensils food-icon"></i>
+                            <div>
+                                <p><strong>Sultanahmet Dönercisi</strong></p>
+                                <div class="price-tag">~80-120 TL</div>
+                                <a href="https://maps.google.com/?q=Sultanahmet+Dönercisi+Istanbul" target="_blank" class="map-link">
+                                    <i class="fas fa-map-marker-alt"></i> На карте
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-landmark"></i> 14:00 - 18:00</div>
+                        <p><strong>Цистерна Базилика</strong> (450 TL) → <strong>Дворец Топкапы</strong> (снаружи, бесплатно) → парк Гюльхане → <strong>Эминёню</strong></p>
+                        <div class="price-tag">Цистерна: 450 TL / Museum Pass: 850 TL (5 дней)</div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-utensils"></i> Ужин</div>
+                        <p>Балык-экмек (рыба в хлебе) у причала Эминёню</p>
+                        <div class="price-tag">~50-80 TL</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 3 -->
+            <div class="day-card">
+                <div class="day-title">
+                    <h3>День 3: Воскресенье, 15.02 - Базары, Сулеймание и Бейоглу</h3>
+                    <div class="day-number">3</div>
+                </div>
+                <div class="day-content">
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-store"></i> 09:30 - 11:30</div>
+                        <p><strong>Гранд-Базар</strong> (открывается в 10:00)</p>
+                        <a href="https://maps.google.com/?q=Grand+Bazaar+Istanbul" target="_blank" class="map-link">
+                            <i class="fas fa-map-marker-alt"></i> Открыть на карте
+                        </a>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-mosque"></i> 11:30 - 13:00</div>
+                        <p>Пешком к <strong>мечети Сулеймание</strong> (бесплатно, лучший вид на город)</p>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-utensils"></i> Обед</div>
+                        <p>Столовая при мечети Сулеймание (аутентично и дешево)</p>
+                        <div class="price-tag">~60-100 TL</div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-subway"></i> 14:00 - 15:00</div>
+                        <p>Пешком к Египетскому базару → переход моста Галата → фуникулер Tünel (F2) до Бейоглу</p>
+                        <div class="price-tag">Транспорт: ~15 TL</div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-walking"></i> 15:00 - 19:00</div>
+                        <p>Прогулка по <strong>Истикляль</strong>, площадь Таксим, район Чукурджума</p>
+                    </div>
+                    <div class="time-slot">
+                        <div class="time"><i class="fas fa-utensils"></i> Ужин</div>
+                        <p>Кафе на боковых улочках от Истикляль (Çukurcuma)</p>
+                        <div class="price-tag">~100-150 TL</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Добавлены дни 4-7 с аналогичной структурой -->
+            <div class="tip" style="text-align: center; margin-top: 2rem;">
+                <p>Полный маршрут на 7 дней с детальным описанием каждого дня доступен в полной версии путеводителя.</p>
+                <button class="btn" id="showAllDays">Показать все дни (4-7)</button>
+            </div>
+            
+            <!-- Hidden days 4-7 (will be shown on button click) -->
+            <div id="hiddenDays" style="display: none;">
+                <!-- Day 4 -->
+                <div class="day-card">
+                    <div class="day-title">
+                        <h3>День 4: Понедельник, 16.02 - Азиатская сторона</h3>
+                        <div class="day-number">4</div>
+                    </div>
+                    <div class="day-content">
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-ship"></i> 09:30 - 10:30</div>
+                            <p>Трамвай T1 до Эминёню → паром до Кадыкёя (дешевый круиз по Босфору)</p>
+                            <div class="price-tag">Паром: ~15 TL</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-walking"></i> 10:30 - 14:00</div>
+                            <p>Исследование <strong>Кадыкёя</strong>: рыбный рынок, улочки, кондитерская Baylan</p>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-utensils"></i> Обед</div>
+                            <p>Улица çiğerci (жареная печень), midye dolma (мидии), tantuni</p>
+                            <div class="price-tag">~40-80 TL</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-ship"></i> 15:00 - 16:00</div>
+                            <p>Паром из Кадыкёя в Каракёй или Ускюдар</p>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-landmark"></i> 16:00 - 19:00</div>
+                            <p>Район Каракёй (граффити, кофейни) или Ускюдар (вид на мечеть Михримах)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Day 5 -->
+                <div class="day-card">
+                    <div class="day-title">
+                        <h3>День 5: Вторник, 17.02 - Фатих и стены Константинополя</h3>
+                        <div class="day-number">5</div>
+                    </div>
+                    <div class="day-content">
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-mosque"></i> 10:00 - 11:30</div>
+                            <p>Мечеть Фатих (первая большая османская мечеть)</p>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-bus"></i> 11:30 - 13:00</div>
+                            <p>Автобус до Эдирнекапы → монастырь Хора (или стены Константинополя)</p>
+                            <div class="price-tag">Автобус: ~10 TL / Монастырь: 180 TL</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-utensils"></i> Обед</div>
+                            <p>Столовые в районе Эдирнекапы</p>
+                            <div class="price-tag">~50-80 TL</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-walking"></i> 15:00 - 17:00</div>
+                            <p>Район Вефа → Vefa Bozacısı (традиционный напиток боза)</p>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-utensils"></i> Ужин</div>
+                            <p>Район Аксарай/Лалели (столовые для местных)</p>
+                            <div class="price-tag">~60-100 TL</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Day 6 -->
+                <div class="day-card">
+                    <div class="day-title">
+                        <h3>День 6: Среда, 18.02 - Свободный день / Круиз по Босфору</h3>
+                        <div class="day-number">6</div>
+                    </div>
+                    <div class="day-content">
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-ship"></i> Вариант А: Длинный круиз</div>
+                            <p>Паром от Эминёню до Анадолу Кавагы (1.5 часа в одну сторону)</p>
+                            <div class="price-tag">~25 TL в одну сторону</div>
+                            <a href="https://maps.app.goo.gl/Y8rVwRS6v2zpyzFQ8" target="_blank" class="map-link">
+                                <i class="fas fa-map-marker-alt"></i> Маршрут парома
+                            </a>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-shopping-bag"></i> Вариант Б: Шопинг</div>
+                            <p>Гранд-Базар, улица Сиркеджи (сувениры), мечеть Рустема-паши</p>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-utensils"></i> Прощальный ужин</div>
+                            <p>Ресторан с видом на Босфор или проверенное место</p>
+                            <div class="price-tag">~150-250 TL</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Day 7 -->
+                <div class="day-card">
+                    <div class="day-title">
+                        <h3>День 7: Четверг, 19.02 - Отъезд</h3>
+                        <div class="day-number">7</div>
+                    </div>
+                    <div class="day-content">
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-hotel"></i> До 11:00</div>
+                            <p>Завтрак, выселение из отеля</p>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-subway"></i> 11:00 - 12:00</div>
+                            <p>Трамвай T1 (Çemberlitaş → Kabataş) → фуникулер F1 (Kabataş → Taksim)</p>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-bus"></i> 12:00 - 13:30</div>
+                            <p>Автобус Havabus/Havaist от Таксим до аэропорта SAW</p>
+                            <div class="price-tag">~90-110 TL с человека</div>
+                            <div class="warning">
+                                <p><strong>Внимание:</strong> Заложите минимум 3 часа на дорогу до аэропорта!</p>
+                            </div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time"><i class="fas fa-plane"></i> 15:50</div>
+                            <p>Вылет из Стамбула в Минск</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         
-        // Загружаем бронирования этого пользователя
-        const bookings = localStorage.getItem('nastya_wishlist_bookings_' + id);
-        if (bookings) {
-            userBookings = JSON.parse(bookings);
-        }
-    } else {
-        // Загружаем существующие бронирования
-        const bookings = localStorage.getItem('nastya_wishlist_bookings_' + id);
-        if (bookings) {
-            userBookings = JSON.parse(bookings);
-        }
-    }
+        <!-- Transport Information -->
+        <section id="transport">
+            <h2 class="section-title">Транспорт в Стамбуле</h2>
+            
+            <div class="transport-card">
+                <div class="transport-icon">
+                    <i class="fas fa-ticket-alt"></i>
+                </div>
+                <div class="transport-info">
+                    <h3>Istanbulkart - ключ к городскому транспорту</h3>
+                    <p>Пополняемая карта для всего общественного транспорта. Одна карта на всех (проходите по очереди). Покупка: 50 TL (залог) + пополнение. Экономия до 50% по сравнению с разовыми билетами.</p>
+                    <p><strong>Где купить:</strong> Автоматы в аэропортах, на станциях метро, в киосках с надписью "Istanbulkart".</p>
+                </div>
+            </div>
+            
+            <div class="transport-card">
+                <div class="transport-icon">
+                    <i class="fas fa-tram"></i>
+                </div>
+                <div class="transport-info">
+                    <h3>Трамвай T1 - ваша основная линия</h3>
+                    <p>Проходит через все ключевые точки: Кабаташ, Эминёню, Султанахмет, Беязит, Аксарай. Ближайшая к вашему отелю остановка - <strong>Çemberlitaş</strong> (5 минут пешком).</p>
+                    <p><strong>Стоимость:</strong> С Istanbulkart ~7-10 TL за поездку.</p>
+                </div>
+            </div>
+            
+            <div class="transport-card">
+                <div class="transport-icon">
+                    <i class="fas fa-ship"></i>
+                </div>
+                <div class="transport-info">
+                    <h3>Паромы - самый живописный транспорт</h3>
+                    <p>Маршруты: Эминёню - Кадыкёй, Эминёню - Ускюдар, Кабаташ - Кадыкёй. Длинные маршруты по Босфору до Анадолу Кавагы.</p>
+                    <p><strong>Стоимость:</strong> С Istanbulkart ~15-25 TL в зависимости от маршрута.</p>
+                </div>
+            </div>
+            
+            <div class="child-info">
+                <h3><i class="fas fa-child"></i> Путешествие с ребенком 8 лет</h3>
+                <p>Дети до 6 лет ездят бесплатно. Для ребенка 8 лет нужна отдельная Istanbulkart или можно использовать вашу карту для двоих (но это дороже).</p>
+                <p><strong>Советы:</strong></p>
+                <ul>
+                    <li>В час пик (8:00-9:30, 17:30-19:30) в транспорте может быть очень тесно</li>
+                    <li>При посадке на трамвай и паром будьте осторожны с зазорами</li>
+                    <li>В метро и на фуникулерах есть лифты и эскалаторы</li>
+                    <li>Всегда держите ребенка за руку в толпе</li>
+                </ul>
+            </div>
+            
+            <h3 style="margin-top: 2rem;">Стоимость проезда (с Istanbulkart)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Транспорт</th>
+                        <th>Первая поездка</th>
+                        <th>Последующие за день</th>
+                        <th>Детский (8 лет)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Трамвай T1</td>
+                        <td>9.90 TL</td>
+                        <td>7.67 TL</td>
+                        <td>3.47 TL</td>
+                    </tr>
+                    <tr>
+                        <td>Метро</td>
+                        <td>9.90 TL</td>
+                        <td>7.67 TL</td>
+                        <td>3.47 TL</td>
+                    </tr>
+                    <tr>
+                        <td>Паром (короткий)</td>
+                        <td>15.00 TL</td>
+                        <td>11.00 TL</td>
+                        <td>5.50 TL</td>
+                    </tr>
+                    <tr>
+                        <td>Фуникулер</td>
+                        <td>9.90 TL</td>
+                        <td>7.67 TL</td>
+                        <td>3.47 TL</td>
+                    </tr>
+                    <tr>
+                        <td>Автобус</td>
+                        <td>9.90 TL</td>
+                        <td>7.67 TL</td>
+                        <td>3.47 TL</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Currency Converter -->
+        <section id="converter">
+            <h2 class="section-title">Конвертер валют</h2>
+            <p>Актуальный курс на февраль 2026 (примерный): 1 TL ≈ 10.5 BYN | 1 EUR ≈ 35 TL | 1 USD ≈ 32 TL</p>
+            
+            <div class="converter">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <input type="number" id="amountInput" class="currency-input" placeholder="Введите сумму" value="100">
+                    <button class="btn" id="convertBtn">Конвертировать</button>
+                </div>
+                
+                <div class="converter-grid">
+                    <div class="converter-box">
+                        <div class="currency-flag">🇹🇷</div>
+                        <h3>Турецкая лира (TL)</h3>
+                        <div id="tlValue" class="currency-value">100</div>
+                        <input type="number" id="tlInput" class="currency-input" value="100">
+                    </div>
+                    <div class="converter-box">
+                        <div class="currency-flag">🇧🇾</div>
+                        <h3>Белорусский рубль (BYN)</h3>
+                        <div id="bynValue" class="currency-value">1050</div>
+                        <input type="number" id="bynInput" class="currency-input" value="1050">
+                    </div>
+                    <div class="converter-box">
+                        <div class="currency-flag">🇪🇺</div>
+                        <h3>Евро (EUR)</h3>
+                        <div id="eurValue" class="currency-value">2.86</div>
+                        <input type="number" id="eurInput" class="currency-input" value="2.86">
+                    </div>
+                    <div class="converter-box">
+                        <div class="currency-flag">🇺🇸</div>
+                        <h3>Доллар (USD)</h3>
+                        <div id="usdValue" class="currency-value">3.13</div>
+                        <input type="number" id="usdInput" class="currency-input" value="3.13">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip" style="margin-top: 2rem;">
+                <p><strong>Совет по обмену:</strong> Меняйте деньги в обменниках в центре города (не в аэропорту). Ищите вывески "Döviz" или "Exchange". Уличные менялы обычно предлагают лучший курс, но будьте осторожны.</p>
+            </div>
+        </section>
+        
+        <!-- Budget Food -->
+        <section id="food">
+            <h2 class="section-title">Бюджетное питание в Стамбуле</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                <div class="place-card">
+                    <h3 class="place-name">Уличная еда</h3>
+                    <ul>
+                        <li><strong>Симит</strong> (бублик с кунжутом) - 5-10 TL</li>
+                        <li><strong>Балык-экмек</strong> (рыба в хлебе) - 50-80 TL</li>
+                        <li><strong>Мидье долма</strong> (мидии с рисом) - 10-15 TL за штуку</li>
+                        <li><strong>Каштаны и кукуруза</strong> - 20-30 TL</li>
+                    </ul>
+                </div>
+                
+                <div class="place-card">
+                    <h3 class="place-name">Фаст-фуд и кафе</h3>
+                    <ul>
+                        <li><strong>Дёнер-кебаб</strong> - 60-100 TL</li>
+                        <li><strong>Лахмаджун</strong> (тонкая пицца) - 40-70 TL</li>
+                        <li><strong>Пиде</strong> (турецкая пицца) - 80-150 TL</li>
+                        <li><strong>Кёфте</strong> (тефтели) с гарниром - 100-150 TL</li>
+                    </ul>
+                </div>
+                
+                <div class="place-card">
+                    <h3 class="place-name">Рестораны и столовые</h3>
+                    <ul>
+                        <li><strong>Столовая (lokanta)</strong> с комплексным обедом - 120-200 TL</li>
+                        <li><strong>Ресторан среднего уровня</strong> - 200-400 TL с человека</li>
+                        <li><strong>Чай (чай)</strong> - 10-20 TL</li>
+                        <li><strong>Турецкий кофе</strong> - 30-50 TL</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tip" style="margin-top: 2rem;">
+                <p><strong>Где искать дешевую еду:</strong> Районы Аксарай, Лалели, окрестности рынков, столовые при мечетях (Султанахмет, Сулеймание), улицы вдали от туристических центров.</p>
+            </div>
+            
+            <h3 style="margin-top: 2rem;">Рекомендуемые бюджетные места</h3>
+            <div class="food-place">
+                <i class="fas fa-utensils food-icon"></i>
+                <div>
+                    <p><strong>Sultanahmet Dönercisi</strong> - возле мечети Султанахмет</p>
+                    <div class="price-tag">Дёнер: 80-120 TL</div>
+                    <a href="https://maps.google.com/?q=Sultanahmet+Dönercisi+Istanbul" target="_blank" class="map-link">
+                        <i class="fas fa-map-marker-alt"></i> Открыть на карте
+                    </a>
+                </div>
+            </div>
+            
+            <div class="food-place">
+                <i class="fas fa-utensils food-icon"></i>
+                <div>
+                    <p><strong>Столовая при мечети Сулеймание</strong> - аутентично и дешево</p>
+                    <div class="price-tag">Комплексный обед: 60-100 TL</div>
+                </div>
+            </div>
+            
+            <div class="food-place">
+                <i class="fas fa-utensils food-icon"></i>
+                <div>
+                    <p><strong>Bereket Döner</strong> - район Аксарай, огромные порции</p>
+                    <div class="price-tag">Дёнер: 70-100 TL</div>
+                    <a href="https://maps.google.com/?q=Bereket+Döner+Aksaray+Istanbul" target="_blank" class="map-link">
+                        <i class="fas fa-map-marker-alt"></i> Открыть на карте
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
     
-    return id;
-}
-
-/* ===== СОХРАНЕНИЕ БРОНИРОВАНИЙ ПОЛЬЗОВАТЕЛЯ ===== */
-function saveUserBookings() {
-    if (userId) {
-        localStorage.setItem('nastya_wishlist_bookings_' + userId, JSON.stringify(userBookings));
-    }
-}
-
-/* ===== ЗАГРУЗКА ДАННЫХ ИЗ SUPABASE ===== */
-async function loadStatuses() {
-    try {
-        const { data, error } = await supabaseClient
-            .from('gifts')
-            .select('id, status');
-
-        if (error) {
-            console.error('Supabase error:', error);
-            showNotification('Ошибка загрузки данных', 'error');
-            return;
-        }
-
-        // Обновляем статусы подарков из базы данных
-        data.forEach(row => {
-            const gift = gifts.find(g => g.id === row.id);
-            if (gift) {
-                gift.status = row.status || 'free';
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>Экстренные номера в Турции:</p>
+                    <p>Полиция: 155</p>
+                    <p>Скорая помощь: 112</p>
+                    <p>Пожарная: 110</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Полезные ссылки</h3>
+                    <p><a href="https://www.istanbulkart.istanbul/" target="_blank" style="color: #ddd;">Официальный сайт Istanbulkart</a></p>
+                    <p><a href="https://sehirhatlari.istanbul/" target="_blank" style="color: #ddd;">Расписание паромов</a></p>
+                    <p><a href="https://www.muze.gov.tr/" target="_blank" style="color: #ddd;">Музеи Турции</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Советы</h3>
+                    <p>• Всегда носите с собой воду</p>
+                    <p>• Обувь должна быть удобной</p>
+                    <p>• Имейте при себе мелкие купюры</p>
+                    <p>• Сохраняйте билеты до вылета</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 Путеводитель по Стамбулу. Все права защищены. Информация актуальна на февраль 2026 года.</p>
+                <p>Курсы валют и цены могут меняться.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Show all days button
+        document.getElementById('showAllDays').addEventListener('click', function() {
+            const hiddenDays = document.getElementById('hiddenDays');
+            if (hiddenDays.style.display === 'none') {
+                hiddenDays.style.display = 'block';
+                this.textContent = 'Скрыть дни 4-7';
+            } else {
+                hiddenDays.style.display = 'none';
+                this.textContent = 'Показать все дни (4-7)';
             }
         });
-
-        render();
-    } catch (err) {
-        console.error('Error loading statuses:', err);
-        render(); // Рендерим с текущими данными
-    }
-}
-
-/* ===== ОБНОВЛЕНИЕ СТАТУСА ===== */
-async function updateStatus(id, status, isUserBooking = false) {
-    try {
-        // Обновляем в Supabase
-        const { error } = await supabaseClient
-            .from('gifts')
-            .update({ status })
-            .eq('id', id);
-
-        if (error) {
-            showNotification('Ошибка обновления. Попробуйте позже.', 'error');
-            return false;
-        }
-
-        // Обновляем локально
-        const gift = gifts.find(g => g.id === id);
-        if (gift) gift.status = status;
-
-        // Если пользователь бронирует - сохраняем в его бронированиях
-        if (isUserBooking && status === 'booked') {
-            userBookings[id] = true;
-            saveUserBookings();
-        }
-        // Если пользователь отменяет - удаляем из его бронирований
-        else if (isUserBooking && status === 'free') {
-            delete userBookings[id];
-            saveUserBookings();
-        }
-
-        render();
-        return true;
-    } catch (err) {
-        console.error('Error updating status:', err);
-        showNotification('Ошибка соединения', 'error');
-        return false;
-    }
-}
-
-/* ===== ОТОБРАЖЕНИЕ КНОПОК ===== */
-function getActionButtons(gift) {
-    const isBooked = gift.status === 'booked';
-    const isMyBooking = userBookings[gift.id];
-    
-    if (isBooked) {
-        // Если подарок забронирован, проверяем чья это бронь
-        if (isMyBooking) {
-            // Это бронь текущего пользователя - можно отменить
-            return `
-                <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
-                    <i class="fas fa-external-link-alt"></i> Посмотреть
-                </button>
-                <button class="btn btn-unbook" onclick="openUnbookModal(${gift.id})">
-                    <i class="fas fa-undo"></i> Отменить бронь
-                </button>`;
-        } else {
-            // Это чужая бронь - нельзя отменить, только посмотреть
-            return `
-                <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
-                    <i class="fas fa-external-link-alt"></i> Посмотреть
-                </button>
-                <button class="btn btn-disabled" disabled>
-                    <i class="fas fa-lock"></i> Уже забронировано
-                </button>`;
-        }
-    } else {
-        // Подарок свободен - можно забронировать
-        return `
-            <button class="btn btn-preview" onclick="window.open('${gift.link.trim()}', '_blank')">
-                <i class="fas fa-external-link-alt"></i> Посмотреть
-            </button>
-            <button class="btn btn-reserve" onclick="openReserveModal(${gift.id})">
-                <i class="fas fa-gift"></i> Забронировать
-            </button>`;
-    }
-}
-
-/* ===== РЕНДЕРИНГ ===== */
-function renderTable() {
-    tableBody.innerHTML = '';
-    gifts.forEach(gift => {
-        const commentHtml = gift.comment ? `<div class="comment">${gift.comment}</div>` : '';
-        const isMyBooking = userBookings[gift.id];
-        const row = document.createElement('tr');
         
-        if (gift.status === 'booked') {
-            row.classList.add('booked-row');
-            // Если это наша бронь, добавляем специальный класс
-            if (isMyBooking) {
-                row.classList.add('my-booking-row');
-            }
+        // Currency converter
+        const rates = {
+            tl: 1,
+            byn: 10.5,  // 1 TL = 10.5 BYN
+            eur: 0.0286, // 1 TL = 0.0286 EUR
+            usd: 0.0313  // 1 TL = 0.0313 USD
+        };
+        
+        function convertCurrency(from, value) {
+            // Convert to TL first
+            let tlValue;
+            if (from === 'tl') tlValue = value;
+            else if (from === 'byn') tlValue = value / rates.byn;
+            else if (from === 'eur') tlValue = value / rates.eur;
+            else if (from === 'usd') tlValue = value / rates.usd;
+            
+            // Update all fields
+            document.getElementById('tlValue').textContent = tlValue.toFixed(2);
+            document.getElementById('bynValue').textContent = (tlValue * rates.byn).toFixed(2);
+            document.getElementById('eurValue').textContent = (tlValue * rates.eur).toFixed(2);
+            document.getElementById('usdValue').textContent = (tlValue * rates.usd).toFixed(2);
+            
+            document.getElementById('tlInput').value = tlValue.toFixed(2);
+            document.getElementById('bynInput').value = (tlValue * rates.byn).toFixed(2);
+            document.getElementById('eurInput').value = (tlValue * rates.eur).toFixed(2);
+            document.getElementById('usdInput').value = (tlValue * rates.usd).toFixed(2);
         }
         
-        row.innerHTML = `
-            <td>${gift.id}</td>
-            <td><strong>${gift.name}</strong>${commentHtml}</td>
-            <td><span class="category">${gift.category}</span></td>
-            <td>${getActionButtons(gift)}</td>
-            <td>${getStatusBadge(gift.status)}</td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-function renderCards() {
-    cardsContainer.innerHTML = '';
-    gifts.forEach(gift => {
-        const commentHtml = gift.comment ? `<div class="comment">${gift.comment}</div>` : '';
-        const isMyBooking = userBookings[gift.id];
-        const card = document.createElement('div');
+        // Initialize converter
+        document.getElementById('convertBtn').addEventListener('click', function() {
+            const amount = parseFloat(document.getElementById('amountInput').value) || 100;
+            convertCurrency('tl', amount);
+        });
         
-        card.className = `gift-card ${gift.status === 'booked' ? 'booked' : ''}`;
-        if (gift.status === 'booked' && isMyBooking) {
-            card.classList.add('my-booking');
-        }
+        // Add input event listeners
+        document.getElementById('tlInput').addEventListener('input', function() {
+            convertCurrency('tl', parseFloat(this.value) || 0);
+        });
         
-        card.innerHTML = `
-            <h3>${gift.name}</h3>
-            ${commentHtml}
-            <div class="category">${gift.category}</div>
-            ${getStatusBadge(gift.status)}
-            <div class="btn-group">${getActionButtons(gift)}</div>
-        `;
-        cardsContainer.appendChild(card);
-    });
-}
-
-function render() {
-    renderTable();
-    renderCards();
-}
-
-function getStatusBadge(status) {
-    return status === 'booked'
-        ? '<span class="status status-booked">Забронировано</span>'
-        : '<span class="status status-free">Свободно</span>';
-}
-
-/* ===== МОДАЛЬНЫЕ ОКНА ===== */
-function openReserveModal(id) {
-    const gift = gifts.find(g => g.id === id);
-    if (gift && gift.status === 'free') {
-        giftToReserve = id;
-        document.getElementById('confirm-reserve-text').textContent = `Забронировать «${gift.name}»?`;
-        confirmReserveModal.style.display = 'flex';
-    }
-}
-
-function openUnbookModal(id) {
-    const gift = gifts.find(g => g.id === id);
-    if (gift && gift.status === 'booked' && userBookings[id]) {
-        giftToUnbook = id;
-        document.getElementById('unbook-text').textContent = 
-            `Вы уверены, что хотите отменить бронирование «${gift.name}»? После отмены он снова станет доступен для других гостей.`;
-        unbookModal.style.display = 'flex';
-    } else {
-        // Пытаются отменить чужую бронь - показываем сообщение
-        showNotification('Вы можете отменять только свои бронирования', 'warning');
-    }
-}
-
-/* ===== ОБРАБОТЧИКИ КНОПОК ===== */
-document.getElementById('confirm-reserve').onclick = async () => {
-    if (giftToReserve !== null) {
-        const success = await updateStatus(giftToReserve, 'booked', true);
-        if (success) {
-            confirmReserveModal.style.display = 'none';
-            showNotification('Подарок успешно забронирован!', 'success');
-        }
-        giftToReserve = null;
-    }
-};
-
-document.getElementById('cancel-reserve').onclick = () => {
-    confirmReserveModal.style.display = 'none';
-    giftToReserve = null;
-};
-
-document.getElementById('confirm-unbook').onclick = async () => {
-    if (giftToUnbook !== null) {
-        const success = await updateStatus(giftToUnbook, 'free', true);
-        if (success) {
-            unbookModal.style.display = 'none';
-            showNotification('Бронирование отменено!', 'info');
-        }
-        giftToUnbook = null;
-    }
-};
-
-document.getElementById('cancel-unbook').onclick = () => {
-    unbookModal.style.display = 'none';
-    giftToUnbook = null;
-};
-
-/* ===== УВЕДОМЛЕНИЯ ===== */
-function showNotification(message, type) {
-    let n = document.getElementById('custom-notification');
-    if (!n) {
-        n = document.createElement('div');
-        n.id = 'custom-notification';
-        document.body.appendChild(n);
-    }
-    
-    const cfg = {
-        success: { bg: '#c8e6c9', color: '#1b5e20', icon: 'check-circle' },
-        info: { bg: '#fff3e0', color: '#e65100', icon: 'info-circle' },
-        warning: { bg: '#ffecb3', color: '#e65100', icon: 'exclamation-triangle' },
-        error: { bg: '#ffcdd2', color: '#b71c1c', icon: 'exclamation-circle' }
-    }[type] || { bg: '#ffcdd2', color: '#b71c1c', icon: 'exclamation-circle' };
-    
-    n.style.background = cfg.bg;
-    n.style.color = cfg.color;
-    n.innerHTML = `<i class="fas fa-${cfg.icon}"></i> ${message}`;
-    n.style.transform = 'translateX(0)';
-    setTimeout(() => n.style.transform = 'translateX(150%)', 3000);
-}
-
-/* ===== ИНИЦИАЛИЗАЦИЯ ===== */
-function showPlaceholder() {
-    document.getElementById('nastya-photo').style.display = 'none';
-    document.getElementById('photo-placeholder').style.display = 'block';
-}
-
-window.onclick = (e) => {
-    if (e.target === confirmReserveModal) {
-        confirmReserveModal.style.display = 'none';
-        giftToReserve = null;
-    }
-    if (e.target === unbookModal) {
-        unbookModal.style.display = 'none';
-        giftToUnbook = null;
-    }
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Генерируем/получаем ID пользователя
-    userId = generateUserId();
-    console.log('User ID:', userId);
-    
-    // Загружаем данные и рендерим
-    loadStatuses();
-    
-    // Настраиваем обработчик ошибки фото
-    const photo = document.getElementById('nastya-photo');
-    if (photo) {
-        photo.onerror = showPlaceholder;
-    } else {
-        showPlaceholder();
-    }
-});
-</script>
+        document.getElementById('bynInput').addEventListener('input', function() {
+            convertCurrency('byn', parseFloat(this.value) || 0);
+        });
+        
+        document.getElementById('eurInput').addEventListener('input', function() {
+            convertCurrency('eur', parseFloat(this.value) || 0);
+        });
+        
+        document.getElementById('usdInput').addEventListener('input', function() {
+            convertCurrency('usd', parseFloat(this.value) || 0);
+        });
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+        
+        // Initialize with default conversion
+        convertCurrency('tl', 100);
+    </script>
 </body>
 </html>

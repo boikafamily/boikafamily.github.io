@@ -3,34 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Istanbul Guide | Путеводитель по Стамбулу</title>
+    <title>🌉 Istanbul Guide - Путеводитель по Стамбулу</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #E31E25;
-            --primary-dark: #B91C22;
-            --secondary: #2D3748;
-            --accent: #F6AD55;
-            --light: #F7FAFC;
-            --dark: #1A202C;
-            --success: #38A169;
-            --warning: #D69E2E;
-            --info: #3182CE;
-            --gray-100: #F7FAFC;
-            --gray-200: #EDF2F7;
-            --gray-300: #E2E8F0;
-            --gray-400: #CBD5E0;
-            --gray-500: #A0AEC0;
-            --gray-600: #718096;
-            --gray-700: #4A5568;
-            --gray-800: #2D3748;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.05);
-            --radius: 16px;
+            --primary: #6C63FF;
+            --primary-light: #8B85FF;
+            --primary-dark: #554FD8;
+            --secondary: #FF6584;
+            --accent: #36D1DC;
+            --success: #4CAF50;
+            --warning: #FFB74D;
+            --danger: #FF5252;
+            --light: #FFFFFF;
+            --light-gray: #F8F9FF;
+            --gray: #EFF2F7;
+            --dark-gray: #7B8A9B;
+            --dark: #2D3748;
+            --text: #4A5568;
+            --text-light: #718096;
+            --shadow: 0 4px 20px rgba(108, 99, 255, 0.08);
+            --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.04);
+            --radius: 20px;
             --radius-sm: 12px;
             --radius-xs: 8px;
-            --transition: all 0.2s ease;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * {
@@ -43,236 +41,264 @@
         html {
             font-size: 16px;
             scroll-behavior: smooth;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.5;
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light-gray);
+            color: var(--text);
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            padding-bottom: 80px; /* Для мобильной навигации */
-        }
-        
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            color: var(--secondary);
-        }
-        
-        .container {
+            min-height: 100vh;
             max-width: 100%;
-            padding: 0 16px;
+            overflow-x: hidden;
         }
         
-        /* Мобильный header */
-        .mobile-header {
-            background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
-            color: white;
+        h1, h2, h3, h4, h5 {
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        /* Контейнер с градиентным фоном */
+        .main-container {
+            max-width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7ff 0%, #f0f4ff 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Декоративные элементы */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(54, 209, 220, 0.1));
+            filter: blur(40px);
+            z-index: 0;
+        }
+        
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            right: -100px;
+        }
+        
+        .blob-2 {
+            width: 250px;
+            height: 250px;
+            bottom: 100px;
+            left: -100px;
+        }
+        
+        /* Верхняя панель */
+        .top-bar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
             z-index: 1000;
-            padding: 12px 16px;
+            padding: 16px;
+            border-bottom: 1px solid rgba(108, 99, 255, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            height: 60px;
+            height: 70px;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: white;
+            gap: 12px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
             text-decoration: none;
         }
         
         .logo-icon {
-            color: var(--accent);
-            font-size: 1.3rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
         }
         
-        .mobile-menu-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.3rem;
-            cursor: pointer;
-            padding: 8px;
+        .user-avatar {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            transition: var(--transition);
-        }
-        
-        .mobile-menu-btn:active {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Мобильное меню */
-        .mobile-nav {
-            position: fixed;
-            top: 60px;
-            left: 0;
-            right: 0;
-            background: var(--dark);
-            z-index: 999;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            padding: 20px 16px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .mobile-nav.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .mobile-nav-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-        
-        .mobile-nav-links li {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .mobile-nav-links a {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
             color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 16px 0;
-            transition: var(--transition);
-        }
-        
-        .mobile-nav-links a:active {
-            background: rgba(255, 255, 255, 0.05);
-            padding-left: 10px;
-        }
-        
-        .mobile-nav-links a i {
-            width: 20px;
-            text-align: center;
-        }
-        
-        /* Hero Section для мобильных */
-        .hero {
-            background: linear-gradient(rgba(26, 32, 44, 0.9), rgba(45, 55, 72, 0.9)), 
-                        url('https://images.unsplash.com/photo-1527838832700-5059252407fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 100px 16px 60px;
-            text-align: center;
-            margin-bottom: 24px;
-        }
-        
-        .hero h1 {
-            font-size: 1.8rem;
-            color: white;
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-        
-        .hero-subtitle {
-            font-size: 0.95rem;
-            max-width: 100%;
-            margin: 0 auto 20px;
-            color: var(--gray-300);
-            opacity: 0.9;
-        }
-        
-        .date-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
             font-weight: 600;
-            font-size: 0.9rem;
             box-shadow: var(--shadow);
         }
         
-        /* Мобильная навигация внизу */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 12px 0;
-            z-index: 1000;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            border-top: 1px solid var(--gray-200);
+        /* Основной контент */
+        .content {
+            padding: 90px 16px 100px;
+            position: relative;
+            z-index: 1;
         }
         
-        .nav-item {
+        /* Приветственная карточка */
+        .welcome-card {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="white" fill-opacity="0.05" d="M0,0 L100,0 L100,100 Z"/></svg>');
+            background-size: cover;
+        }
+        
+        .welcome-card h1 {
+            color: white;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+        
+        .date-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Быстрые действия */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .action-btn {
+            background: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 18px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-decoration: none;
-            color: var(--gray-600);
-            padding: 8px 12px;
-            border-radius: var(--radius-xs);
+            gap: 10px;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
             transition: var(--transition);
-            min-width: 60px;
+            box-shadow: var(--shadow-light);
+            text-decoration: none;
         }
         
-        .nav-item:active {
-            background: var(--gray-100);
-            transform: scale(0.95);
+        .action-btn:active {
+            transform: translateY(-4px) scale(0.98);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.15);
         }
         
-        .nav-item.active {
-            color: var(--primary);
+        .action-btn.primary {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: white;
         }
         
-        .nav-icon {
-            font-size: 1.2rem;
-            margin-bottom: 4px;
+        .action-btn.secondary {
+            background: linear-gradient(135deg, var(--secondary), #FF8E9E);
+            color: white;
         }
         
-        .nav-label {
-            font-size: 0.7rem;
-            font-weight: 500;
+        .action-btn.accent {
+            background: linear-gradient(135deg, var(--accent), #5CE1E6);
+            color: white;
         }
         
-        /* Основной контент */
-        .content-area {
-            padding-bottom: 20px;
+        .action-icon {
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Карточки */
+        .section {
+            margin-bottom: 28px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding: 0 4px;
         }
         
         .section-title {
             font-size: 1.3rem;
-            margin-bottom: 20px;
-            padding-left: 12px;
-            border-left: 4px solid var(--primary);
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        /* Карточки для мобильных */
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .view-all {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
         .card {
             background: white;
             border-radius: var(--radius-sm);
             padding: 20px;
             margin-bottom: 16px;
             box-shadow: var(--shadow-light);
-            border: 1px solid var(--gray-200);
             transition: var(--transition);
+            border: 1px solid rgba(108, 99, 255, 0.08);
         }
         
         .card:active {
@@ -280,219 +306,193 @@
             box-shadow: var(--shadow);
         }
         
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--gray-200);
-        }
-        
-        .day-badge {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-        
-        /* Timeline для мобильных */
-        .timeline {
+        /* День путешествия */
+        .day-card {
             position: relative;
-            padding-left: 24px;
+            overflow: hidden;
         }
         
-        .timeline::before {
+        .day-card::before {
             content: '';
             position: absolute;
             left: 0;
             top: 0;
             bottom: 0;
-            width: 2px;
+            width: 5px;
             background: linear-gradient(to bottom, var(--primary), var(--accent));
         }
         
-        .timeline-item {
-            position: relative;
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 16px;
-            padding: 14px;
-            background: var(--gray-100);
-            border-radius: var(--radius-xs);
-            border-left: 4px solid var(--primary);
         }
         
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -30px;
-            top: 20px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: 3px solid white;
-            box-shadow: 0 0 0 2px var(--primary);
-        }
-        
-        .time {
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 6px;
+        .day-number {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(108, 99, 255, 0.2);
         }
         
-        /* Теги для мобильных */
-        .tags {
+        /* Таймлайн */
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--gray);
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        
+        .time-badge {
+            min-width: 70px;
+            height: 36px;
+            background: var(--light-gray);
+            border-radius: var(--radius-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+        
+        .time-content {
+            flex: 1;
+        }
+        
+        .activity-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-            margin: 10px 0;
+            margin-top: 8px;
         }
         
         .tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 6px 10px;
+            padding: 4px 10px;
             border-radius: 20px;
             font-size: 0.75rem;
-            font-weight: 500;
-        }
-        
-        .price-tag {
-            background: linear-gradient(135deg, var(--success), #2F855A);
-            color: white;
-        }
-        
-        .transport-tag {
-            background: linear-gradient(135deg, var(--info), #2B6CB0);
-            color: white;
-        }
-        
-        .food-tag {
-            background: linear-gradient(135deg, var(--warning), #B7791F);
-            color: white;
-        }
-        
-        /* Кнопки для мобильных */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 14px 20px;
-            border-radius: var(--radius-xs);
-            text-decoration: none;
             font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-            font-size: 1rem;
-            -webkit-appearance: none;
-            appearance: none;
         }
         
-        .btn:active {
-            transform: scale(0.98);
-            box-shadow: 0 2px 5px rgba(227, 30, 37, 0.3);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:active {
-            background: var(--primary);
+        .tag.food {
+            background: linear-gradient(135deg, #FFD166, #FFB74D);
             color: white;
         }
         
-        /* Формы для мобильных */
+        .tag.transport {
+            background: linear-gradient(135deg, #36D1DC, #5CE1E6);
+            color: white;
+        }
+        
+        .tag.sightseeing {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: white;
+        }
+        
+        .tag.shopping {
+            background: linear-gradient(135deg, #FF6584, #FF8E9E);
+            color: white;
+        }
+        
+        /* Трекер расходов */
+        .expense-form {
+            background: white;
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        
         .form-group {
             margin-bottom: 16px;
         }
         
         .form-label {
             display: block;
-            margin-bottom: 6px;
-            font-weight: 500;
-            color: var(--gray-700);
-            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
         }
         
         .form-input, .form-select {
             width: 100%;
-            padding: 14px 16px;
-            border: 2px solid var(--gray-300);
+            padding: 16px;
+            border: 2px solid var(--gray);
             border-radius: var(--radius-xs);
             font-size: 1rem;
+            font-family: 'Nunito', sans-serif;
             transition: var(--transition);
-            -webkit-appearance: none;
-            appearance: none;
+            background: white;
         }
         
         .form-input:focus, .form-select:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(227, 30, 37, 0.1);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
         }
         
-        /* Конвертер валют для мобильных */
-        .converter-grid {
+        .form-row {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 2fr 1fr;
             gap: 12px;
-            margin-top: 16px;
         }
         
-        .currency-card {
-            background: white;
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 16px 24px;
             border-radius: var(--radius-xs);
-            padding: 16px;
-            text-align: center;
-            border: 2px solid var(--gray-200);
+            border: none;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
             transition: var(--transition);
-        }
-        
-        .currency-card:active {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-        
-        .currency-flag {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        
-        .currency-input {
             width: 100%;
-            padding: 12px;
-            border: 2px solid var(--gray-300);
-            border-radius: var(--radius-xs);
-            font-size: 1.1rem;
-            text-align: center;
-            margin: 10px 0;
+            font-family: 'Nunito', sans-serif;
         }
         
-        /* Трекер расходов */
+        .btn:active {
+            transform: translateY(-2px) scale(0.98);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.25);
+        }
+        
+        .btn.secondary {
+            background: linear-gradient(135deg, var(--secondary), #FF8E9E);
+        }
+        
+        .btn.accent {
+            background: linear-gradient(135deg, var(--accent), #5CE1E6);
+        }
+        
+        .btn.outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Список расходов */
         .expense-list {
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
-            margin-top: 16px;
+            margin-top: 20px;
+            padding-right: 8px;
             -webkit-overflow-scrolling: touch;
         }
         
@@ -500,173 +500,281 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--gray-200);
-        }
-        
-        .expense-item:last-child {
-            border-bottom: none;
+            padding: 16px;
+            background: white;
+            border-radius: var(--radius-xs);
+            margin-bottom: 10px;
+            box-shadow: var(--shadow-light);
+            border-left: 4px solid var(--primary);
         }
         
         .expense-info h4 {
             font-size: 1rem;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
         
         .expense-category {
             font-size: 0.8rem;
-            color: var(--gray-600);
-            background: var(--gray-100);
-            padding: 2px 8px;
-            border-radius: 10px;
-            display: inline-block;
+            color: var(--dark-gray);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         
         .expense-amount {
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 800;
+            font-size: 1.2rem;
             color: var(--primary);
         }
         
-        .expense-total {
-            background: linear-gradient(135deg, var(--secondary), var(--dark));
-            color: white;
-            padding: 16px;
-            border-radius: var(--radius-sm);
-            margin-top: 20px;
-            text-align: center;
+        .expense-currency {
+            font-size: 0.8rem;
+            color: var(--text-light);
         }
         
-        /* Погода виджет */
-        .weather-card {
-            background: linear-gradient(135deg, #2D3748, #4A5568);
+        /* Итоги расходов */
+        .expense-total {
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 20px;
+            padding: 24px;
             border-radius: var(--radius-sm);
-            margin-bottom: 16px;
+            margin-top: 24px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .total-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .total-item:last-child {
+            margin-bottom: 0;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+        
+        /* Конвертер валют */
+        .converter-card {
+            background: white;
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+        
+        .currency-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .currency-item {
+            background: var(--light-gray);
+            border-radius: var(--radius-xs);
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .currency-item:active {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .currency-item.active {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.05), rgba(54, 209, 220, 0.05));
+        }
+        
+        .currency-flag {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        
+        .currency-code {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .currency-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--gray);
+            border-radius: var(--radius-xs);
+            font-size: 1.2rem;
+            text-align: center;
+            font-weight: 700;
+            color: var(--dark);
+            margin-top: 10px;
+            background: white;
+        }
+        
+        /* Погода */
+        .weather-card {
+            background: linear-gradient(135deg, #36D1DC, #5CE1E6);
+            color: white;
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(54, 209, 220, 0.3);
         }
         
         .weather-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
+            align-items: flex-start;
+            margin-bottom: 20px;
         }
         
         .temp {
-            font-size: 2.5rem;
-            font-weight: bold;
+            font-size: 3rem;
+            font-weight: 800;
         }
         
         .weather-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
         }
         
-        .weather-details {
+        .weather-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 16px;
+            gap: 16px;
+            margin-top: 20px;
         }
         
-        .weather-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 12px;
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 16px;
             border-radius: var(--radius-xs);
-            text-align: center;
+            backdrop-filter: blur(10px);
         }
         
-        /* Заметки */
-        .note {
-            padding: 14px;
-            border-radius: var(--radius-xs);
-            margin: 12px 0;
-            border-left: 4px solid;
-            font-size: 0.9rem;
-        }
-        
-        .note.tip {
-            background: #D1FAE5;
-            border-left-color: var(--success);
-            color: #065F46;
-        }
-        
-        .note.warning {
-            background: #FEF3C7;
-            border-left-color: var(--warning);
-            color: #92400E;
-        }
-        
-        .note.info {
-            background: #DBEAFE;
-            border-left-color: var(--info);
-            color: #1E40AF;
-        }
-        
-        /* Ссылки на карты */
-        .map-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .map-link:active {
-            opacity: 0.8;
-        }
-        
-        /* Вкладки для мобильных */
-        .tabs {
+        /* Нижняя навигация */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(20px);
             display: flex;
-            gap: 4px;
-            margin-bottom: 20px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            padding-bottom: 4px;
-        }
-        
-        .tabs::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .tab-btn {
+            justify-content: space-around;
             padding: 12px 16px;
-            background: none;
-            border: none;
-            font-weight: 600;
-            color: var(--gray-600);
-            cursor: pointer;
+            z-index: 1000;
+            border-top: 1px solid rgba(108, 99, 255, 0.1);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark-gray);
+            padding: 8px 12px;
             border-radius: var(--radius-xs);
             transition: var(--transition);
-            white-space: nowrap;
-            font-size: 0.9rem;
-            flex-shrink: 0;
+            min-width: 64px;
         }
         
-        .tab-btn.active {
+        .nav-item:active {
+            transform: scale(0.95);
+            background: rgba(108, 99, 255, 0.05);
+        }
+        
+        .nav-item.active {
             color: var(--primary);
-            background: rgba(227, 30, 37, 0.1);
         }
         
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s ease-out;
+        .nav-item.active .nav-icon {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
         }
         
-        .tab-content.active {
-            display: block;
+        .nav-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+            background: var(--light-gray);
+            transition: var(--transition);
+        }
+        
+        .nav-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        
+        /* Модальные окна */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            padding: 24px;
+            max-width: 400px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+            cursor: pointer;
         }
         
         /* Анимации */
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -685,64 +793,69 @@
             }
         }
         
-        /* Специфичные стили для маленьких экранов */
-        @media (max-width: 360px) {
-            html {
-                font-size: 15px;
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
             }
-            
-            .hero h1 {
-                font-size: 1.6rem;
+            50% {
+                transform: scale(1.05);
             }
-            
-            .date-badge {
-                font-size: 0.85rem;
-                padding: 8px 16px;
-            }
-            
-            .card {
-                padding: 16px;
+            100% {
+                transform: scale(1);
             }
         }
         
-        /* Стили для темной темы */
+        /* Адаптивность */
+        @media (max-width: 360px) {
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .currency-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Темная тема */
         @media (prefers-color-scheme: dark) {
             :root {
-                --light: #1A202C;
-                --dark: #F7FAFC;
-                --gray-100: #2D3748;
-                --gray-200: #4A5568;
-                --gray-300: #718096;
-                --gray-400: #A0AEC0;
-                --gray-500: #CBD5E0;
-                --gray-600: #E2E8F0;
-                --gray-700: #EDF2F7;
-                --gray-800: #F7FAFC;
+                --light: #1A1A2E;
+                --light-gray: #16213E;
+                --gray: #0F3460;
+                --dark: #FFFFFF;
+                --text: #E2E8F0;
+                --text-light: #A0AEC0;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.2);
             }
             
             body {
-                background-color: #121826;
-                color: var(--gray-500);
+                background: #121212;
             }
             
-            .card {
-                background: #1E293B;
-                border-color: var(--gray-200);
+            .main-container {
+                background: linear-gradient(135deg, #0F0F23 0%, #1A1A2E 100%);
             }
             
-            .timeline-item {
-                background: #2D3748;
+            .card, .expense-form, .converter-card {
+                background: #1E1E3A;
+                border-color: rgba(255, 255, 255, 0.1);
             }
             
-            .form-input, .form-select {
-                background: #2D3748;
-                border-color: var(--gray-300);
+            .form-input, .form-select, .currency-input {
+                background: #2D2D4A;
+                border-color: #3D3D5A;
                 color: white;
             }
             
             .bottom-nav {
-                background: #1E293B;
-                border-color: var(--gray-200);
+                background: rgba(30, 30, 58, 0.96);
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            .action-btn {
+                background: #2D2D4A;
+                color: white;
             }
         }
         
@@ -750,945 +863,986 @@
         input, select, textarea, button {
             -webkit-appearance: none;
             appearance: none;
-            border-radius: 0;
         }
         
-        /* Предотвращение zoom при фокусе на мобильных */
-        @media screen and (max-width: 768px) {
-            input, select, textarea {
-                font-size: 16px !important;
-            }
+        /* Убираем выделение при тапе */
+        *:focus {
+            outline: none;
         }
         
-        /* Скрыть контент по умолчанию */
-        .tab-content {
-            display: none;
+        /* Плавная прокрутка */
+        .expense-list, .modal-content {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--gray);
         }
         
-        .tab-content.active {
-            display: block;
+        .expense-list::-webkit-scrollbar, .modal-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .expense-list::-webkit-scrollbar-track, .modal-content::-webkit-scrollbar-track {
+            background: var(--gray);
+            border-radius: 3px;
+        }
+        
+        .expense-list::-webkit-scrollbar-thumb, .modal-content::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
-    <!-- Мобильный Header -->
-    <header class="mobile-header">
-        <a href="#" class="logo">
-            <i class="fas fa-mosque logo-icon"></i>
-            <span>Istanbul Guide</span>
-        </a>
+    <div class="main-container">
+        <!-- Декоративные элементы -->
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
         
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-    </header>
-
-    <!-- Мобильное меню -->
-    <nav class="mobile-nav" id="mobileNav">
-        <ul class="mobile-nav-links">
-            <li><a href="#home" data-tab="home"><i class="fas fa-home"></i> Главная</a></li>
-            <li><a href="#itinerary" data-tab="itinerary"><i class="fas fa-route"></i> Маршрут</a></li>
-            <li><a href="#expenses" data-tab="expenses"><i class="fas fa-chart-pie"></i> Расходы</a></li>
-            <li><a href="#transport" data-tab="transport"><i class="fas fa-subway"></i> Транспорт</a></li>
-            <li><a href="#converter" data-tab="converter"><i class="fas fa-calculator"></i> Конвертер</a></li>
-            <li><a href="#food" data-tab="food"><i class="fas fa-utensils"></i> Питание</a></li>
-            <li><a href="#weather" data-tab="weather"><i class="fas fa-cloud-sun"></i> Погода</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <h1>Путеводитель по Стамбулу</h1>
-        <p class="hero-subtitle">Экономный маршрут на 7 дней. Все достопримечательности, советы и полезная информация.</p>
-        <div class="date-badge">
-            <i class="fas fa-calendar-alt"></i> 13-19 февраля 2026
+        <!-- Верхняя панель -->
+        <div class="top-bar">
+            <div class="logo">
+                <div class="logo-icon">🌉</div>
+                <span>Istanbul Guide</span>
+            </div>
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
         </div>
-    </section>
-
-    <!-- Основной контент -->
-    <main class="container content-area">
-        <!-- Вкладки -->
-        <div class="tabs" id="mainTabs">
-            <button class="tab-btn active" data-tab="home">
-                <i class="fas fa-home"></i> Главная
-            </button>
-            <button class="tab-btn" data-tab="itinerary">
-                <i class="fas fa-route"></i> Маршрут
-            </button>
-            <button class="tab-btn" data-tab="expenses">
-                <i class="fas fa-chart-pie"></i> Расходы
-            </button>
-            <button class="tab-btn" data-tab="converter">
-                <i class="fas fa-money-bill-wave"></i> Курс
-            </button>
-            <button class="tab-btn" data-tab="weather">
-                <i class="fas fa-cloud-sun"></i> Погода
-            </button>
-        </div>
-
-        <!-- Содержимое вкладок -->
-        <div id="tabContents">
-            <!-- Главная -->
-            <div class="tab-content active" id="home">
-                <div class="card">
-                    <h3 class="section-title">Ваш отель</h3>
-                    <div class="hotel-info">
-                        <h4><i class="fas fa-hotel"></i> Gloria Suites Old City</h4>
-                        <p class="mb-2" style="color: var(--gray-600); font-size: 0.9rem;">
-                            <i class="fas fa-map-marker-alt"></i> Фатих, Стамбул
-                        </p>
-                        <p style="font-size: 0.95rem; margin-bottom: 16px;">
-                            Отель расположен в историческом центре, в пешей доступности от основных достопримечательностей.
-                        </p>
-                        <a href="https://maps.google.com/?q=Gloria+Suites+Old+City+Istanbul" target="_blank" class="btn btn-outline">
-                            <i class="fas fa-map-marked-alt"></i> Открыть на карте
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h3 class="section-title">Быстрый доступ</h3>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px;">
-                        <a href="#day1" class="btn btn-outline" style="justify-content: center; padding: 12px;">
-                            <i class="fas fa-1"></i> День 1
-                        </a>
-                        <a href="#day2" class="btn btn-outline" style="justify-content: center; padding: 12px;">
-                            <i class="fas fa-2"></i> День 2
-                        </a>
-                        <a href="#day3" class="btn btn-outline" style="justify-content: center; padding: 12px;">
-                            <i class="fas fa-3"></i> День 3
-                        </a>
-                        <a href="#expenses" class="btn btn-outline" style="justify-content: center; padding: 12px;">
-                            <i class="fas fa-chart-line"></i> Расходы
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h3 class="section-title">Важная информация</h3>
-                    <div class="note tip">
-                        <i class="fas fa-lightbulb"></i> <strong>Совет:</strong> Купите Istanbulkart сразу в аэропорту. Она сэкономит до 50% на транспорте.
-                    </div>
-                    <div class="note warning">
-                        <i class="fas fa-exclamation-triangle"></i> <strong>Важно:</strong> В феврале может быть прохладно и дождливо. Возьмите теплую одежду и зонт.
-                    </div>
-                    <div class="note info">
-                        <i class="fas fa-info-circle"></i> Дети до 6 лет ездят в транспорте бесплатно. Ребенку 8 лет нужен отдельный билет.
-                    </div>
+        
+        <!-- Основной контент -->
+        <main class="content" id="mainContent">
+            <!-- Главный экран -->
+            <div class="welcome-card">
+                <h1>Путешествие в Стамбул</h1>
+                <p style="opacity: 0.9; font-size: 0.95rem;">Экономный маршрут на 7 дней с учетом всех деталей</p>
+                <div class="date-chip">
+                    <i class="fas fa-calendar-alt"></i>
+                    13-19 февраля 2026
                 </div>
             </div>
-
+            
+            <!-- Быстрые действия -->
+            <div class="quick-actions">
+                <button class="action-btn primary" data-tab="itinerary">
+                    <div class="action-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    Маршрут
+                </button>
+                <button class="action-btn secondary" data-tab="expenses">
+                    <div class="action-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    Расходы
+                </button>
+                <button class="action-btn" data-tab="converter">
+                    <div class="action-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    Конвертер
+                </button>
+                <button class="action-btn accent" data-tab="weather">
+                    <div class="action-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    Погода
+                </button>
+            </div>
+            
             <!-- Маршрут -->
-            <div class="tab-content" id="itinerary">
+            <section class="section" id="itinerary" style="display: block;">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-route"></i>
+                        Маршрут по дням
+                    </h2>
+                    <a href="#" class="view-all">
+                        Все дни
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+                
                 <!-- День 1 -->
-                <div class="card" id="day1">
-                    <div class="card-header">
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 1.2rem;">День 1: Пятница, 13.02</h3>
-                            <p style="color: var(--primary); font-size: 0.9rem;">Прилет и заселение</p>
+                <div class="card day-card">
+                    <div class="day-header">
+                        <div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 4px;">День 1: Прилет</h3>
+                            <p style="color: var(--primary); font-size: 0.9rem; font-weight: 600;">Пятница, 13 февраля</p>
                         </div>
-                        <div class="day-badge">1</div>
+                        <div class="day-number">1</div>
                     </div>
                     
                     <div class="timeline">
                         <div class="timeline-item">
-                            <div class="time">
-                                <i class="fas fa-plane-departure"></i> 09:10 - 14:50
-                            </div>
-                            <p>Вылет из Минска, прилет в Стамбул (аэропорт SAW)</p>
-                            <div class="tags">
-                                <span class="tag price-tag">
-                                    <i class="fas fa-tag"></i> Перелет
-                                </span>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="time">
-                                <i class="fas fa-bus"></i> 15:50 - 17:30
-                            </div>
-                            <p>Трансфер в отель: Havabus до Таксим → метро M2</p>
-                            <div class="tags">
-                                <span class="tag transport-tag">
-                                    <i class="fas fa-subway"></i> ~90 TL
-                                </span>
-                            </div>
-                            <a href="https://maps.app.goo.gl/route" target="_blank" class="map-link">
-                                <i class="fas fa-map-marked-alt"></i> Маршрут
-                            </a>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="time">
-                                <i class="fas fa-utensils"></i> 18:00 - 19:00
-                            </div>
-                            <p>Ужин: McDonald's или местная пекарня</p>
-                            <div class="tags">
-                                <span class="tag food-tag">
-                                    <i class="fas fa-utensil-spoon"></i> ~50-100 TL
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- День 2 -->
-                <div class="card" id="day2">
-                    <div class="card-header">
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 1.2rem;">День 2: Суббота, 14.02</h3>
-                            <p style="color: var(--primary); font-size: 0.9rem;">Султанахмет</p>
-                        </div>
-                        <div class="day-badge">2</div>
-                    </div>
-                    
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="time">
-                                <i class="fas fa-monument"></i> 09:00 - 13:00
-                            </div>
-                            <p><strong>Голубая мечеть</strong> → <strong>Айя-София</strong></p>
-                            <div class="tags">
-                                <span class="tag" style="background: var(--gray-200);">
-                                    <i class="fas fa-free"></i> Бесплатно
-                                </span>
-                            </div>
-                            <a href="https://maps.google.com/?q=Sultanahmet+Meydanı+Istanbul" target="_blank" class="map-link">
-                                <i class="fas fa-map-marked-alt"></i> На карте
-                            </a>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="time">
-                                <i class="fas fa-utensils"></i> Обед
-                            </div>
-                            <p>Столовая "Sultanahmet Dönercisi"</p>
-                            <div class="tags">
-                                <span class="tag food-tag">
-                                    <i class="fas fa-drumstick-bite"></i> 80-120 TL
-                                </span>
+                            <div class="time-badge">14:50</div>
+                            <div class="time-content">
+                                <h4 style="font-size: 1rem; margin-bottom: 4px;">Прилет в Стамбул</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">Аэропорт Сабиха Гекчен</p>
+                                <div class="activity-tags">
+                                    <span class="tag transport">
+                                        <i class="fas fa-plane"></i> Перелет
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         
                         <div class="timeline-item">
-                            <div class="time">
-                                <i class="fas fa-landmark"></i> 14:00 - 18:00
-                            </div>
-                            <p>Цистерна Базилика → парк Гюльхане → Эминёню</p>
-                            <div class="tags">
-                                <span class="tag price-tag">
-                                    <i class="fas fa-ticket-alt"></i> 450 TL
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- День 3 -->
-                <div class="card" id="day3">
-                    <div class="card-header">
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 1.2rem;">День 3: Воскресенье, 15.02</h3>
-                            <p style="color: var(--primary); font-size: 0.9rem;">Базары и Бейоглу</p>
-                        </div>
-                        <div class="day-badge">3</div>
-                    </div>
-                    
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="time">
-                                <i class="fas fa-store"></i> 09:30 - 11:30
-                            </div>
-                            <p><strong>Гранд-Базар</strong></p>
-                            <a href="https://maps.google.com/?q=Grand+Bazaar+Istanbul" target="_blank" class="map-link">
-                                <i class="fas fa-map-marked-alt"></i> На карте
-                            </a>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="time">
-                                <i class="fas fa-mosque"></i> 11:30 - 13:00
-                            </div>
-                            <p>Мечеть Сулеймание (лучший вид)</p>
-                            <div class="tags">
-                                <span class="tag" style="background: var(--gray-200);">
-                                    <i class="fas fa-free"></i> Бесплатно
-                                </span>
+                            <div class="time-badge">18:00</div>
+                            <div class="time-content">
+                                <h4 style="font-size: 1rem; margin-bottom: 4px;">Заселение в отель</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">Gloria Suites Old City</p>
+                                <div class="activity-tags">
+                                    <span class="tag sightseeing">
+                                        <i class="fas fa-hotel"></i> Отель
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                        
-                        <div class="timeline-item">
-                            <div class="time">
-                                <i class="fas fa-walking"></i> 15:00 - 19:00
-                            </div>
-                            <p>Прогулка по Истикляль, площадь Таксим</p>
-                            <div class="tags">
-                                <span class="tag transport-tag">
-                                    <i class="fas fa-train"></i> ~15 TL
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Кнопка показать все дни -->
-                <div class="card" style="text-align: center;">
-                    <h4 style="margin-bottom: 12px;">Полный маршрут на 7 дней</h4>
-                    <p style="color: var(--gray-600); margin-bottom: 16px; font-size: 0.9rem;">
-                        Дни 4-7: Азиатская сторона, круиз по Босфору и отъезд
-                    </p>
-                    <button class="btn" id="showAllDays">
-                        <i class="fas fa-calendar-alt"></i> Показать все дни
-                    </button>
-                </div>
-            </div>
-
-            <!-- Трекер расходов -->
-            <div class="tab-content" id="expenses">
-                <div class="card">
-                    <h3 class="section-title">Трекер расходов</h3>
-                    
-                    <!-- Форма добавления расхода -->
-                    <div class="expense-form">
-                        <div class="form-group">
-                            <label class="form-label">Описание расхода</label>
-                            <input type="text" id="expenseName" class="form-input" placeholder="Например: Обед в ресторане" maxlength="50">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Категория</label>
-                            <select id="expenseCategory" class="form-select">
-                                <option value="food">🍽️ Питание</option>
-                                <option value="transport">🚇 Транспорт</option>
-                                <option value="sightseeing">🏛️ Достопримечательности</option>
-                                <option value="shopping">🛍️ Шопинг</option>
-                                <option value="hotel">🏨 Отель</option>
-                                <option value="other">📦 Прочее</option>
-                            </select>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px;">
-                            <div class="form-group">
-                                <label class="form-label">Сумма</label>
-                                <input type="number" id="expenseAmount" class="form-input" placeholder="0.00" min="0" step="0.01">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Валюта</label>
-                                <select id="expenseCurrency" class="form-select">
-                                    <option value="TRY">₺ TL</option>
-                                    <option value="BYN">Br BYN</option>
-                                    <option value="EUR">€ EUR</option>
-                                    <option value="USD">$ USD</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <button class="btn" id="addExpenseBtn">
-                            <i class="fas fa-plus"></i> Добавить расход
-                        </button>
-                    </div>
-                    
-                    <!-- Список расходов -->
-                    <div class="expense-list" id="expenseList">
-                        <!-- Расходы будут добавляться здесь -->
-                    </div>
-                    
-                    <!-- Итоги -->
-                    <div class="expense-total" id="expenseSummary">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                            <span>Всего расходов:</span>
-                            <span id="totalTRY">0 ₺</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem; opacity: 0.9;">
-                            <span>В пересчете:</span>
-                            <span id="totalBYN">0 Br</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Кнопки управления -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px;">
-                        <button class="btn btn-outline" id="clearExpensesBtn">
-                            <i class="fas fa-trash"></i> Очистить
-                        </button>
-                        <button class="btn btn-outline" id="exportExpensesBtn">
-                            <i class="fas fa-download"></i> Сохранить
-                        </button>
                     </div>
                 </div>
                 
-                <!-- Предустановленные расходы -->
-                <div class="card">
-                    <h4 style="margin-bottom: 16px;">Типичные расходы в Стамбуле</h4>
+                <!-- День 2 -->
+                <div class="card day-card">
+                    <div class="day-header">
+                        <div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 4px;">День 2: Султанахмет</h3>
+                            <p style="color: var(--primary); font-size: 0.9rem; font-weight: 600;">Суббота, 14 февраля</p>
+                        </div>
+                        <div class="day-number">2</div>
+                    </div>
+                    
                     <div class="timeline">
                         <div class="timeline-item">
-                            <h4 style="font-size: 1rem;">Музеи и достопримечательности</h4>
-                            <p style="font-size: 0.9rem; margin: 8px 0;">Айя-София: бесплатно, Цистерна: 450 TL, Дворец Топкапы: 450 TL</p>
+                            <div class="time-badge">09:00</div>
+                            <div class="time-content">
+                                <h4 style="font-size: 1rem; margin-bottom: 4px;">Голубая мечеть</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">Sultanahmet Meydanı</p>
+                                <div class="activity-tags">
+                                    <span class="tag sightseeing">
+                                        <i class="fas fa-mosque"></i> Бесплатно
+                                    </span>
+                                </div>
+                            </div>
                         </div>
+                        
                         <div class="timeline-item">
-                            <h4 style="font-size: 1rem;">Питание</h4>
-                            <p style="font-size: 0.9rem; margin: 8px 0;">Обед в столовой: 100-150 TL, Ужин в ресторане: 200-400 TL</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4 style="font-size: 1rem;">Транспорт</h4>
-                            <p style="font-size: 0.9rem; margin: 8px 0;">Поездка на трамвае: 9.90 TL, Паром: 15-25 TL</p>
+                            <div class="time-badge">13:00</div>
+                            <div class="time-content">
+                                <h4 style="font-size: 1rem; margin-bottom: 4px;">Айя-София</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">Бывший собор и мечеть</p>
+                                <div class="activity-tags">
+                                    <span class="tag sightseeing">
+                                        <i class="fas fa-landmark"></i> Бесплатно
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
+                
+                <!-- Кнопка показать все -->
+                <button class="btn outline" id="showAllDays" style="margin-top: 16px;">
+                    <i class="fas fa-calendar-plus"></i>
+                    Показать все 7 дней
+                </button>
+            </section>
+            
+            <!-- Трекер расходов -->
+            <section class="section" id="expenses" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-chart-pie"></i>
+                        Трекер расходов
+                    </h2>
+                    <span class="view-all" id="expenseStats">
+                        0 ₺
+                    </span>
+                </div>
+                
+                <!-- Форма добавления расхода -->
+                <div class="expense-form">
+                    <div class="form-group">
+                        <label class="form-label">Что купили?</label>
+                        <input type="text" id="expenseName" class="form-input" placeholder="Например: Обед в кафе" maxlength="50">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Категория</label>
+                        <select id="expenseCategory" class="form-select">
+                            <option value="food">🍽️ Питание</option>
+                            <option value="transport">🚇 Транспорт</option>
+                            <option value="sightseeing">🏛️ Достопримечательности</option>
+                            <option value="shopping">🛍️ Шопинг</option>
+                            <option value="hotel">🏨 Отель</option>
+                            <option value="other">📦 Прочее</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Сумма</label>
+                            <input type="number" id="expenseAmount" class="form-input" placeholder="0.00" min="0" step="0.01">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Валюта</label>
+                            <select id="expenseCurrency" class="form-select">
+                                <option value="TRY">₺ TL</option>
+                                <option value="BYN">Br BYN</option>
+                                <option value="EUR">€ EUR</option>
+                                <option value="USD">$ USD</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" id="addExpenseBtn">
+                        <i class="fas fa-plus-circle"></i>
+                        Добавить расход
+                    </button>
+                </div>
+                
+                <!-- Список расходов -->
+                <div class="expense-list" id="expenseList">
+                    <!-- Расходы будут здесь -->
+                    <div style="text-align: center; padding: 40px 20px; color: var(--text-light);">
+                        <div style="font-size: 3rem; margin-bottom: 16px; opacity: 0.3;">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <p style="font-weight: 600; margin-bottom: 8px;">Нет расходов</p>
+                        <p style="font-size: 0.9rem;">Добавьте первый расход</p>
+                    </div>
+                </div>
+                
+                <!-- Итоги -->
+                <div class="expense-total" id="expenseSummary">
+                    <div class="total-item">
+                        <span>Всего потрачено:</span>
+                        <span id="totalTRY">0 ₺</span>
+                    </div>
+                    <div class="total-item">
+                        <span>В белорусских рублях:</span>
+                        <span id="totalBYN">0 Br</span>
+                    </div>
+                    <div class="total-item">
+                        <span>Осталось на день:</span>
+                        <span style="color: #FFD166;">~ 450 ₺</span>
+                    </div>
+                </div>
+                
+                <!-- Кнопки управления -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px;">
+                    <button class="btn secondary" id="clearExpensesBtn">
+                        <i class="fas fa-trash"></i>
+                        Очистить
+                    </button>
+                    <button class="btn accent" id="exportExpensesBtn">
+                        <i class="fas fa-download"></i>
+                        Сохранить
+                    </button>
+                </div>
+            </section>
+            
             <!-- Конвертер валют -->
-            <div class="tab-content" id="converter">
-                <div class="card">
-                    <h3 class="section-title">Конвертер валют</h3>
-                    <p style="color: var(--gray-600); margin-bottom: 16px; font-size: 0.9rem;">
+            <section class="section" id="converter" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-calculator"></i>
+                        Конвертер валют
+                    </h2>
+                    <span class="view-all">
+                        <i class="fas fa-info-circle"></i>
+                        Курсы
+                    </span>
+                </div>
+                
+                <div class="converter-card">
+                    <p style="color: var(--text-light); margin-bottom: 20px; font-size: 0.95rem;">
                         Курс на февраль 2026: 1 TL ≈ 0.03 BYN | 1 EUR ≈ 112 TL | 1 USD ≈ 94.7 TL
                     </p>
                     
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        <input type="number" id="amountInput" class="currency-input" placeholder="Введите сумму" value="100" style="max-width: 200px;">
-                        <button class="btn mt-2" id="convertBtn" style="max-width: 200px; margin: 12px auto;">
-                            <i class="fas fa-sync-alt"></i> Конвертировать
-                        </button>
-                    </div>
-                    
-                    <div class="converter-grid">
-                        <div class="currency-card">
+                    <div class="currency-grid">
+                        <div class="currency-item active" data-currency="TRY">
                             <div class="currency-flag">🇹🇷</div>
-                            <h4>Турецкая лира</h4>
-                            <div id="tlValue" style="font-size: 1.5rem; font-weight: bold; color: var(--primary); margin: 8px 0;">100</div>
-                            <input type="number" id="tlInput" class="currency-input" value="100">
+                            <div class="currency-code">Турецкая лира</div>
+                            <input type="number" class="currency-input" id="tlInput" value="100">
                         </div>
                         
-                        <div class="currency-card">
+                        <div class="currency-item" data-currency="BYN">
                             <div class="currency-flag">🇧🇾</div>
-                            <h4>Белорусский рубль</h3>
-                            <div id="bynValue" style="font-size: 1.5rem; font-weight: bold; color: var(--primary); margin: 8px 0;">3.00</div>
-                            <input type="number" id="bynInput" class="currency-input" value="3.00">
+                            <div class="currency-code">Белорусский рубль</div>
+                            <input type="number" class="currency-input" id="bynInput" value="3.00">
                         </div>
                         
-                        <div class="currency-card">
+                        <div class="currency-item" data-currency="EUR">
                             <div class="currency-flag">🇪🇺</div>
-                            <h4>Евро</h4>
-                            <div id="eurValue" style="font-size: 1.5rem; font-weight: bold; color: var(--primary); margin: 8px 0;">0.89</div>
-                            <input type="number" id="eurInput" class="currency-input" value="0.89">
+                            <div class="currency-code">Евро</div>
+                            <input type="number" class="currency-input" id="eurInput" value="0.89">
                         </div>
                         
-                        <div class="currency-card">
+                        <div class="currency-item" data-currency="USD">
                             <div class="currency-flag">🇺🇸</div>
-                            <h4>Доллар</h4>
-                            <div id="usdValue" style="font-size: 1.5rem; font-weight: bold; color: var(--primary); margin: 8px 0;">1.06</div>
-                            <input type="number" id="usdInput" class="currency-input" value="1.06">
+                            <div class="currency-code">Доллар</div>
+                            <input type="number" class="currency-input" id="usdInput" value="1.06">
                         </div>
                     </div>
                     
-                    <div class="note tip mt-3">
-                        <i class="fas fa-lightbulb"></i> <strong>Совет:</strong> Меняйте деньги в обменниках в центре города. Не берите сразу много наличных.
-                    </div>
+                    <button class="btn" id="convertBtn" style="margin-top: 20px;">
+                        <i class="fas fa-sync-alt"></i>
+                        Обновить курсы
+                    </button>
                 </div>
-            </div>
-
+                
+                <!-- Советы по обмену -->
+                <div class="card" style="margin-top: 20px;">
+                    <h4 style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-lightbulb" style="color: var(--warning);"></i>
+                        Советы по обмену валюты
+                    </h4>
+                    <ul style="padding-left: 20px; font-size: 0.95rem; color: var(--text-light);">
+                        <li style="margin-bottom: 8px;">Меняйте деньги в центре города, а не в аэропорту</li>
+                        <li style="margin-bottom: 8px;">Ищите вывески "Döviz" или "Exchange"</li>
+                        <li style="margin-bottom: 8px;">Не берите сразу много наличных</li>
+                        <li>Используйте банкоматы крупных банков</li>
+                    </ul>
+                </div>
+            </section>
+            
             <!-- Погода -->
-            <div class="tab-content" id="weather">
+            <section class="section" id="weather" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-cloud-sun"></i>
+                        Погода в Стамбуле
+                    </h2>
+                    <a href="https://www.gismeteo.ru/weather-istanbul-4029/" target="_blank" class="view-all">
+                        Gismeteo
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
                 <div class="weather-card">
                     <div class="weather-header">
                         <div>
-                            <h3 style="color: white; font-size: 1.2rem;">Погода в Стамбуле</h3>
-                            <p style="color: var(--gray-300); font-size: 0.9rem;">Февраль 2026</p>
+                            <h3 style="color: white; margin-bottom: 4px; font-size: 1.2rem;">Февраль 2026</h3>
+                            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Средняя температура</p>
                         </div>
                         <div class="temp">+9°C</div>
                     </div>
-                    <div style="text-align: center; margin: 16px 0;">
+                    
+                    <div style="text-align: center; margin: 20px 0;">
                         <div class="weather-icon">⛅</div>
-                        <p style="color: var(--gray-300);">Переменная облачность</p>
+                        <p style="color: rgba(255, 255, 255, 0.9); font-size: 1rem;">Переменная облачность</p>
                     </div>
-                    <div class="weather-details">
-                        <div class="weather-item">
-                            <p style="font-size: 0.8rem; color: var(--gray-300);">Ветер</p>
-                            <p style="font-weight: 600;">15 км/ч</p>
+                    
+                    <div class="weather-stats">
+                        <div class="stat-item">
+                            <p style="font-size: 0.85rem; opacity: 0.8;">Ветер</p>
+                            <p style="font-size: 1.2rem; font-weight: 700;">15 км/ч</p>
                         </div>
-                        <div class="weather-item">
-                            <p style="font-size: 0.8rem; color: var(--gray-300);">Влажность</p>
-                            <p style="font-weight: 600;">75%</p>
+                        <div class="stat-item">
+                            <p style="font-size: 0.85rem; opacity: 0.8;">Влажность</p>
+                            <p style="font-size: 1.2rem; font-weight: 700;">75%</p>
                         </div>
-                        <div class="weather-item">
-                            <p style="font-size: 0.8rem; color: var(--gray-300);">Ощущается</p>
-                            <p style="font-weight: 600;">+6°C</p>
+                        <div class="stat-item">
+                            <p style="font-size: 0.85rem; opacity: 0.8;">Ощущается</p>
+                            <p style="font-size: 1.2rem; font-weight: 700;">+6°C</p>
                         </div>
-                        <div class="weather-item">
-                            <p style="font-size: 0.8rem; color: var(--gray-300);">Вероятность дождя</p>
-                            <p style="font-weight: 600;">40%</p>
+                        <div class="stat-item">
+                            <p style="font-size: 0.85rem; opacity: 0.8;">Дождь</p>
+                            <p style="font-size: 1.2rem; font-weight: 700;">40%</p>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Ссылка на подробный прогноз -->
-                <div class="card">
-                    <h4 style="margin-bottom: 12px;">Подробный прогноз погоды</h4>
-                    <p style="color: var(--gray-600); margin-bottom: 16px; font-size: 0.9rem;">
-                        Для точного прогноза погоды на ваши даты посетите:
-                    </p>
-                    <a href="https://www.gismeteo.ru/weather-istanbul-4029/" target="_blank" class="btn">
-                        <i class="fas fa-external-link-alt"></i> Gismeteo Стамбул
-                    </a>
-                    <div class="note info mt-3">
-                        <i class="fas fa-info-circle"></i> В феврале средняя температура +5°C...+10°C. Возможны дожди и сильный ветер с моря.
                     </div>
                 </div>
                 
-                <!-- Советы по погоде -->
-                <div class="card">
-                    <h4 style="margin-bottom: 16px;">Что взять с собой</h4>
+                <!-- Что взять с собой -->
+                <div class="card" style="margin-top: 20px;">
+                    <h4 style="margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-suitcase" style="color: var(--primary);"></i>
+                        Что взять с собой
+                    </h4>
                     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-                        <div style="text-align: center; padding: 12px; background: var(--gray-100); border-radius: var(--radius-xs);">
-                            <div style="font-size: 1.5rem; margin-bottom: 8px;">🧥</div>
-                            <div style="font-size: 0.85rem; font-weight: 500;">Теплая куртка</div>
+                        <div style="text-align: center; padding: 16px; background: var(--light-gray); border-radius: var(--radius-xs);">
+                            <div style="font-size: 2rem; margin-bottom: 8px;">🧥</div>
+                            <div style="font-weight: 600; font-size: 0.9rem;">Теплая куртка</div>
                         </div>
-                        <div style="text-align: center; padding: 12px; background: var(--gray-100); border-radius: var(--radius-xs);">
-                            <div style="font-size: 1.5rem; margin-bottom: 8px;">☂️</div>
-                            <div style="font-size: 0.85rem; font-weight: 500;">Зонт</div>
+                        <div style="text-align: center; padding: 16px; background: var(--light-gray); border-radius: var(--radius-xs);">
+                            <div style="font-size: 2rem; margin-bottom: 8px;">☔</div>
+                            <div style="font-weight: 600; font-size: 0.9rem;">Зонт</div>
                         </div>
-                        <div style="text-align: center; padding: 12px; background: var(--gray-100); border-radius: var(--radius-xs);">
-                            <div style="font-size: 1.5rem; margin-bottom: 8px;">👟</div>
-                            <div style="font-size: 0.85rem; font-weight: 500;">Удобная обувь</div>
+                        <div style="text-align: center; padding: 16px; background: var(--light-gray); border-radius: var(--radius-xs);">
+                            <div style="font-size: 2rem; margin-bottom: 8px;">👟</div>
+                            <div style="font-weight: 600; font-size: 0.9rem;">Удобная обувь</div>
                         </div>
-                        <div style="text-align: center; padding: 12px; background: var(--gray-100); border-radius: var(--radius-xs);">
-                            <div style="font-size: 1.5rem; margin-bottom: 8px;">🧣</div>
-                            <div style="font-size: 0.85rem; font-weight: 500;">Шарф/шапка</div>
+                        <div style="text-align: center; padding: 16px; background: var(--light-gray); border-radius: var(--radius-xs);">
+                            <div style="font-size: 2rem; margin-bottom: 8px;">🧤</div>
+                            <div style="font-weight: 600; font-size: 0.9rem;">Перчатки</div>
                         </div>
                     </div>
                 </div>
+            </section>
+        </main>
+        
+        <!-- Нижняя навигация -->
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active" data-tab="itinerary">
+                <div class="nav-icon">
+                    <i class="fas fa-map"></i>
+                </div>
+                <span class="nav-label">Маршрут</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="expenses">
+                <div class="nav-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <span class="nav-label">Расходы</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="converter">
+                <div class="nav-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <span class="nav-label">Курс</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="weather">
+                <div class="nav-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <span class="nav-label">Погода</span>
+            </a>
+        </nav>
+        
+        <!-- Модальное окно с информацией о расходе -->
+        <div class="modal" id="expenseModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="color: var(--dark);">Добавить расход</h3>
+                    <button class="close-modal" id="closeExpenseModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <!-- Форма будет скопирована с основной -->
             </div>
         </div>
-    </main>
-
-    <!-- Нижняя навигация -->
-    <nav class="bottom-nav">
-        <a href="#home" class="nav-item active" data-tab="home">
-            <i class="fas fa-home nav-icon"></i>
-            <span class="nav-label">Главная</span>
-        </a>
-        <a href="#itinerary" class="nav-item" data-tab="itinerary">
-            <i class="fas fa-route nav-icon"></i>
-            <span class="nav-label">Маршрут</span>
-        </a>
-        <a href="#expenses" class="nav-item" data-tab="expenses">
-            <i class="fas fa-chart-pie nav-icon"></i>
-            <span class="nav-label">Расходы</span>
-        </a>
-        <a href="#converter" class="nav-item" data-tab="converter">
-            <i class="fas fa-calculator nav-icon"></i>
-            <span class="nav-label">Курс</span>
-        </a>
-        <a href="#weather" class="nav-item" data-tab="weather">
-            <i class="fas fa-cloud-sun nav-icon"></i>
-            <span class="nav-label">Погода</span>
-        </a>
-    </nav>
+    </div>
 
     <script>
-        // Мобильное меню
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('mobileNav').classList.toggle('active');
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация появления
+            document.querySelectorAll('.card, .action-btn').forEach((el, i) => {
+                el.style.animation = `fadeIn 0.5s ease ${i * 0.1}s both`;
+            });
+            
+            // Инициализация конвертера
+            initConverter();
+            
+            // Инициализация трекера расходов
+            initExpenseTracker();
+            
+            // Настройка свайпов
+            initSwipe();
         });
         
-        // Закрыть меню при клике на ссылку
-        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('mobileNav').classList.remove('active');
-            });
-        });
-
         // Переключение вкладок
-        const tabBtns = document.querySelectorAll('.tab-btn, .nav-item');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
+        const tabs = document.querySelectorAll('[data-tab]');
+        const sections = document.querySelectorAll('.section');
+        const navItems = document.querySelectorAll('.nav-item');
+        const actionBtns = document.querySelectorAll('.action-btn');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Удаляем активный класс у всех кнопок
-                tabBtns.forEach(b => b.classList.remove('active'));
-                
-                // Добавляем активный класс нажатой кнопке
-                this.classList.add('active');
-                
-                // Получаем ID вкладки
                 const tabId = this.getAttribute('data-tab');
                 
-                // Скрываем все содержимое вкладок
-                tabContents.forEach(content => {
-                    content.classList.remove('active');
+                // Обновляем активные элементы навигации
+                navItems.forEach(item => item.classList.remove('active'));
+                actionBtns.forEach(btn => btn.classList.remove('active'));
+                
+                // Если это кнопка действия, делаем ее активной
+                if (this.classList.contains('action-btn')) {
+                    this.classList.add('active');
+                }
+                
+                // Если это элемент навигации, делаем его активным
+                if (this.classList.contains('nav-item')) {
+                    this.classList.add('active');
+                }
+                
+                // Показываем нужную секцию
+                sections.forEach(section => {
+                    section.style.display = 'none';
+                    if (section.id === tabId) {
+                        section.style.display = 'block';
+                        // Анимация появления
+                        section.style.animation = 'slideIn 0.3s ease';
+                    }
                 });
                 
-                // Показываем выбранную вкладку
-                document.getElementById(tabId).classList.add('active');
+                // Прокручиваем к началу
+                document.getElementById('mainContent').scrollTop = 0;
                 
-                // Прокручиваем к началу контента на мобильных
-                if (window.innerWidth < 768) {
-                    window.scrollTo({
-                        top: document.querySelector('.content-area').offsetTop - 60,
-                        behavior: 'smooth'
-                    });
-                }
+                // Сохраняем активную вкладку
+                localStorage.setItem('activeTab', tabId);
             });
         });
-
-        // Конвертер валют с обновленными курсами
-        const rates = {
-            TRY: 1,
-            BYN: 0.03,    // 1 TRY = 0.03 BYN
-            EUR: 0.0089,  // 1 TRY = 0.0089 EUR (1 EUR ≈ 112 TL)
-            USD: 0.0106   // 1 TRY = 0.0106 USD (1 USD ≈ 94.7 TL)
-        };
-
-        function convertCurrency(from, value) {
-            let tryValue;
-            
-            // Конвертируем в TRY
-            if (from === 'TRY') tryValue = value;
-            else if (from === 'BYN') tryValue = value / rates.BYN;
-            else if (from === 'EUR') tryValue = value / rates.EUR;
-            else if (from === 'USD') tryValue = value / rates.USD;
-
-            // Обновляем все поля
-            document.getElementById('tlValue').textContent = tryValue.toFixed(2);
-            document.getElementById('bynValue').textContent = (tryValue * rates.BYN).toFixed(2);
-            document.getElementById('eurValue').textContent = (tryValue * rates.EUR).toFixed(2);
-            document.getElementById('usdValue').textContent = (tryValue * rates.USD).toFixed(2);
-
-            document.getElementById('tlInput').value = tryValue.toFixed(2);
-            document.getElementById('bynInput').value = (tryValue * rates.BYN).toFixed(2);
-            document.getElementById('eurInput').value = (tryValue * rates.EUR).toFixed(2);
-            document.getElementById('usdInput').value = (tryValue * rates.USD).toFixed(2);
-        }
-
-        // Инициализация конвертера
-        document.getElementById('convertBtn').addEventListener('click', function() {
-            const amount = parseFloat(document.getElementById('amountInput').value) || 100;
-            convertCurrency('TRY', amount);
-        });
-
-        // Слушатели для полей ввода валют
-        document.getElementById('tlInput').addEventListener('input', function() {
-            convertCurrency('TRY', parseFloat(this.value) || 0);
-        });
-
-        document.getElementById('bynInput').addEventListener('input', function() {
-            convertCurrency('BYN', parseFloat(this.value) || 0);
-        });
-
-        document.getElementById('eurInput').addEventListener('input', function() {
-            convertCurrency('EUR', parseFloat(this.value) || 0);
-        });
-
-        document.getElementById('usdInput').addEventListener('input', function() {
-            convertCurrency('USD', parseFloat(this.value) || 0);
-        });
-
-        // Трекер расходов
-        let expenses = JSON.parse(localStorage.getItem('istanbulExpenses')) || [];
         
-        function saveExpenses() {
-            localStorage.setItem('istanbulExpenses', JSON.stringify(expenses));
+        // Конвертер валют
+        function initConverter() {
+            const rates = {
+                TRY: 1,
+                BYN: 0.03,    // 1 TRY = 0.03 BYN
+                EUR: 0.0089,  // 1 TRY = 0.0089 EUR
+                USD: 0.0106   // 1 TRY = 0.0106 USD
+            };
+            
+            const currencyInputs = document.querySelectorAll('.currency-input');
+            const currencyItems = document.querySelectorAll('.currency-item');
+            
+            function convertCurrency(fromCurrency, value) {
+                let tryValue;
+                
+                // Конвертируем в TRY
+                switch(fromCurrency) {
+                    case 'TRY':
+                        tryValue = value;
+                        break;
+                    case 'BYN':
+                        tryValue = value / rates.BYN;
+                        break;
+                    case 'EUR':
+                        tryValue = value / rates.EUR;
+                        break;
+                    case 'USD':
+                        tryValue = value / rates.USD;
+                        break;
+                }
+                
+                // Обновляем все поля
+                document.getElementById('tlInput').value = tryValue.toFixed(2);
+                document.getElementById('bynInput').value = (tryValue * rates.BYN).toFixed(2);
+                document.getElementById('eurInput').value = (tryValue * rates.EUR).toFixed(2);
+                document.getElementById('usdInput').value = (tryValue * rates.USD).toFixed(2);
+            }
+            
+            // Обработчики для полей ввода
+            currencyInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const parent = this.closest('.currency-item');
+                    const currency = parent.getAttribute('data-currency');
+                    
+                    // Делаем активным текущий элемент
+                    currencyItems.forEach(item => item.classList.remove('active'));
+                    parent.classList.add('active');
+                    
+                    convertCurrency(currency, parseFloat(this.value) || 0);
+                });
+                
+                // Анимация при фокусе
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-4px)';
+                    this.parentElement.style.boxShadow = '0 8px 25px rgba(108, 99, 255, 0.15)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'translateY(0)';
+                    this.parentElement.style.boxShadow = 'none';
+                });
+            });
+            
+            // Кнопка обновления курсов
+            document.getElementById('convertBtn').addEventListener('click', function() {
+                this.innerHTML = '<i class="fas fa-check"></i> Обновлено!';
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-sync-alt"></i> Обновить курсы';
+                }, 2000);
+            });
+            
+            // Инициализация с значениями по умолчанию
+            convertCurrency('TRY', 100);
+        }
+        
+        // Трекер расходов
+        function initExpenseTracker() {
+            let expenses = JSON.parse(localStorage.getItem('istanbulExpenses')) || [];
+            
+            function saveExpenses() {
+                localStorage.setItem('istanbulExpenses', JSON.stringify(expenses));
+                updateExpenseList();
+            }
+            
+            function updateExpenseList() {
+                const expenseList = document.getElementById('expenseList');
+                let totalTRY = 0;
+                let totalBYN = 0;
+                
+                if (expenses.length === 0) {
+                    expenseList.innerHTML = `
+                        <div style="text-align: center; padding: 40px 20px; color: var(--text-light);">
+                            <div style="font-size: 3rem; margin-bottom: 16px; opacity: 0.3;">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                            <p style="font-weight: 600; margin-bottom: 8px;">Нет расходов</p>
+                            <p style="font-size: 0.9rem;">Добавьте первый расход</p>
+                        </div>
+                    `;
+                } else {
+                    expenseList.innerHTML = '';
+                    
+                    expenses.forEach((expense, index) => {
+                        const tryAmount = expense.currency === 'TRY' ? expense.amount : 
+                                        expense.currency === 'BYN' ? expense.amount / 0.03 :
+                                        expense.currency === 'EUR' ? expense.amount / 0.0089 :
+                                        expense.amount / 0.0106;
+                        
+                        totalTRY += tryAmount;
+                        totalBYN += tryAmount * 0.03;
+                        
+                        const categoryIcons = {
+                            food: '🍽️',
+                            transport: '🚇',
+                            sightseeing: '🏛️',
+                            shopping: '🛍️',
+                            hotel: '🏨',
+                            other: '📦'
+                        };
+                        
+                        const currencySymbols = {
+                            TRY: '₺',
+                            BYN: 'Br',
+                            EUR: '€',
+                            USD: '$'
+                        };
+                        
+                        const expenseElement = document.createElement('div');
+                        expenseElement.className = 'expense-item';
+                        expenseElement.innerHTML = `
+                            <div class="expense-info">
+                                <h4>${expense.name}</h4>
+                                <div class="expense-category">
+                                    <span>${categoryIcons[expense.category]}</span>
+                                    <span>${expense.category}</span>
+                                    <span>•</span>
+                                    <span>${new Date(expense.date).toLocaleDateString()}</span>
+                                </div>
+                            </div>
+                            <div class="expense-amount">
+                                ${currencySymbols[expense.currency]}${expense.amount.toFixed(2)}
+                                <button onclick="removeExpense(${index})" style="background: none; border: none; color: var(--danger); margin-left: 8px;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `;
+                        
+                        // Анимация добавления
+                        expenseElement.style.animation = 'fadeIn 0.3s ease';
+                        expenseList.appendChild(expenseElement);
+                    });
+                }
+                
+                // Обновляем итоги
+                document.getElementById('totalTRY').textContent = totalTRY.toFixed(2) + ' ₺';
+                document.getElementById('totalBYN').textContent = totalBYN.toFixed(2) + ' Br';
+                document.getElementById('expenseStats').textContent = totalTRY.toFixed(2) + ' ₺';
+                
+                // Сохраняем в память
+                localStorage.setItem('totalSpent', totalTRY.toFixed(2));
+            }
+            
+            function addExpense() {
+                const name = document.getElementById('expenseName').value.trim();
+                const category = document.getElementById('expenseCategory').value;
+                const amount = parseFloat(document.getElementById('expenseAmount').value);
+                const currency = document.getElementById('expenseCurrency').value;
+                
+                if (!name || isNaN(amount) || amount <= 0) {
+                    showNotification('Заполните все поля правильно!', 'error');
+                    return;
+                }
+                
+                const expense = {
+                    id: Date.now(),
+                    name,
+                    category,
+                    amount,
+                    currency,
+                    date: new Date().toISOString()
+                };
+                
+                expenses.push(expense);
+                
+                // Очищаем форму
+                document.getElementById('expenseName').value = '';
+                document.getElementById('expenseAmount').value = '';
+                
+                saveExpenses();
+                
+                // Показываем уведомление
+                showNotification('Расход добавлен!', 'success');
+                
+                // Анимация кнопки
+                const btn = document.getElementById('addExpenseBtn');
+                btn.innerHTML = '<i class="fas fa-check"></i> Добавлено!';
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-plus-circle"></i> Добавить расход';
+                }, 1500);
+            }
+            
+            window.removeExpense = function(index) {
+                expenses.splice(index, 1);
+                saveExpenses();
+                showNotification('Расход удален', 'info');
+            };
+            
+            document.getElementById('addExpenseBtn').addEventListener('click', addExpense);
+            
+            // Добавление по Enter
+            document.getElementById('expenseAmount').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addExpense();
+                }
+            });
+            
+            // Очистка всех расходов
+            document.getElementById('clearExpensesBtn').addEventListener('click', function() {
+                if (confirm('Удалить все расходы?')) {
+                    expenses = [];
+                    saveExpenses();
+                    showNotification('Все расходы удалены', 'info');
+                }
+            });
+            
+            // Экспорт в CSV
+            document.getElementById('exportExpensesBtn').addEventListener('click', function() {
+                if (expenses.length === 0) {
+                    showNotification('Нет расходов для экспорта', 'warning');
+                    return;
+                }
+                
+                let csv = 'Дата,Описание,Категория,Сумма,Валюта\n';
+                expenses.forEach(expense => {
+                    csv += `${new Date(expense.date).toLocaleDateString()},"${expense.name}",${expense.category},${expense.amount},${expense.currency}\n`;
+                });
+                
+                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'istanbul_expenses.csv';
+                link.click();
+                
+                showNotification('Файл сохранен!', 'success');
+            });
+            
+            // Инициализация списка расходов
             updateExpenseList();
         }
         
-        function updateExpenseList() {
-            const expenseList = document.getElementById('expenseList');
-            let totalTRY = 0;
-            let totalBYN = 0;
-            
-            if (expenses.length === 0) {
-                expenseList.innerHTML = `
-                    <div style="text-align: center; padding: 40px 20px; color: var(--gray-500);">
-                        <i class="fas fa-receipt" style="font-size: 2rem; margin-bottom: 16px;"></i>
-                        <p>Нет добавленных расходов</p>
-                        <p style="font-size: 0.9rem; margin-top: 8px;">Добавьте первый расход</p>
-                    </div>
-                `;
-            } else {
-                expenseList.innerHTML = '';
-                
-                expenses.forEach((expense, index) => {
-                    const tryAmount = expense.currency === 'TRY' ? expense.amount : 
-                                    expense.currency === 'BYN' ? expense.amount / rates.BYN :
-                                    expense.currency === 'EUR' ? expense.amount / rates.EUR :
-                                    expense.amount / rates.USD;
-                    
-                    totalTRY += tryAmount;
-                    totalBYN += tryAmount * rates.BYN;
-                    
-                    const categoryIcons = {
-                        food: '🍽️',
-                        transport: '🚇',
-                        sightseeing: '🏛️',
-                        shopping: '🛍️',
-                        hotel: '🏨',
-                        other: '📦'
-                    };
-                    
-                    const currencySymbols = {
-                        TRY: '₺',
-                        BYN: 'Br',
-                        EUR: '€',
-                        USD: '$'
-                    };
-                    
-                    const expenseElement = document.createElement('div');
-                    expenseElement.className = 'expense-item';
-                    expenseElement.innerHTML = `
-                        <div class="expense-info">
-                            <h4>${expense.name}</h4>
-                            <span class="expense-category">${categoryIcons[expense.category]} ${expense.category}</span>
-                        </div>
-                        <div class="expense-amount">
-                            ${currencySymbols[expense.currency]} ${expense.amount.toFixed(2)}
-                            <button onclick="removeExpense(${index})" style="background: none; border: none; color: var(--gray-500); margin-left: 8px; font-size: 0.9rem;">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    `;
-                    expenseList.appendChild(expenseElement);
-                });
-            }
-            
-            // Обновляем итоги
-            document.getElementById('totalTRY').textContent = `${totalTRY.toFixed(2)} ₺`;
-            document.getElementById('totalBYN').textContent = `${totalBYN.toFixed(2)} Br`;
-        }
-        
-        function addExpense() {
-            const name = document.getElementById('expenseName').value.trim();
-            const category = document.getElementById('expenseCategory').value;
-            const amount = parseFloat(document.getElementById('expenseAmount').value);
-            const currency = document.getElementById('expenseCurrency').value;
-            
-            if (!name || isNaN(amount) || amount <= 0) {
-                alert('Пожалуйста, заполните все поля корректно');
-                return;
-            }
-            
-            expenses.push({
-                id: Date.now(),
-                name,
-                category,
-                amount,
-                currency,
-                date: new Date().toISOString()
-            });
-            
-            // Очищаем форму
-            document.getElementById('expenseName').value = '';
-            document.getElementById('expenseAmount').value = '';
-            
-            saveExpenses();
-            
-            // Показываем подтверждение
-            const confirmation = document.createElement('div');
-            confirmation.style.cssText = `
-                position: fixed;
-                top: 80px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: var(--success);
-                color: white;
-                padding: 12px 20px;
-                border-radius: var(--radius-xs);
-                box-shadow: var(--shadow);
-                z-index: 1001;
-                animation: slideIn 0.3s ease;
-            `;
-            confirmation.textContent = 'Расход добавлен!';
-            document.body.appendChild(confirmation);
-            
-            setTimeout(() => {
-                confirmation.remove();
-            }, 2000);
-        }
-        
-        function removeExpense(index) {
-            expenses.splice(index, 1);
-            saveExpenses();
-        }
-        
-        function clearExpenses() {
-            if (confirm('Вы уверены, что хотите удалить все расходы?')) {
-                expenses = [];
-                saveExpenses();
-            }
-        }
-        
-        function exportExpenses() {
-            if (expenses.length === 0) {
-                alert('Нет расходов для экспорта');
-                return;
-            }
-            
-            let csv = 'Описание,Категория,Сумма,Валюта,Дата\n';
-            expenses.forEach(expense => {
-                csv += `"${expense.name}",${expense.category},${expense.amount},${expense.currency},"${new Date(expense.date).toLocaleDateString()}"\n`;
-            });
-            
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'istanbul_expenses.csv';
-            a.click();
-            window.URL.revokeObjectURL(url);
-        }
-        
-        // Назначаем обработчики для трекера расходов
-        document.getElementById('addExpenseBtn').addEventListener('click', addExpense);
-        document.getElementById('clearExpensesBtn').addEventListener('click', clearExpenses);
-        document.getElementById('exportExpensesBtn').addEventListener('click', exportExpenses);
-        
-        // Разрешаем добавлять расход по Enter
-        document.getElementById('expenseAmount').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addExpense();
-            }
-        });
-        
-        // Показать все дни маршрута
+        // Показать все дни
         document.getElementById('showAllDays').addEventListener('click', function() {
-            const additionalDays = [
+            const days = [
+                {
+                    day: 3,
+                    title: "День 3: Базары и Бейоглу",
+                    date: "Воскресенье, 15 февраля",
+                    activities: [
+                        { time: "09:30", title: "Гранд-Базар", desc: "Крупнейший крытый рынок", tag: "shopping" },
+                        { time: "11:30", title: "Мечеть Сулеймание", desc: "Лучший вид на город", tag: "sightseeing" },
+                        { time: "15:00", title: "Истикляль", desc: "Прогулка по главной улице", tag: "sightseeing" }
+                    ]
+                },
                 {
                     day: 4,
-                    title: "День 4: Понедельник, 16.02",
-                    subtitle: "Азиатская сторона",
-                    content: "Паром в Кадыкёй, исследование азиатского берега, паром в Ускюдар"
+                    title: "День 4: Азиатская сторона",
+                    date: "Понедельник, 16 февраля",
+                    activities: [
+                        { time: "10:00", title: "Паром в Кадыкёй", desc: "Круиз по Босфору", tag: "transport" },
+                        { time: "13:00", title: "Район Кадыкёй", desc: "Исследование азиатского берега", tag: "sightseeing" },
+                        { time: "17:00", title: "Паром в Ускюдар", desc: "Вид на Босфор", tag: "transport" }
+                    ]
                 },
                 {
                     day: 5,
-                    title: "День 5: Вторник, 17.02",
-                    subtitle: "Фатих и стены",
-                    content: "Мечеть Фатих, монастырь Хора, стены Константинополя, район Вефа"
+                    title: "День 5: Стены Константинополя",
+                    date: "Вторник, 17 февраля",
+                    activities: [
+                        { time: "10:00", title: "Мечеть Фатих", desc: "Первая османская мечеть", tag: "sightseeing" },
+                        { time: "13:00", title: "Монастырь Хора", desc: "Византийские мозаики", tag: "sightseeing" },
+                        { time: "16:00", title: "Стены Константинополя", desc: "Древние укрепления", tag: "sightseeing" }
+                    ]
                 },
                 {
                     day: 6,
-                    title: "День 6: Среда, 18.02",
-                    subtitle: "Круиз по Босфору",
-                    content: "Длинный круиз до Анадолу Кавагы, свободное время, прощальный ужин"
+                    title: "День 6: Круиз по Босфору",
+                    date: "Среда, 18 февраля",
+                    activities: [
+                        { time: "10:00", title: "Длинный круиз", desc: "До Анадолу Кавагы", tag: "transport" },
+                        { time: "15:00", title: "Свободное время", desc: "Шопинг или отдых", tag: "other" },
+                        { time: "19:00", title: "Прощальный ужин", desc: "Ресторан с видом", tag: "food" }
+                    ]
                 },
                 {
                     day: 7,
-                    title: "День 7: Четверг, 19.02",
-                    subtitle: "Отъезд",
-                    content: "Трансфер в аэропорт, вылет в 15:50"
+                    title: "День 7: Отъезд",
+                    date: "Четверг, 19 февраля",
+                    activities: [
+                        { time: "11:00", title: "Выезд из отеля", desc: "Сборы и завтрак", tag: "hotel" },
+                        { time: "12:00", title: "В аэропорт", desc: "Трансфер", tag: "transport" },
+                        { time: "15:50", title: "Вылет в Минск", desc: "Конец путешествия", tag: "transport" }
+                    ]
                 }
             ];
             
-            const itineraryTab = document.getElementById('itinerary');
-            const lastCard = itineraryTab.querySelector('.card:last-child');
+            const itinerarySection = document.getElementById('itinerary');
             
-            additionalDays.forEach(day => {
+            days.forEach(dayData => {
                 const dayCard = document.createElement('div');
-                dayCard.className = 'card';
-                dayCard.innerHTML = `
-                    <div class="card-header">
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 1.2rem;">${day.title}</h3>
-                            <p style="color: var(--primary); font-size: 0.9rem;">${day.subtitle}</p>
+                dayCard.className = 'card day-card';
+                dayCard.style.animation = 'fadeIn 0.5s ease';
+                
+                let activitiesHTML = '';
+                dayData.activities.forEach(activity => {
+                    activitiesHTML += `
+                        <div class="timeline-item">
+                            <div class="time-badge">${activity.time}</div>
+                            <div class="time-content">
+                                <h4 style="font-size: 1rem; margin-bottom: 4px;">${activity.title}</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">${activity.desc}</p>
+                                <div class="activity-tags">
+                                    <span class="tag ${activity.tag}">
+                                        <i class="fas fa-${getIconForTag(activity.tag)}"></i>
+                                        ${getTagName(activity.tag)}
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="day-badge">${day.day}</div>
+                    `;
+                });
+                
+                dayCard.innerHTML = `
+                    <div class="day-header">
+                        <div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 4px;">${dayData.title}</h3>
+                            <p style="color: var(--primary); font-size: 0.9rem; font-weight: 600;">${dayData.date}</p>
+                        </div>
+                        <div class="day-number">${dayData.day}</div>
                     </div>
                     <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="time">
-                                <i class="fas ${day.day === 7 ? 'fa-plane' : day.day === 6 ? 'fa-ship' : 'fa-walking'}"></i>
-                                Основные активности
-                            </div>
-                            <p>${day.content}</p>
-                            <div class="tags">
-                                <span class="tag ${day.day === 7 ? 'price-tag' : day.day === 6 ? 'transport-tag' : 'food-tag'}">
-                                    <i class="fas ${day.day === 7 ? 'fa-plane' : day.day === 6 ? 'fa-ship' : 'fa-camera'}"></i>
-                                    ${day.day === 7 ? 'Трансфер' : day.day === 6 ? 'Паром' : 'Достопримечательности'}
-                                </span>
-                            </div>
-                        </div>
+                        ${activitiesHTML}
                     </div>
                 `;
                 
-                itineraryTab.insertBefore(dayCard, lastCard);
+                itinerarySection.insertBefore(dayCard, document.getElementById('showAllDays'));
             });
             
             this.style.display = 'none';
+            
+            showNotification('Все дни загружены!', 'success');
         });
         
-        // Инициализация при загрузке
-        document.addEventListener('DOMContentLoaded', function() {
-            // Конвертер
-            convertCurrency('TRY', 100);
+        function getIconForTag(tag) {
+            const icons = {
+                food: 'utensils',
+                transport: 'bus',
+                sightseeing: 'camera',
+                shopping: 'shopping-bag',
+                hotel: 'hotel',
+                other: 'star'
+            };
+            return icons[tag] || 'circle';
+        }
+        
+        function getTagName(tag) {
+            const names = {
+                food: 'Питание',
+                transport: 'Транспорт',
+                sightseeing: 'Достопримечательности',
+                shopping: 'Шопинг',
+                hotel: 'Отель',
+                other: 'Прочее'
+            };
+            return names[tag] || tag;
+        }
+        
+        // Уведомления
+        function showNotification(message, type = 'info') {
+            const colors = {
+                success: '#4CAF50',
+                error: '#FF5252',
+                warning: '#FFB74D',
+                info: '#6C63FF'
+            };
             
-            // Трекер расходов
-            updateExpenseList();
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 90px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: ${colors[type] || colors.info};
+                color: white;
+                padding: 16px 24px;
+                border-radius: 12px;
+                font-weight: 600;
+                z-index: 2000;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+                animation: fadeIn 0.3s ease;
+                max-width: 90%;
+                text-align: center;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
             
-            // Автоматически открывать клавиатуру для ввода суммы при фокусе
-            document.getElementById('expenseAmount').addEventListener('focus', function() {
-                setTimeout(() => {
-                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 300);
+            setTimeout(() => {
+                notification.style.animation = 'fadeIn 0.3s ease reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        // Свайпы для мобильных
+        function initSwipe() {
+            let startX, startY;
+            const threshold = 50;
+            
+            document.addEventListener('touchstart', e => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
             });
             
-            // Улучшение UX для мобильных
-            if ('ontouchstart' in window) {
-                document.body.classList.add('touch-device');
-            }
-        });
-        
-        // Обработка свайпов для мобильных
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        document.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        document.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const swipeDistance = touchEndX - touchStartX;
-            
-            if (Math.abs(swipeDistance) < swipeThreshold) return;
-            
-            const tabs = ['home', 'itinerary', 'expenses', 'converter', 'weather'];
-            const currentTab = document.querySelector('.tab-content.active').id;
-            const currentIndex = tabs.indexOf(currentTab);
-            
-            if (swipeDistance > 0 && currentIndex > 0) {
-                // Свайп вправо - предыдущая вкладка
-                switchTab(tabs[currentIndex - 1]);
-            } else if (swipeDistance < 0 && currentIndex < tabs.length - 1) {
-                // Свайп влево - следующая вкладка
-                switchTab(tabs[currentIndex + 1]);
-            }
+            document.addEventListener('touchend', e => {
+                if (!startX || !startY) return;
+                
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const diffX = startX - endX;
+                const diffY = startY - endY;
+                
+                // Только горизонтальные свайпы
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
+                    const tabs = ['itinerary', 'expenses', 'converter', 'weather'];
+                    const currentSection = Array.from(sections).find(s => s.style.display === 'block');
+                    const currentIndex = tabs.indexOf(currentSection.id);
+                    
+                    if (diffX > 0 && currentIndex < tabs.length - 1) {
+                        // Свайп влево - следующая вкладка
+                        document.querySelector(`[data-tab="${tabs[currentIndex + 1]}"]`).click();
+                    } else if (diffX < 0 && currentIndex > 0) {
+                        // Свайп вправо - предыдущая вкладка
+                        document.querySelector(`[data-tab="${tabs[currentIndex - 1]}"]`).click();
+                    }
+                }
+                
+                startX = null;
+                startY = null;
+            });
         }
         
-        function switchTab(tabId) {
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabContents.forEach(c => c.classList.remove('active'));
-            
-            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        }
+        // Восстановление активной вкладки
+        const savedTab = localStorage.getItem('activeTab') || 'itinerary';
+        document.querySelector(`[data-tab="${savedTab}"]`).click();
         
-        // Сохранение состояния при перезагрузке
-        window.addEventListener('beforeunload', function() {
-            const activeTab = document.querySelector('.tab-content.active').id;
-            localStorage.setItem('activeTab', activeTab);
-        });
-        
-        // Восстановление состояния
-        window.addEventListener('load', function() {
-            const savedTab = localStorage.getItem('activeTab') || 'home';
-            switchTab(savedTab);
-        });
+        // Анимация при загрузке
+        setTimeout(() => {
+            document.querySelector('.welcome-card').style.animation = 'pulse 2s ease infinite';
+        }, 1000);
     </script>
 </body>
 </html>

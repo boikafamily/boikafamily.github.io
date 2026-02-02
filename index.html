@@ -1294,33 +1294,7 @@
     .submit-btn:hover {
       opacity: 0.9;
     }
-  /* Toast Notification */
-    @keyframes slideDown {
-      from { opacity: 0; transform: translate(-50%, -20px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
-    }
-    
-    .toast {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--primary);
-      color: var(--primary-foreground);
-      padding: 12px 24px;
-      border-radius: 8px;
-      box-shadow: var(--shadow-elevated);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      animation: slideDown 0.3s ease-out;
-    }
 
-    .toast.success { background: var(--primary); }
-    .toast.error { background: hsl(0, 84%, 60%); }
-    .toast.warning { background: var(--accent); }
-    
     /* Shop Icon */
     .shop-icon {
       width: 40px;
@@ -1344,7 +1318,6 @@
       gap: 12px;
     }
   </style>
- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <!-- HOME PAGE -->
@@ -1354,7 +1327,7 @@
       <div class="hero-content">
         <h1>Привет, Бойки! Добро пожаловать в Стамбул</h1>
         <p>Город на двух континентах — где Европа встречается с Азией</p>
-        <p>Желаем вам хорошей погоды и классных впечатлений.</p>
+        <p>Желаем вам хорошей погоды и классных впечатлений!</p>
       </div>
     </section>
 
@@ -1726,13 +1699,6 @@
   </nav>
 
   <script>
-      // ============= SUPABASE CONFIGURATION =============
-    const SUPABASE_URL = 'https://yjithstkzcvcycmrfqet.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqaXRoc3RremN2Y3ljbXJmcWV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYzMjMxMDcsImV4cCI6MjA4MTg5OTEwN30.41GLqO47_tfrdSC2Dvo0Ya79KaI2oHIRmgOs3HDER9E';
-
-    // Инициализация Supabase
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    
     // ============= DATA =============
     const travelDays = [
       {
@@ -1874,40 +1840,11 @@
 
     // ============= STATE =============
     let visited = JSON.parse(localStorage.getItem('istanbul-visited') || '{}');
-    let expenses = [];
+    let expenses = JSON.parse(localStorage.getItem('istanbul-expenses') || '[]');
     let expandedDay = 0;
     let selectedCategory = 'food';
-    let userId = localStorage.getItem('istanbul-user-id') || generateUserId();
-    let isLoading = false;
 
-    // ============= UTILITY FUNCTIONS =============
-    function generateUserId() {
-      const id = 'user_' + Math.random().toString(36).substr(2, 9);
-      localStorage.setItem('istanbul-user-id', id);
-      return id;
-    }
-
-    function showToast(message, type = 'success') {
-      // Создаем или находим toast элемент
-      let toast = document.getElementById('toast');
-      if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'toast';
-        toast.className = 'toast';
-        toast.style.cssText = 'position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--primary); color: var(--primary-foreground); padding: 12px 24px; border-radius: 8px; box-shadow: var(--shadow-elevated); z-index: 1000; display: flex; align-items: center; gap: 8px; animation: slideDown 0.3s ease-out; display: none;';
-        document.body.appendChild(toast);
-      }
-      
-      toast.textContent = message;
-      toast.className = `toast ${type}`;
-      toast.style.display = 'flex';
-      
-      setTimeout(() => {
-        toast.style.display = 'none';
-      }, 3000);
-    }
-
-     // ============= PAGE NAVIGATION =============
+    // ============= PAGE NAVIGATION =============
     function showPage(pageName) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -1923,12 +1860,8 @@
       }
       
       window.scrollTo(0, 0);
-      
-      // Если открываем страницу расходов, загружаем данные из базы
-      if (pageName === 'expenses') {
-        loadExpensesFromDB();
-      }
     }
+
     // ============= GUIDE PAGE =============
     function renderDays() {
       const container = document.getElementById('day-list');
@@ -2142,73 +2075,7 @@
       resultDetail.textContent = `${amount.toFixed(2)} ${currencySymbols[from]} = ${result.toFixed(2)} ${currencySymbols[to]}`;
     }
 
-      // ============= EXPENSES PAGE =============
-    async function loadExpensesFromDB() {
-      try {
-        const { data, error } = await supabase
-          .from('expenses')
-          .select('*')
-          .eq('user_id', userId)
-          .order('date', { ascending: false })
-          .order('created_at', { ascending: false });
-
-        if (error) throw error;
-
-        expenses = data || [];
-        renderExpenses();
-      } catch (error) {
-        console.error('Ошибка загрузки расходов:', error);
-        showToast('Ошибка загрузки расходов', 'error');
-      }
-    }
-
-    async function addExpenseToDB(expense) {
-      try {
-        const { data, error } = await supabase
-          .from('expenses')
-          .insert({
-            user_id: userId,
-            date: expense.date,
-            amount: expense.amount,
-            currency: expense.currency,
-            category: expense.category,
-            description: expense.description,
-            created_at: new Date().toISOString()
-          })
-          .select()
-          .single();
-
-        if (error) throw error;
-
-        expenses.unshift(data);
-        renderExpenses();
-        closeModal();
-        showToast('Расход добавлен');
-      } catch (error) {
-        console.error('Ошибка добавления расхода:', error);
-        showToast('Ошибка добавления расхода', 'error');
-      }
-    }
-
-    async function deleteExpenseFromDB(id) {
-      try {
-        const { error } = await supabase
-          .from('expenses')
-          .delete()
-          .eq('id', id)
-          .eq('user_id', userId);
-
-        if (error) throw error;
-
-        expenses = expenses.filter(e => e.id !== id);
-        renderExpenses();
-        showToast('Расход удален');
-      } catch (error) {
-        console.error('Ошибка удаления расхода:', error);
-        showToast('Ошибка удаления расхода', 'error');
-      }
-    }
-
+    // ============= EXPENSES PAGE =============
     function renderExpenses() {
       const totalSpent = document.getElementById('total-spent');
       const categoryBreakdown = document.getElementById('category-breakdown');
@@ -2313,12 +2180,10 @@
 
     function addExpense() {
       const amount = parseFloat(document.getElementById('expense-amount').value);
-      if (!amount || amount <= 0) {
-        showToast('Введите корректную сумму', 'error');
-        return;
-      }
+      if (!amount || amount <= 0) return;
 
       const expense = {
+        id: Date.now().toString(),
         date: document.getElementById('expense-date').value,
         amount: amount,
         currency: document.getElementById('expense-currency').value,
@@ -2326,21 +2191,27 @@
         description: document.getElementById('expense-desc').value
       };
 
-      addExpenseToDB(expense);
+      expenses.unshift(expense);
+      localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
+      closeModal();
+      renderExpenses();
     }
 
     function deleteExpense(id) {
-      if (confirm('Удалить этот расход?')) {
-        deleteExpenseFromDB(id);
-      }
+      expenses = expenses.filter(e => e.id !== id);
+      localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
+      renderExpenses();
     }
 
-     // ============= INIT =============
+    // ============= INIT =============
     document.addEventListener('DOMContentLoaded', () => {
       // Загружаем данные из localStorage
       try {
         const visitedData = localStorage.getItem('istanbul-visited');
+        const expensesData = localStorage.getItem('istanbul-expenses');
+        
         if (visitedData) visited = JSON.parse(visitedData);
+        if (expensesData) expenses = JSON.parse(expensesData);
       } catch (e) {
         console.error('Ошибка загрузки данных из localStorage:', e);
       }
@@ -2350,10 +2221,8 @@
       renderRestaurants();
       renderShops();
       setupConverter();
+      renderExpenses();
       renderCategoryGrid();
-      
-      // Загружаем расходы из базы
-      loadExpensesFromDB();
       
       // Добавляем скрипт для погоды
       const script = document.createElement('script');

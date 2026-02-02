@@ -8,17 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Скрипт для виджета погоды Tomorrow.io -->
- <script>
-  (function(a,f,g){
-    var e=a.createElement(f);
-    e.async=1;
-    e.src=g; 
-    a=a.getElementsByTagName(f)[0];
-    a.parentNode.insertBefore(e,a)
-  })(document,'script','//nuipogoda.ru/informer/nuipogoda.js');
-</script>
-  
   <style>
     :root {
       --background: hsl(30, 50%, 98%);
@@ -1370,20 +1359,21 @@
       </div>
 
       <div class="card card-elevated card-full animate-slide-up" style="animation-delay: 0.2s">
-  <div class="card-header">
-    <div class="card-icon accent">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+        <div class="card-header">
+          <div class="card-icon accent">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+          </div>
+          <h3 class="card-title">Погода в Стамбуле</h3>
+        </div>
+        
+        <!-- Виджет "Ну и погода" -->
+        <div style="display: flex; justify-content: center; align-items: center; min-height: 300px; padding: 16px;">
+          <a class="nuipogoda-iframe-informer" data-nuipogoda="informer3" href="https://stambul.nuipogoda.ru" style="width:284px;height:263px;display:block;box-shadow: 0 0 5px #999; border-radius: 12px; overflow: hidden;">НУ И ПОГОДА</a>
+        </div>
+        
+        <p class="text-xs text-muted" style="text-align: center; margin-top: 8px;">Данные от Ну и погода</p>
+      </div>
     </div>
-    <h3 class="card-title">Погода в Стамбуле</h3>
-  </div>
-  
-  <!-- Виджет "Ну и погода" -->
-  <div style="display: flex; justify-content: center; align-items: center; min-height: 300px; padding: 16px;">
-    <a class="nuipogoda-iframe-informer" data-nuipogoda="informer3" href="https://stambul.nuipogoda.ru" style="width:284px;height:263px;display:block;box-shadow: 0 0 5px #999; border-radius: 12px; overflow: hidden;">НУ И ПОГОДА</a>
-  </div>
-  
-  <p class="text-xs text-muted" style="text-align: center; margin-top: 8px;">Данные от Ну и погода</p>
-</div>
 
     <section class="section">
       <h2 class="section-title">О Стамбуле</h2>
@@ -1413,6 +1403,11 @@
       <h2 class="section-title">Наше путешествие</h2>
       <div class="trip-grid">
         <div class="trip-card" onclick="showPage('guide')">
+          <span class="emoji">✈️</span>
+          <p class="day">День 1</p>
+          <p class="title">Прилет, заселение</p>
+        </div>
+        <div class="trip-card" onclick="showPage('guide')">
           <span class="emoji">🕌</span>
           <p class="day">День 2</p>
           <p class="title">Султанахмет ч.1</p>
@@ -1431,6 +1426,16 @@
           <span class="emoji">⛴️</span>
           <p class="day">День 5</p>
           <p class="title">Босфор</p>
+        </div>
+        <div class="trip-card" onclick="showPage('guide')">
+          <span class="emoji">🎯</span>
+          <p class="day">День 6</p>
+          <p class="title">Свободный день</p>
+        </div>
+        <div class="trip-card" onclick="showPage('guide')">
+          <span class="emoji">🛄</span>
+          <p class="day">День 7</p>
+          <p class="title">Дорога домой</p>
         </div>
       </div>
     </section>
@@ -1680,7 +1685,21 @@
     // ============= DATA =============
     const travelDays = [
       {
-        day: "День 2 (Суббота)",
+        day: "День 1 (Пятница, 13.02)",
+        title: "Прилет, заселение, первые впечатления",
+        emoji: "✈️",
+        route: "Минск → Стамбул: Прилет → Заселение → Вечерняя прогулка",
+        attractions: [
+          { name: "Подготовка к вылету", duration: "3:30-6:00", description: "Подъем в 3:30, такси на вокзал, автобус 300Э в аэропорт" },
+          { name: "Перелет Минск-Стамбул", duration: "6:00-14:50", description: "Вылет в 9:10, прилет в 14:50" },
+          { name: "Прибытие в Стамбул", duration: "14:50-17:00", description: "Получение багажа, покупка Istanbulkart, трансфер в отель" },
+          { name: "Заселение в отель", duration: "17:00-18:00", description: "Отель Gloria Suites Old City в районе Султанахмет" },
+          { name: "Первый ужин в Стамбуле", duration: "18:00-19:00", description: "Быстрый и бюджетный ужин (макдональдс или местная забегаловка)" },
+          { name: "Вечерняя прогулка", duration: "19:00-22:00", description: "Первое знакомство с городом, прогулка в сторону площади Султанахмет" }
+        ]
+      },
+      {
+        day: "День 2 (Суббота, 14.02)",
         title: "Исторический Султанахмет, часть 1",
         emoji: "🕌",
         route: "Пешком от отеля → Ипподром → Айя-София → Голубая мечеть → Цистерна → Египетский базар",
@@ -1693,7 +1712,7 @@
         ]
       },
       {
-        day: "День 3 (Воскресенье)",
+        day: "День 3 (Воскресенье, 15.02)",
         title: "Исторический Султанахмет, часть 2",
         emoji: "🏛️",
         route: "Топкапы → Археологический музей → Парк Гюльхане → Цистерна Феодосия → Гранд Базар",
@@ -1706,7 +1725,7 @@
         ]
       },
       {
-        day: "День 4 (Понедельник)",
+        day: "День 4 (Понедельник, 16.02)",
         title: "Галатская башня, Истикляль, Таксим",
         emoji: "🗼",
         route: "Трамвай до Каракёй → Лестница Камондо → Галата → пешком по Истикляль → Таксим → Миниатюрк/Музей Коча",
@@ -1723,7 +1742,7 @@
         ]
       },
       {
-        day: "День 4 (Вторник)",
+        day: "День 5 (Вторник, 17.02)",
         title: "Долмабахче, Босфор, Каракёй",
         emoji: "⛴️",
         route: "Трамвай до Долмабахче → Ортакёй → Тур по Босфору → Каракёй и Галатапорт → Дервиши",
@@ -1736,18 +1755,30 @@
         ]
       },
       {
-        day: "День 5 (Среда)",
-        title: "Сулеймание, Балат, музей Рахми М.Коча",
-        emoji: "🎨",
-        route: "Трамвай до Сулеймание → пешком через Балат → паром до Хаскёй → Музей Коча",
+        day: "День 6 (Среда, 18.02)",
+        title: "Свободный день в Стамбуле",
+        emoji: "🎯",
+        route: "Выбор на день: Азиатская сторона / Принцевы острова / Второй шанс посмотреть пропущенное",
         attractions: [
-          { name: "Мечеть Сулеймание", duration: "1 час", description: "Величайшее творение архитектора Синана", mapUrl: "https://maps.google.com/?q=Suleymaniye+Mosque,+Istanbul" },
-          { name: "Квартал Балат", duration: "2 часа", description: "Колоритный район с разноцветными домами — рай для фото", mapUrl: "https://maps.google.com/?q=Balat,+Istanbul" },
-          { name: "Железная церковь (Болгарская церковь)", duration: "30 мин", description: "Уникальная церковь из чугуна на берегу Золотого Рога", mapUrl: "https://maps.google.com/?q=Bulgarian+Iron+Church,+Istanbul" },
-          { name: "Музей Текфур (Дворец Порфирогенита)", duration: "1 час", description: "Единственный сохранившийся византийский дворец", mapUrl: "https://maps.google.com/?q=Tekfur+Palace,+Istanbul" },
-          { name: "Музей Карие (мечеть Карие)", duration: "1 час", description: "Великолепные византийские мозаики и фрески", mapUrl: "https://maps.google.com/?q=Chora+Church,+Istanbul" },
-          { name: "Музей Панорама 1453", duration: "1 час", description: "Панорамный музей о взятии Константинополя", mapUrl: "https://maps.google.com/?q=Panorama+1453+Museum,+Istanbul" },
-          { name: "Музей Рахми М.Коча", duration: "2 часа", description: "Паром от пристани Айвансарай до Хаскёй. Музей транспорта и промышленности", mapUrl: "https://maps.google.com/?q=Rahmi+M.+Koc+Museum,+Istanbul" }
+          { name: "Вариант 1: Азиатская сторона Стамбула", duration: "4-5 часов", description: "Паром до Кадыкёй, район Мода, набережная, рыбный рынок, аутентичные кафе" },
+          { name: "Вариант 2: Принцевы острова (Бююкада)", duration: "6-7 часов", description: "Паром до острова, велосипедная прогулка, конные экипажи, сосновые леса" },
+          { name: "Вариант 3: Дополнительные музеи", duration: "3-4 часа", description: "Музей современного искусства, Музей невинности, Музей Пера" },
+          { name: "Вариант 4: Шопинг-день", duration: "3-4 часа", description: "Торговые центры (Istinye Park, Mall of Istanbul, Cevahir) или аутлеты" },
+          { name: "Вариант 5: Второй шанс", duration: "2-3 часа", description: "Вернуться к любимым местам или посмотреть то, что не успели ранее" },
+          { name: "Вариант 6: Банный день (хамам)", duration: "2 часа", description: "Традиционный турецкий хамам для полноценного отдыха" }
+        ]
+      },
+      {
+        day: "День 7 (Четверг, 19.02)",
+        title: "Дорога домой",
+        emoji: "🛄",
+        route: "Завтрак → Выселение → Трансфер в аэропорт → Вылет в Минск",
+        attractions: [
+          { name: "Завтрак и сборы", duration: "8:30-10:00", description: "Подъем в 8:30, завтрак, подготовка к выезду" },
+          { name: "Выезд из отеля", duration: "10:00", description: "Выселение, такси до аэропорта" },
+          { name: "Дорога в аэропорт", duration: "10:30-12:00", description: "Трансфер в аэропорт Стамбула" },
+          { name: "Регистрация и вылет", duration: "12:00-15:50", description: "Регистрация на рейс, паспортный контроль, вылет в 15:50" },
+          { name: "Прилет в Минск", duration: "~19:00", description: "Прибытие домой, завершение путешествия" }
         ]
       }
     ];
@@ -1801,8 +1832,15 @@
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
       
-      document.getElementById('page-' + pageName).classList.add('active');
-      document.querySelector(`.nav-item[data-page="${pageName}"]`).classList.add('active');
+      const pageElement = document.getElementById('page-' + pageName);
+      const navElement = document.querySelector(`.nav-item[data-page="${pageName}"]`);
+      
+      if (pageElement) {
+        pageElement.classList.add('active');
+      }
+      if (navElement) {
+        navElement.classList.add('active');
+      }
       
       window.scrollTo(0, 0);
     }
@@ -1810,6 +1848,8 @@
     // ============= GUIDE PAGE =============
     function renderDays() {
       const container = document.getElementById('day-list');
+      if (!container) return;
+      
       container.innerHTML = travelDays.map((day, dayIndex) => {
         const visitedCount = day.attractions.filter((_, i) => visited[`${dayIndex}-${i}`]).length;
         const progress = (visitedCount / day.attractions.length) * 100;
@@ -1855,11 +1895,11 @@
                         </span>
                       </div>
                       ${attr.description ? `<p class="attraction-desc">${attr.description}</p>` : ''}
-                      <a href="${attr.mapUrl}" target="_blank" class="attraction-link">
+                      ${attr.mapUrl ? `<a href="${attr.mapUrl}" target="_blank" class="attraction-link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                         Открыть на карте
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
-                      </a>
+                      </a>` : ''}
                     </div>
                   </div>
                 `;
@@ -1885,6 +1925,8 @@
     // ============= RESTAURANTS PAGE =============
     function renderRestaurants() {
       const container = document.getElementById('restaurants-list');
+      if (!container) return;
+      
       container.innerHTML = restaurants.map(r => `
         <div class="list-card">
           <div class="list-card-header">
@@ -1919,6 +1961,8 @@
     // ============= SHOPS PAGE =============
     function renderShops() {
       const container = document.getElementById('shops-list');
+      if (!container) return;
+      
       container.innerHTML = shops.map(s => `
         <div class="list-card">
           <div class="list-card-header">
@@ -1958,18 +2002,29 @@
     function setupConverter() {
       const quickAmounts = [50, 100, 200, 500, 1000];
       const container = document.getElementById('quick-amounts');
+      if (!container) return;
+      
       container.innerHTML = quickAmounts.map(a => 
         `<button class="quick-btn ${a === 100 ? 'active' : ''}" onclick="setAmount(${a})">${a}</button>`
       ).join('');
 
-      document.getElementById('calc-amount').addEventListener('input', updateConverter);
-      document.getElementById('from-currency').addEventListener('change', updateConverter);
-      document.getElementById('to-currency').addEventListener('change', updateConverter);
-      updateConverter();
+      const calcAmount = document.getElementById('calc-amount');
+      const fromCurrency = document.getElementById('from-currency');
+      const toCurrency = document.getElementById('to-currency');
+      
+      if (calcAmount && fromCurrency && toCurrency) {
+        calcAmount.addEventListener('input', updateConverter);
+        fromCurrency.addEventListener('change', updateConverter);
+        toCurrency.addEventListener('change', updateConverter);
+        updateConverter();
+      }
     }
 
     function setAmount(amount) {
-      document.getElementById('calc-amount').value = amount;
+      const calcAmount = document.getElementById('calc-amount');
+      if (!calcAmount) return;
+      
+      calcAmount.value = amount;
       document.querySelectorAll('.quick-btn').forEach(btn => {
         btn.classList.toggle('active', btn.textContent == amount);
       });
@@ -1979,6 +2034,8 @@
     function swapCurrencies() {
       const from = document.getElementById('from-currency');
       const to = document.getElementById('to-currency');
+      if (!from || !to) return;
+      
       const temp = from.value;
       from.value = to.value;
       to.value = temp;
@@ -1986,21 +2043,31 @@
     }
 
     function updateConverter() {
-      const amount = parseFloat(document.getElementById('calc-amount').value) || 0;
-      const from = document.getElementById('from-currency').value;
-      const to = document.getElementById('to-currency').value;
+      const amount = parseFloat(document.getElementById('calc-amount')?.value) || 0;
+      const from = document.getElementById('from-currency')?.value || 'TRY';
+      const to = document.getElementById('to-currency')?.value || 'BYN';
+      const resultValue = document.getElementById('result-value');
+      const resultDetail = document.getElementById('result-detail');
+      
+      if (!resultValue || !resultDetail) return;
 
       const inTRY = amount / ratesFromTRY[from];
       const result = inTRY * ratesFromTRY[to];
 
-      document.getElementById('result-value').textContent = `${currencySymbols[to]} ${result.toFixed(2)}`;
-      document.getElementById('result-detail').textContent = `${amount.toFixed(2)} ${currencySymbols[from]} = ${result.toFixed(2)} ${currencySymbols[to]}`;
+      resultValue.textContent = `${currencySymbols[to]} ${result.toFixed(2)}`;
+      resultDetail.textContent = `${amount.toFixed(2)} ${currencySymbols[from]} = ${result.toFixed(2)} ${currencySymbols[to]}`;
     }
 
     // ============= EXPENSES PAGE =============
     function renderExpenses() {
+      const totalSpent = document.getElementById('total-spent');
+      const categoryBreakdown = document.getElementById('category-breakdown');
+      const expensesList = document.getElementById('expenses-list');
+      
+      if (!totalSpent || !categoryBreakdown || !expensesList) return;
+      
       const totalBYN = expenses.reduce((sum, e) => sum + e.amount * toBYN[e.currency], 0);
-      document.getElementById('total-spent').textContent = `${totalBYN.toFixed(2)} BYN`;
+      totalSpent.textContent = `${totalBYN.toFixed(2)} BYN`;
 
       // Category breakdown
       const byCategory = expenses.reduce((acc, e) => {
@@ -2009,7 +2076,7 @@
         return acc;
       }, {});
 
-      document.getElementById('category-breakdown').innerHTML = Object.entries(byCategory)
+      categoryBreakdown.innerHTML = Object.entries(byCategory)
         .map(([cat, amount]) => `<span class="category-tag ${cat}">${categories[cat].emoji} ${amount.toFixed(0)} BYN</span>`)
         .join('');
 
@@ -2021,10 +2088,9 @@
       }, {});
 
       const sortedDates = Object.keys(byDate).sort((a, b) => new Date(b) - new Date(a));
-      const container = document.getElementById('expenses-list');
 
       if (sortedDates.length === 0) {
-        container.innerHTML = `
+        expensesList.innerHTML = `
           <div class="empty-state">
             <p>Пока нет расходов</p>
             <button class="empty-btn" onclick="openModal()">
@@ -2036,7 +2102,7 @@
         return;
       }
 
-      container.innerHTML = sortedDates.map(date => `
+      expensesList.innerHTML = sortedDates.map(date => `
         <div class="expense-date-group">
           <p class="expense-date">${formatDate(date)}</p>
           ${byDate[date].map(e => `
@@ -2079,7 +2145,10 @@
     }
 
     function renderCategoryGrid() {
-      document.getElementById('category-grid').innerHTML = Object.entries(categories)
+      const categoryGrid = document.getElementById('category-grid');
+      if (!categoryGrid) return;
+      
+      categoryGrid.innerHTML = Object.entries(categories)
         .map(([key, val]) => `
           <button class="category-btn ${selectedCategory === key ? 'active' : ''}" onclick="selectCategory('${key}')">
             ${val.emoji} ${val.label}
@@ -2119,12 +2188,30 @@
 
     // ============= INIT =============
     document.addEventListener('DOMContentLoaded', () => {
+      // Загружаем данные из localStorage
+      try {
+        const visitedData = localStorage.getItem('istanbul-visited');
+        const expensesData = localStorage.getItem('istanbul-expenses');
+        
+        if (visitedData) visited = JSON.parse(visitedData);
+        if (expensesData) expenses = JSON.parse(expensesData);
+      } catch (e) {
+        console.error('Ошибка загрузки данных из localStorage:', e);
+      }
+      
+      // Инициализируем страницы
       renderDays();
       renderRestaurants();
       renderShops();
       setupConverter();
       renderExpenses();
       renderCategoryGrid();
+      
+      // Добавляем скрипт для погоды
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = '//nuipogoda.ru/informer/nuipogoda.js';
+      document.body.appendChild(script);
     });
   </script>
 </body>

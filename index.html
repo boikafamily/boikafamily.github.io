@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
+    /* ВСЕ СТИЛИ ОСТАЮТСЯ БЕЗ ИЗМЕНЕНИЙ КАК В ИСХОДНОМ КОДЕ */
     :root {
       --background: hsl(30, 50%, 98%);
       --foreground: hsl(200, 30%, 15%);
@@ -1317,9 +1318,33 @@
       align-items: center;
       gap: 12px;
     }
+
+    /* Status Messages */
+    .status-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: var(--primary-foreground);
+      padding: 12px 24px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-elevated);
+      z-index: 1000;
+      animation: slideDown 0.3s ease-out;
+      display: none;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
   </style>
 </head>
 <body>
+  <!-- Status Message (для уведомлений) -->
+  <div id="status-message" class="status-message"></div>
+
   <!-- HOME PAGE -->
   <div id="page-home" class="page active">
     <section class="hero">
@@ -1327,37 +1352,36 @@
       <div class="hero-content">
         <h1>Привет, Бойки! Добро пожаловать в Стамбул</h1>
         <p>Город на двух континентах — где Европа встречается с Азией</p>
-	<p>Желаем вам хорошей погоды и классных впечатлений!</p>
-
+        <p>Желаем вам хорошей погоды и классных впечатлений!</p>
       </div>
     </section>
 
-   <div class="cards-grid cards-offset">
-  <div class="card card-elevated animate-slide-up">
-    <div class="card-header">
-      <div class="card-icon primary">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <div class="cards-grid cards-offset">
+      <div class="card card-elevated animate-slide-up">
+        <div class="card-header">
+          <div class="card-icon primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div>
+            <h3 class="card-title">Gloria Suites Old City</h3>
+            <p class="text-xs text-muted" style="margin-top: 2px;">Наш отель</p>
+          </div>
+        </div>
+        <p class="text-muted text-sm">Район Султанахмет — исторический центр города с пешей доступностью к основным достопримечательностям</p>
+        <div style="margin-top: 12px; display: flex; align-items: center; gap: 8px;">
+          <a 
+            href="https://secure.booking.com/confirmation.ru.html?label=en-row-booking-desktop-e9CoRcORKy17TTYFxBGeLQS652796017659%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-15349264036%3Alp9197461%3Ali%3Adec%3Adm&sid=fcfdf54a2bfe0d467324fe7af21f5117&aid=2311236&auth_key=GzUMoXn7hgSVSRIo&source=mytrips" 
+            target="_blank" 
+            class="attraction-link"
+            style="display: inline-flex; align-items: center; gap: 6px;"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+            Бронирование
+          </a>
+          <span style="color: var(--muted-foreground); font-size: 12px;">•</span>
+          <span style="color: var(--muted-foreground); font-size: 12px;">Рейтинг: 8.8</span>
+        </div>
       </div>
-      <div>
-        <h3 class="card-title">Gloria Suites Old City</h3>
-        <p class="text-xs text-muted" style="margin-top: 2px;">Наш отель</p>
-      </div>
-    </div>
-    <p class="text-muted text-sm">Район Султанахмет — исторический центр города с пешей доступностью к основным достопримечательностям</p>
-    <div style="margin-top: 12px; display: flex; align-items: center; gap: 8px;">
-      <a 
-        href="https://secure.booking.com/confirmation.ru.html?label=en-row-booking-desktop-e9CoRcORKy17TTYFxBGeLQS652796017659%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-15349264036%3Alp9197461%3Ali%3Adec%3Adm&sid=fcfdf54a2bfe0d467324fe7af21f5117&aid=2311236&auth_key=GzUMoXn7hgSVSRIo&source=mytrips" 
-        target="_blank" 
-        class="attraction-link"
-        style="display: inline-flex; align-items: center; gap: 6px;"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
-        Бронирование
-      </a>
-      <span style="color: var(--muted-foreground); font-size: 12px;">•</span>
-      <span style="color: var(--muted-foreground); font-size: 12px;">Рейтинг: 8.8</span>
-    </div>
-  </div>
 
       <div class="card card-elevated animate-slide-up" style="animation-delay: 0.1s">
         <div class="card-header">
@@ -1844,6 +1868,39 @@
     let expenses = JSON.parse(localStorage.getItem('istanbul-expenses') || '[]');
     let expandedDay = 0;
     let selectedCategory = 'food';
+    let supabaseClient = null;
+
+    // ============= SUPABASE INTEGRATION =============
+    function initSupabase() {
+      // Проверяем, есть ли Supabase в глобальной области видимости
+      if (typeof supabase !== 'undefined' && supabase.createClient) {
+        try {
+          supabaseClient = supabase.createClient(
+            'https://yjithstkzcvcycmrfqet.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqaXRoc3RremN2Y3ljbXJmcWV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYzMjMxMDcsImV4cCI6MjA4MTg5OTEwN30.41GLqO47_tfrdSC2Dvo0Ya79KaI2oHIRmgOs3HDER9E'
+          );
+          console.log('Supabase инициализирован');
+        } catch (error) {
+          console.error('Ошибка инициализации Supabase:', error);
+        }
+      } else {
+        console.warn('Supabase JS не загружен. Используем localStorage.');
+      }
+    }
+
+    // ============= UTILITY FUNCTIONS =============
+    function showStatus(message, type = 'success') {
+      const statusEl = document.getElementById('status-message');
+      if (!statusEl) return;
+      
+      statusEl.textContent = message;
+      statusEl.style.display = 'block';
+      statusEl.style.background = type === 'success' ? 'var(--primary)' : 'hsl(0, 84%, 60%)';
+      
+      setTimeout(() => {
+        statusEl.style.display = 'none';
+      }, 3000);
+    }
 
     // ============= PAGE NAVIGATION =============
     function showPage(pageName) {
@@ -1861,6 +1918,11 @@
       }
       
       window.scrollTo(0, 0);
+      
+      // Если переходим на страницу расходов, загружаем данные
+      if (pageName === 'expenses') {
+        loadExpenses();
+      }
     }
 
     // ============= GUIDE PAGE =============
@@ -2077,6 +2139,34 @@
     }
 
     // ============= EXPENSES PAGE =============
+    async function loadExpenses() {
+      try {
+        // Если Supabase инициализирован, пробуем загрузить из базы
+        if (supabaseClient) {
+          const { data, error } = await supabaseClient
+            .from('expenses')
+            .select('*')
+            .order('date', { ascending: false });
+          
+          if (error) throw error;
+          
+          expenses = data || [];
+          showStatus('Данные загружены из базы');
+        } else {
+          // Иначе используем localStorage
+          const localExpenses = localStorage.getItem('istanbul-expenses');
+          expenses = localExpenses ? JSON.parse(localExpenses) : [];
+        }
+      } catch (error) {
+        console.error('Ошибка загрузки расходов:', error);
+        // Используем localStorage как запасной вариант
+        const localExpenses = localStorage.getItem('istanbul-expenses');
+        expenses = localExpenses ? JSON.parse(localExpenses) : [];
+      }
+      
+      renderExpenses();
+    }
+
     function renderExpenses() {
       const totalSpent = document.getElementById('total-spent');
       const categoryBreakdown = document.getElementById('category-breakdown');
@@ -2179,9 +2269,12 @@
       renderCategoryGrid();
     }
 
-    function addExpense() {
+    async function addExpense() {
       const amount = parseFloat(document.getElementById('expense-amount').value);
-      if (!amount || amount <= 0) return;
+      if (!amount || amount <= 0) {
+        showStatus('Введите корректную сумму', 'error');
+        return;
+      }
 
       const expense = {
         id: Date.now().toString(),
@@ -2189,19 +2282,69 @@
         amount: amount,
         currency: document.getElementById('expense-currency').value,
         category: selectedCategory,
-        description: document.getElementById('expense-desc').value
+        description: document.getElementById('expense-desc').value,
+        created_at: new Date().toISOString()
       };
 
-      expenses.unshift(expense);
-      localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
-      closeModal();
-      renderExpenses();
+      try {
+        // Сохраняем в Supabase, если он доступен
+        if (supabaseClient) {
+          const { error } = await supabaseClient
+            .from('expenses')
+            .insert([expense]);
+          
+          if (error) throw error;
+          
+          showStatus('Расход сохранен в базе данных!');
+        }
+        
+        // Всегда сохраняем в localStorage и локальный массив
+        expenses.unshift(expense);
+        localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
+        renderExpenses();
+        closeModal();
+        
+      } catch (error) {
+        console.error('Ошибка сохранения расхода:', error);
+        showStatus('Сохранено локально. Ошибка связи с базой', 'error');
+        
+        // Сохраняем только локально если база недоступна
+        expenses.unshift(expense);
+        localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
+        renderExpenses();
+        closeModal();
+      }
     }
 
-    function deleteExpense(id) {
-      expenses = expenses.filter(e => e.id !== id);
-      localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
-      renderExpenses();
+    async function deleteExpense(id) {
+      if (!confirm('Удалить этот расход?')) return;
+      
+      try {
+        // Удаляем из Supabase, если он доступен
+        if (supabaseClient) {
+          const { error } = await supabaseClient
+            .from('expenses')
+            .delete()
+            .eq('id', id);
+          
+          if (error) throw error;
+        }
+        
+        // Удаляем из локального массива
+        expenses = expenses.filter(e => e.id !== id);
+        localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
+        renderExpenses();
+        showStatus('Расход удален');
+        
+      } catch (error) {
+        console.error('Ошибка удаления расхода:', error);
+        showStatus('Ошибка удаления из базы', 'error');
+        
+        // Все равно удаляем локально
+        expenses = expenses.filter(e => e.id !== id);
+        localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
+        renderExpenses();
+      }
     }
 
     // ============= INIT =============
@@ -2217,20 +2360,46 @@
         console.error('Ошибка загрузки данных из localStorage:', e);
       }
       
+      // Инициализируем Supabase (позже, после загрузки страницы)
+      setTimeout(initSupabase, 100);
+      
       // Инициализируем страницы
       renderDays();
       renderRestaurants();
       renderShops();
       setupConverter();
-      renderExpenses();
       renderCategoryGrid();
+      renderExpenses();
       
       // Добавляем скрипт для погоды
       const script = document.createElement('script');
       script.async = true;
       script.src = '//nuipogoda.ru/informer/nuipogoda.js';
       document.body.appendChild(script);
+      
+      console.log('Сайт инициализирован');
     });
+  </script>
+  
+  <!-- Загружаем Supabase JS асинхронно, чтобы не блокировать загрузку -->
+  <script>
+    // Загружаем Supabase асинхронно
+    (function() {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+      script.async = true;
+      script.onload = function() {
+        console.log('Supabase JS загружен');
+        // Инициализируем Supabase после загрузки библиотеки
+        if (typeof initSupabase === 'function') {
+          initSupabase();
+        }
+      };
+      script.onerror = function() {
+        console.warn('Не удалось загрузить Supabase JS. Используем localStorage.');
+      };
+      document.head.appendChild(script);
+    })();
   </script>
 </body>
 </html>

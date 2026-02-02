@@ -50,11 +50,13 @@
 
     .page {
       display: none;
-      animation: fadeIn 0.3s ease-out;
+      opacity: 0;
+      animation: fadeIn 0.3s ease-out forwards;
     }
 
     .page.active {
       display: block;
+      opacity: 1;
     }
 
     @keyframes fadeIn {
@@ -104,6 +106,8 @@
       transition: all 0.2s;
       color: var(--muted-foreground);
       text-decoration: none;
+      border: none;
+      background: none;
     }
 
     .nav-item.active {
@@ -1317,6 +1321,63 @@
       align-items: center;
       gap: 12px;
     }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: var(--primary-foreground);
+      padding: 12px 24px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-elevated);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translate(-50%, -20px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    .toast.success { background: var(--primary); }
+    .toast.error { background: hsl(0, 84%, 60%); }
+    .toast.warning { background: var(--accent); }
+
+    /* Loader */
+    .loader {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--muted);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Weather Widget Fix */
+    .weather-widget-container {
+      width: 284px;
+      height: 263px;
+      margin: 0 auto;
+      box-shadow: 0 0 5px #999;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* Scroll to top on page change */
+    body {
+      scroll-behavior: smooth;
+    }
   </style>
 </head>
 <body>
@@ -1325,38 +1386,37 @@
     <section class="hero">
       <div class="hero-bg"></div>
       <div class="hero-content">
-        <h1> Привет, Бойки! Добро пожаловать в Стамбул</h1>
+        <h1>Добро пожаловать в Стамбул</h1>
         <p>Город на двух континентах — где Европа встречается с Азией</p>
-        <p>Желаем вам хорошей погоды и классных впечатлений!</p>
       </div>
     </section>
 
-   <div class="cards-grid cards-offset">
-  <div class="card card-elevated animate-slide-up">
-    <div class="card-header">
-      <div class="card-icon primary">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <div class="cards-grid cards-offset">
+      <div class="card card-elevated animate-slide-up">
+        <div class="card-header">
+          <div class="card-icon primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div>
+            <h3 class="card-title">Gloria Suites Old City</h3>
+            <p class="text-xs text-muted" style="margin-top: 2px;">Наш отель</p>
+          </div>
+        </div>
+        <p class="text-muted text-sm">Район Султанахмет — исторический центр города с пешей доступностью к основным достопримечательностям</p>
+        <div style="margin-top: 12px; display: flex; align-items: center; gap: 8px;">
+          <a 
+            href="https://secure.booking.com/confirmation.ru.html?label=en-row-booking-desktop-e9CoRcORKy17TTYFxBGeLQS652796017659%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-15349264036%3Alp9197461%3Ali%3Adec%3Adm&sid=fcfdf54a2bfe0d467324fe7af21f5117&aid=2311236&auth_key=GzUMoXn7hgSVSRIo&source=mytrips" 
+            target="_blank" 
+            class="attraction-link"
+            style="display: inline-flex; align-items: center; gap: 6px;"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+            Бронирование
+          </a>
+          <span style="color: var(--muted-foreground); font-size: 12px;">•</span>
+          <span style="color: var(--muted-foreground); font-size: 12px;">Рейтинг: 8.8</span>
+        </div>
       </div>
-      <div>
-        <h3 class="card-title">Gloria Suites Old City</h3>
-        <p class="text-xs text-muted" style="margin-top: 2px;">Наш отель</p>
-      </div>
-    </div>
-    <p class="text-muted text-sm">Район Султанахмет — исторический центр города с пешей доступностью к основным достопримечательностям</p>
-    <div style="margin-top: 12px; display: flex; align-items: center; gap: 8px;">
-      <a 
-        href="https://secure.booking.com/confirmation.ru.html?label=en-row-booking-desktop-e9CoRcORKy17TTYFxBGeLQS652796017659%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-15349264036%3Alp9197461%3Ali%3Adec%3Adm&sid=fcfdf54a2bfe0d467324fe7af21f5117&aid=2311236&auth_key=GzUMoXn7hgSVSRIo&source=mytrips" 
-        target="_blank" 
-        class="attraction-link"
-        style="display: inline-flex; align-items: center; gap: 6px;"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
-        Бронирование
-      </a>
-      <span style="color: var(--muted-foreground); font-size: 12px;">•</span>
-      <span style="color: var(--muted-foreground); font-size: 12px;">Рейтинг: 8.8</span>
-    </div>
-  </div>
 
       <div class="card card-elevated animate-slide-up" style="animation-delay: 0.1s">
         <div class="card-header">
@@ -1383,23 +1443,22 @@
           <h3 class="card-title">Погода в Стамбуле</h3>
         </div>
         
-        <!-- Виджет "Яндекс.Погода" -->
-        <div style="width: 250px; background: #fff; padding: 10px; border-radius: 8px; font-family: Arial, sans-serif;">
-  <a href="https://yandex.ru/pogoda/СТАМБУЛ" target="_blank" style="text-decoration: none; color: #000; font-weight: bold; font-size: 16px;">
-    Погода в Стамбуле
-  </a>
-  <div id="yandex-weather-widget"></div>
-  <script>
-    (function (d, n) {
-      var tag = d.createElement('script');
-      tag.type = 'text/javascript';
-      tag.async = true;
-      tag.src = 'https://api-maps.yandex.ru/services/iframe-pogoda/v1/?id=yandex-weather-widget&city=СТАМБУЛ&lang=ru&theme=light';
-      tag.charset = 'utf-8';
-      d.body.appendChild(tag);
-    })(document, 'script');
-  </script>
-</div>
+        <!-- Weather Widget -->
+        <div class="weather-widget-container">
+          <iframe 
+            src="https://www.meteoblue.com/en/weather/widget/three/istanbul_turkey_745044?geoloc=fixed&nocurrent=0&noforecast=0&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image" 
+            frameborder="0" 
+            scrolling="NO" 
+            allowtransparency="true"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
+            style="width: 100%; height: 100%; border: none;"
+          ></iframe>
+        </div>
+        
+        <p class="text-xs text-muted" style="text-align: center; margin-top: 8px;">Данные от meteoblue</p>
+      </div>
+    </div>
+
     <section class="section">
       <h2 class="section-title">О Стамбуле</h2>
       <div class="card">
@@ -1632,7 +1691,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
           Дата
         </label>
-        <input type="date" id="expense-date" class="form-input">
+        <input type="date" id="expense-date" class="form-input" value="${new Date().toISOString().split('T')[0]}">
       </div>
 
       <div class="form-group">
@@ -1642,7 +1701,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
               Сумма
             </label>
-            <input type="number" id="expense-amount" class="form-input" placeholder="0.00">
+            <input type="number" id="expense-amount" class="form-input" placeholder="0.00" min="0" step="0.01">
           </div>
           <div class="currency-wrapper">
             <label class="form-label">Валюта</label>
@@ -1671,7 +1730,7 @@
 
       <div class="modal-actions">
         <button class="cancel-btn" onclick="closeModal()">Отмена</button>
-        <button class="submit-btn" onclick="addExpense()">Добавить</button>
+        <button class="submit-btn" onclick="addExpense()" id="submit-expense">Добавить</button>
       </div>
     </div>
   </div>
@@ -1679,34 +1738,45 @@
   <!-- BOTTOM NAVIGATION -->
   <nav class="nav">
     <div class="nav-inner">
-      <a class="nav-item active" data-page="home" onclick="showPage('home')">
+      <button class="nav-item active" data-page="home" onclick="showPage('home')">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         <span>Главная</span>
-      </a>
-      <a class="nav-item" data-page="guide" onclick="showPage('guide')">
+      </button>
+      <button class="nav-item" data-page="guide" onclick="showPage('guide')">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/></svg>
         <span>Гид</span>
-      </a>
-      <a class="nav-item" data-page="restaurants" onclick="showPage('restaurants')">
+      </button>
+      <button class="nav-item" data-page="restaurants" onclick="showPage('restaurants')">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
         <span>Еда</span>
-      </a>
-      <a class="nav-item" data-page="shops" onclick="showPage('shops')">
+      </button>
+      <button class="nav-item" data-page="shops" onclick="showPage('shops')">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
         <span>Магазины</span>
-      </a>
-      <a class="nav-item" data-page="converter" onclick="showPage('converter')">
+      </button>
+      <button class="nav-item" data-page="converter" onclick="showPage('converter')">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
         <span>Валюта</span>
-      </a>
-      <a class="nav-item" data-page="expenses" onclick="showPage('expenses')">
+      </button>
+      <button class="nav-item" data-page="expenses" onclick="showPage('expenses')">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17V7"/></svg>
         <span>Расходы</span>
-      </a>
+      </button>
     </div>
   </nav>
 
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" style="display: none;"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
+    // ============= SUPABASE CONFIGURATION =============
+    const SUPABASE_URL = 'https://yjithstkzcvcycmrfqet.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqaXRoc3RremN2Y3ljbXJmcWV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYzMjMxMDcsImV4cCI6MjA4MTg5OTEwN30.41GLqO47_tfrdSC2Dvo0Ya79KaI2oHIRmgOs3HDER9E';
+
+    // Инициализация Supabase
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
     // ============= DATA =============
     const travelDays = [
       {
@@ -1848,26 +1918,81 @@
 
     // ============= STATE =============
     let visited = JSON.parse(localStorage.getItem('istanbul-visited') || '{}');
-    let expenses = JSON.parse(localStorage.getItem('istanbul-expenses') || '[]');
+    let expenses = [];
     let expandedDay = 0;
     let selectedCategory = 'food';
+    let userId = localStorage.getItem('istanbul-user-id') || generateUserId();
+    let isLoading = false;
 
-    // ============= PAGE NAVIGATION =============
+    // ============= UTILITY FUNCTIONS =============
+    function generateUserId() {
+      const id = 'user_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('istanbul-user-id', id);
+      return id;
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast ${type}`;
+      toast.style.display = 'flex';
+      
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
+    }
+
+    function setLoading(loading) {
+      isLoading = loading;
+      const submitBtn = document.getElementById('submit-expense');
+      if (submitBtn) {
+        submitBtn.disabled = loading;
+        submitBtn.innerHTML = loading ? 
+          '<div class="loader" style="width: 20px; height: 20px;"></div>' : 
+          'Добавить';
+      }
+    }
+
+    // ============= PAGE NAVIGATION - ИСПРАВЛЕНА =============
     function showPage(pageName) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      // Скрыть все страницы
+      document.querySelectorAll('.page').forEach(p => {
+        p.classList.remove('active');
+        p.style.display = 'none';
+      });
       
+      // Убрать активный класс у всех кнопок навигации
+      document.querySelectorAll('.nav-item').forEach(n => {
+        n.classList.remove('active');
+      });
+      
+      // Показать выбранную страницу
       const pageElement = document.getElementById('page-' + pageName);
-      const navElement = document.querySelector(`.nav-item[data-page="${pageName}"]`);
-      
       if (pageElement) {
-        pageElement.classList.add('active');
-      }
-      if (navElement) {
-        navElement.classList.add('active');
+        pageElement.style.display = 'block';
+        setTimeout(() => {
+          pageElement.classList.add('active');
+        }, 10);
       }
       
-      window.scrollTo(0, 0);
+      // Сделать активной кнопку навигации
+      const navElements = document.querySelectorAll(`.nav-item[data-page="${pageName}"]`);
+      navElements.forEach(navElement => {
+        navElement.classList.add('active');
+      });
+      
+      // Прокрутить наверх
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Загрузить расходы если открываем соответствующую страницу
+      if (pageName === 'expenses') {
+        loadExpensesFromDB();
+      }
+      
+      // Обновить гид если открываем страницу гида
+      if (pageName === 'guide') {
+        renderDays();
+      }
     }
 
     // ============= GUIDE PAGE =============
@@ -2083,7 +2208,77 @@
       resultDetail.textContent = `${amount.toFixed(2)} ${currencySymbols[from]} = ${result.toFixed(2)} ${currencySymbols[to]}`;
     }
 
-    // ============= EXPENSES PAGE =============
+    // ============= EXPENSES PAGE - SUPABASE =============
+    async function loadExpensesFromDB() {
+      try {
+        const { data, error } = await supabase
+          .from('expenses')
+          .select('*')
+          .eq('user_id', userId)
+          .order('date', { ascending: false })
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        expenses = data || [];
+        renderExpenses();
+      } catch (error) {
+        console.error('Ошибка загрузки расходов:', error);
+        showToast('Ошибка загрузки расходов', 'error');
+      }
+    }
+
+    async function addExpenseToDB(expense) {
+      try {
+        setLoading(true);
+        
+        const { data, error } = await supabase
+          .from('expenses')
+          .insert({
+            user_id: userId,
+            date: expense.date,
+            amount: expense.amount,
+            currency: expense.currency,
+            category: expense.category,
+            description: expense.description,
+            created_at: new Date().toISOString()
+          })
+          .select()
+          .single();
+
+        if (error) throw error;
+
+        expenses.unshift(data);
+        renderExpenses();
+        closeModal();
+        showToast('Расход добавлен');
+      } catch (error) {
+        console.error('Ошибка добавления расхода:', error);
+        showToast('Ошибка добавления расхода', 'error');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    async function deleteExpenseFromDB(id) {
+      try {
+        const { error } = await supabase
+          .from('expenses')
+          .delete()
+          .eq('id', id)
+          .eq('user_id', userId);
+
+        if (error) throw error;
+
+        expenses = expenses.filter(e => e.id !== id);
+        renderExpenses();
+        showToast('Расход удален');
+      } catch (error) {
+        console.error('Ошибка удаления расхода:', error);
+        showToast('Ошибка удаления расхода', 'error');
+      }
+    }
+
     function renderExpenses() {
       const totalSpent = document.getElementById('total-spent');
       const categoryBreakdown = document.getElementById('category-breakdown');
@@ -2167,6 +2362,7 @@
 
     function closeModal() {
       document.getElementById('expense-modal').classList.remove('active');
+      setLoading(false);
     }
 
     function renderCategoryGrid() {
@@ -2188,10 +2384,12 @@
 
     function addExpense() {
       const amount = parseFloat(document.getElementById('expense-amount').value);
-      if (!amount || amount <= 0) return;
+      if (!amount || amount <= 0) {
+        showToast('Введите корректную сумму', 'error');
+        return;
+      }
 
       const expense = {
-        id: Date.now().toString(),
         date: document.getElementById('expense-date').value,
         amount: amount,
         currency: document.getElementById('expense-currency').value,
@@ -2199,16 +2397,13 @@
         description: document.getElementById('expense-desc').value
       };
 
-      expenses.unshift(expense);
-      localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
-      closeModal();
-      renderExpenses();
+      addExpenseToDB(expense);
     }
 
     function deleteExpense(id) {
-      expenses = expenses.filter(e => e.id !== id);
-      localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
-      renderExpenses();
+      if (confirm('Удалить этот расход?')) {
+        deleteExpenseFromDB(id);
+      }
     }
 
     // ============= INIT =============
@@ -2216,10 +2411,7 @@
       // Загружаем данные из localStorage
       try {
         const visitedData = localStorage.getItem('istanbul-visited');
-        const expensesData = localStorage.getItem('istanbul-expenses');
-        
         if (visitedData) visited = JSON.parse(visitedData);
-        if (expensesData) expenses = JSON.parse(expensesData);
       } catch (e) {
         console.error('Ошибка загрузки данных из localStorage:', e);
       }
@@ -2229,14 +2421,20 @@
       renderRestaurants();
       renderShops();
       setupConverter();
-      renderExpenses();
       renderCategoryGrid();
       
-      // Добавляем скрипт для погоды
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = '//nuipogoda.ru/informer/nuipogoda.js';
-      document.body.appendChild(script);
+      // Загружаем расходы из базы
+      loadExpensesFromDB();
+      
+      // Исправляем навигацию
+      const navButtons = document.querySelectorAll('.nav-item');
+      navButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          const page = this.getAttribute('data-page');
+          showPage(page);
+        });
+      });
     });
   </script>
 </body>

@@ -9,21 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Скрипт для виджета погоды Tomorrow.io -->
-  <script>
-    (function(d, s, id) {
-      if (d.getElementById(id)) {
-        if (window.__TOMORROW__) {
-          window.__TOMORROW__.renderWidget();
-        }
-        return;
-      }
-      const fjs = d.getElementsByTagName(s)[0];
-      const js = d.createElement(s);
-      js.id = id;
-      js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'tomorrow-sdk');
-  </script>
+ <script>
+  (function(a,f,g){
+    var e=a.createElement(f);
+    e.async=1;
+    e.src=g; 
+    a=a.getElementsByTagName(f)[0];
+    a.parentNode.insertBefore(e,a)
+  })(document,'script','//nuipogoda.ru/informer/nuipogoda.js');
+</script>
   
   <style>
     :root {

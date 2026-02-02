@@ -1328,6 +1328,23 @@
       display: block;
     }
   </style>
+  <!-- Добавьте этот скрипт для Tomorrow.io ПЕРЕД закрывающим </head> -->
+<script>
+    (function(d, s, id) {
+        if (d.getElementById(id)) {
+            if (window.__TOMORROW__) {
+                window.__TOMORROW__.renderWidget();
+            }
+            return;
+        }
+        const fjs = d.getElementsByTagName(s)[0];
+        const js = d.createElement(s);
+        js.id = id;
+        js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
+
+        fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'tomorrow-sdk');
+</script>
 </head>
 <body>
   <!-- HOME PAGE -->
@@ -1369,16 +1386,38 @@
       </div>
 
       <div class="card card-elevated card-full animate-slide-up" style="animation-delay: 0.2s">
-        <div class="card-header">
-          <div class="card-icon accent">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
-          </div>
-          <h3 class="card-title">Погода в Стамбуле</h3>
-        </div>
-        <iframe class="weather-frame" src="https://www.gismeteo.ru/widget/simple/120658/" title="Погода"></iframe>
-        <p class="text-xs text-muted" style="text-align: center; margin-top: 8px;">Данные от Gismeteo</p>
-      </div>
+  <div class="card-header">
+    <div class="card-icon accent">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
     </div>
+    <h3 class="card-title">Погода в Стамбуле</h3>
+  </div>
+  
+  <!-- Виджет Tomorrow.io -->
+  <div class="tomorrow"
+       data-location-id="107851"
+       data-language="RU"
+       data-unit-system="METRIC"
+       data-skin="light"
+       data-widget-type="upcoming"
+       style="padding-bottom:22px;position:relative;">
+    <a
+      href="https://weather.tomorrow.io/"
+      rel="nofollow noopener noreferrer"
+      target="_blank"
+      style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;"
+    >
+      <img
+        alt="Powered by Tomorrow.io"
+        src="https://weather-website-client.tomorrow.io/img/powered-by.svg"
+        width="250"
+        height="18"
+      />
+    </a>
+  </div>
+  
+  <p class="text-xs text-muted" style="text-align: center; margin-top: 8px;">Данные от Tomorrow.io</p>
+</div>
 
     <section class="section">
       <h2 class="section-title">О Стамбуле</h2>

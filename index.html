@@ -1529,7 +1529,7 @@
         </div>
         <div class="info-row text-sm">
           <span class="text-muted">100 TRY</span>
-          <span class="value">≈ 3,2 EUR</span>
+          <span class="value">≈ 1,93 EUR</span>
         </div>
       </div>
 
@@ -1689,7 +1689,7 @@
           </div>
           <div class="rate-item">
             <p class="from">100 TRY</p>
-            <p class="to">≈ 3,2 EUR</p>
+            <p class="to">≈ 1,93 EUR</p>
           </div>
         </div>
       </div>
@@ -2003,8 +2003,18 @@
     };
 
     const currencySymbols = { TRY: "₺", BYN: "Br", EUR: "€", USD: "$" };
-    const toBYN = { TRY: 0.065, BYN: 1, EUR: 3.5, USD: 3.2 };
-    const ratesFromTRY = { TRY: 1, BYN: 0.065, EUR: 0.032, USD: 0.035 };
+  const toBYN = {
+  TRY: 0.065,   // 1 TRY = 0.065 BYN (из 100 TRY = 6.5 BYN)
+  BYN: 1,       // базовая валюта
+  EUR: 3.4,     // 1 EUR = 3.4 BYN
+  USD: 2.9      // 1 USD = 2.9 BYN
+};
+    const const ratesFromTRY = {
+  TRY: 1,
+  BYN: 0.065,        // 1 TRY = 0.065 BYN
+  EUR: 0.0193,       // 1 TRY = 0.0193 EUR (из 100 TRY = 1.93 EUR)
+  USD: 0.065 / 2.9   // ≈ 0.0224138 — или укажите явно, если есть точное значение
+};
 
     // ============= STATE =============
     let visited = JSON.parse(localStorage.getItem('istanbul-visited') || '{}');

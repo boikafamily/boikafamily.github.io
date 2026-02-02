@@ -2139,33 +2139,28 @@
     }
 
     // ============= EXPENSES PAGE =============
-    async function loadExpenses() {
-      try {
-        // Если Supabase инициализирован, пробуем загрузить из базы
-        if (supabaseClient) {
-          const { data, error } = await supabaseClient
-            .from('expenses')
-            .select('*')
-            .order('date', { ascending: false });
-          
-          if (error) throw error;
-          
-          expenses = data || [];
-          showStatus('Данные загружены из базы');
-        } else {
-          // Иначе используем localStorage
-          const localExpenses = localStorage.getItem('istanbul-expenses');
-          expenses = localExpenses ? JSON.parse(localExpenses) : [];
-        }
-      } catch (error) {
-        console.error('Ошибка загрузки расходов:', error);
-        // Используем localStorage как запасной вариант
-        const localExpenses = localStorage.getItem('istanbul-expenses');
-        expenses = localExpenses ? JSON.parse(localExpenses) : [];
-      }
-      
-      renderExpenses();
+   async function loadExpenses() {
+  try {
+    if (supabaseClient) {
+      const { data, error } = await supabaseClient
+        .from('expenses')
+        .select('*')
+        .order('date', { ascending: false });
+
+      if (error) throw error;
+      expenses = data || [];
+      showStatus('Данные загружены из базы');
+    } else {
+      const localExpenses = localStorage.getItem('istanbul-expenses');
+      expenses = localExpenses ? JSON.parse(localExpenses) : [];
     }
+  } catch (error) {
+    console.error('Ошибка загрузки расходов:', error);
+    const localExpenses = localStorage.getItem('istanbul-expenses');
+    expenses = localExpenses ? JSON.parse(localExpenses) : [];
+  }
+  renderExpenses();
+}
 
     function renderExpenses() {
       const totalSpent = document.getElementById('total-spent');
@@ -2269,52 +2264,60 @@
       renderCategoryGrid();
     }
 
-    async function addExpense() {
-      const amount = parseFloat(document.getElementById('expense-amount').value);
-      if (!amount || amount <= 0) {
-        showStatus('Введите корректную сумму', 'error');
-        return;
-      }
+   async function addExpense() {
+  const amountInput = document.getElementById('expense-amount');
+  const amount = parseFloat(amountInput.value);
+  if (!amount || amount <= 0) {
+    showStatus('Введите корректную сумму', 'error');
+    return;
+  }
 
-      const expense = {
-        id: Date.now().toString(),
-        date: document.getElementById('expense-date').value,
-        amount: amount,
-        currency: document.getElementById('expense-currency').value,
-        category: selectedCategory,
-        description: document.getElementById('expense-desc').value,
-        created_at: new Date().toISOString()
-      };
+  const expense = {
+    // id: Date.now().toString(), ← УДАЛЯЕМ! Supabase сгенерирует UUID автоматически
+    user_id: 'default_user', // явно указываем, чтобы гарантировать работу при отсутствии DEFAULT
+    date: document.getElementById('expense-date').value,
+    amount: amount,
+    currency: document.getElementById('expense-currency').value,
+    category: selectedCategory,
+    description: document.getElementById('expense-desc').value
+    // created_at — НЕ ПЕРЕДАЁМ, её нет в таблице
+  };
 
-      try {
-        // Сохраняем в Supabase, если он доступен
-        if (supabaseClient) {
-          const { error } = await supabaseClient
-            .from('expenses')
-            .insert([expense]);
-          
-          if (error) throw error;
-          
-          showStatus('Расход сохранен в базе данных!');
-        }
-        
-        // Всегда сохраняем в localStorage и локальный массив
-        expenses.unshift(expense);
-        localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
-        renderExpenses();
-        closeModal();
-        
-      } catch (error) {
-        console.error('Ошибка сохранения расхода:', error);
-        showStatus('Сохранено локально. Ошибка связи с базой', 'error');
-        
-        // Сохраняем только локально если база недоступна
-        expenses.unshift(expense);
-        localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
-        renderExpenses();
-        closeModal();
-      }
+  try {
+    // Сохраняем в Supabase
+    if (supabaseClient) {
+      const { data, error } = await supabaseClient
+        .from('expenses')
+        .insert([expense])
+        .select(); // получаем вставленную запись с id (UUID)
+
+      if (error) throw error;
+
+      // Обновляем локальный массив и localStorage
+      expenses.unshift(data[0]); // добавляем именно вставленную запись (с UUID)
+      localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
+      showStatus('Расход сохранён в базе данных!', 'success');
+    } else {
+      // Запасной вариант: только localStorage
+      expense.id = Date.now().toString(); // для совместимости с renderExpenses()
+      expenses.unshift(expense);
+      localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
+      showStatus('Сохранено локально (база недоступна)', 'error');
     }
+
+    renderExpenses();
+    closeModal();
+  } catch (error) {
+    console.error('Ошибка вставки в Supabase:', error);
+    // Всегда сохраняем локально, даже при ошибке базы
+    expense.id = Date.now().toString();
+    expenses.unshift(expense);
+    localStorage.setItem('istanbul-expenses', JSON.stringify(expenses));
+    showStatus('Сохранено локально. Ошибка связи с базой', 'error');
+    renderExpenses();
+    closeModal();
+  }
+}
 
     async function deleteExpense(id) {
       if (!confirm('Удалить этот расход?')) return;
